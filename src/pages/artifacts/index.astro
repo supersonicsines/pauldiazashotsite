@@ -1,0 +1,27 @@
+---
+import '../../styles/global.css';
+
+const artifacts = import.meta.glob('../../artifacts/*.jsx');
+const slugs = Object.keys(artifacts).map((path) =>
+  path.split('/').pop()?.replace('.jsx', '') || ''
+);
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Artifacts | Paul Diaz Ashot</title>
+  </head>
+  <body class="min-h-screen p-8">
+    <h1 class="mb-8">Artifacts</h1>
+    <ul class="space-y-2">
+      {slugs.map((slug) => (
+        <li>
+          <a href={`/artifacts/${slug}`}>{slug}</a>
+        </li>
+      ))}
+    </ul>
+  </body>
+</html>

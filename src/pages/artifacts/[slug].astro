@@ -1,0 +1,26 @@
+---
+import '../../styles/global.css';
+import ArtifactWrapper from '../../components/ArtifactWrapper.jsx';
+
+export function getStaticPaths() {
+  const modules = import.meta.glob('../../artifacts/*.jsx', { eager: true });
+  return Object.keys(modules).map((path) => {
+    const slug = path.split('/').pop()?.replace('.jsx', '') || '';
+    return { params: { slug } };
+  });
+}
+
+const { slug } = Astro.params;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{slug} | Paul Diaz Ashot</title>
+  </head>
+  <body>
+    <ArtifactWrapper slug={slug} client:only="react" />
+  </body>
+</html>
