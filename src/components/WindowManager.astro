@@ -1,0 +1,257 @@
+---
+// WindowManager: place once at the body level. Renders the dock and
+// initializes drag/resize/minimize/close handlers for all <Window> elements.
+---
+
+<div id="windowDock" class="window-dock"></div>
+
+<style>
+	.window-dock {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		display: none;
+		gap: 4px;
+		padding: 4px 8px;
+		background: var(--color-bistre);
+		border-top: 1px solid var(--color-paper);
+		z-index: 400;
+		font-family: var(--font-mono);
+		font-size: 11px;
+	}
+
+	.window-dock.has-windows {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+	}
+
+	.dock-item {
+		all: unset;
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		padding: 4px 12px;
+		background: var(--color-paper);
+		color: var(--color-bistre);
+		cursor: pointer;
+		font-family: var(--font-mono);
+		font-size: 11px;
+		text-transform: uppercase;
+		letter-spacing: 0.8px;
+		border: 1px solid var(--color-paper);
+	}
+
+	.dock-item:hover {
+		background: var(--color-sidenote-bg);
+	}
+
+	.dock-item::before {
+		content: "▣";
+		opacity: 0.5;
+	}
+</style>
+
+<script>
+	type WinState = {
+		element: HTMLElement;
+		minimized: boolean;
+	};
+
+	let dragState: {
+		element: HTMLElement;
+		offsetX: number;
+		offsetY: number;
+	} | null = null;
+
+	let resizeState: {
+		element: HTMLElement;
+		startX: number;
+		startY: number;
+		startW: number;
+		startH: number;
+	} | null = null;
+
+	let zCounter = 300;
+
+	function getEventPoint(e: MouseEvent | TouchEvent) {
+		if ('touches' in e) {
+			const t = e.touches[0] || e.changedTouches[0];
+			return { x: t.clientX, y: t.clientY };
+		}
+		return { x: e.clientX, y: e.clientY };
+	}
+
+	function bringToFront(win: HTMLElement) {
+		zCounter += 1;
+		win.style.zIndex = String(zCounter);
+	}
+
+	function initWindowManager() {
+		const dock = document.getElementById('windowDock');
+		if (!dock) return;
+
+		const windows = new Map<string, WinState>();
+
+		document.querySelectorAll<HTMLElement>('.window[data-window-id]').forEach((win) => {
+			const id = win.dataset.windowId!;
+			windows.set(id, { element: win, minimized: false });
+
+			const titlebar = win.querySelector<HTMLElement>('.window-titlebar');
+			const closeBtn = win.querySelector<HTMLButtonElement>('.window-close');
+			const minBtn = win.querySelector<HTMLButtonElement>('.window-minimize');
+			const handle = win.querySelector<HTMLElement>('.window-resize-handle');
+
+			closeBtn?.addEventListener('click', (e) => {
+				e.stopPropagation();
+				closeWindow(id);
+			});
+
+			minBtn?.addEventListener('click', (e) => {
+				e.stopPropagation();
+				minimizeWindow(id);
+			});
+
+			win.addEventListener('mousedown', () => bringToFront(win));
+			win.addEventListener('touchstart', () => bringToFront(win), { passive: true });
+
+			titlebar?.addEventListener('mousedown', (e) => startDrag(win, e));
+			titlebar?.addEventListener('touchstart', (e) => startDrag(win, e), { passive: false });
+
+			handle?.addEventListener('mousedown', (e) => startResize(win, e));
+			handle?.addEventListener('touchstart', (e) => startResize(win, e), { passive: false });
+		});
+
+		document.querySelectorAll<HTMLElement>('[data-window-trigger]').forEach((trigger) => {
+			trigger.addEventListener('click', (e) => {
+				e.preventDefault();
+				const id = trigger.dataset.windowTrigger!;
+				openWindow(id);
+			});
+		});
+
+		function openWindow(id: string) {
+			const w = windows.get(id);
+			if (!w) return;
+			w.element.classList.add('open');
+			w.element.classList.remove('minimized');
+			w.minimized = false;
+			bringToFront(w.element);
+			renderDock();
+		}
+
+		function closeWindow(id: string) {
+			const w = windows.get(id);
+			if (!w) return;
+			w.element.classList.remove('open', 'minimized');
+			w.minimized = false;
+			renderDock();
+		}
+
+		function minimizeWindow(id: string) {
+			const w = windows.get(id);
+			if (!w) return;
+			w.element.classList.add('minimized');
+			w.minimized = true;
+			renderDock();
+		}
+
+		function renderDock() {
+			const minimized = [...windows.entries()].filter(([_, w]) => w.minimized);
+			if (minimized.length === 0) {
+				dock!.classList.remove('has-windows');
+				dock!.innerHTML = '';
+				return;
+			}
+			dock!.classList.add('has-windows');
+			dock!.innerHTML = minimized
+				.map(([id, w]) => {
+					const title = w.element.querySelector('.window-title')?.textContent ?? id;
+					return `<button class="dock-item" data-dock-id="${id}">${title}</button>`;
+				})
+				.join('');
+			dock!.querySelectorAll<HTMLButtonElement>('.dock-item').forEach((btn) => {
+				btn.addEventListener('click', () => {
+					openWindow(btn.dataset.dockId!);
+				});
+			});
+		}
+
+		function startDrag(win: HTMLElement, e: MouseEvent | TouchEvent) {
+			const target = e.target as HTMLElement;
+			if (target.closest('.window-controls')) return;
+			const rect = win.getBoundingClientRect();
+			const point = getEventPoint(e);
+			dragState = {
+				element: win,
+				offsetX: point.x - rect.left,
+				offsetY: point.y - rect.top,
+			};
+			win.classList.add('dragging');
+			bringToFront(win);
+			if (e.cancelable) e.preventDefault();
+		}
+
+		function startResize(win: HTMLElement, e: MouseEvent | TouchEvent) {
+			const point = getEventPoint(e);
+			const rect = win.getBoundingClientRect();
+			resizeState = {
+				element: win,
+				startX: point.x,
+				startY: point.y,
+				startW: rect.width,
+				startH: rect.height,
+			};
+			win.classList.add('resizing');
+			if (e.cancelable) e.preventDefault();
+		}
+
+		function onMove(e: MouseEvent | TouchEvent) {
+			const point = getEventPoint(e);
+			if (dragState) {
+				const x = point.x - dragState.offsetX;
+				const y = point.y - dragState.offsetY;
+				dragState.element.style.left = x + 'px';
+				dragState.element.style.top = y + 'px';
+				if (e.cancelable) e.preventDefault();
+			} else if (resizeState) {
+				const dx = point.x - resizeState.startX;
+				const dy = point.y - resizeState.startY;
+				const w = Math.max(280, resizeState.startW + dx);
+				const h = Math.max(200, resizeState.startH + dy);
+				resizeState.element.style.width = w + 'px';
+				resizeState.element.style.height = h + 'px';
+				if (e.cancelable) e.preventDefault();
+			}
+		}
+
+		function onEnd() {
+			if (dragState) {
+				dragState.element.classList.remove('dragging');
+				dragState = null;
+			}
+			if (resizeState) {
+				resizeState.element.classList.remove('resizing');
+				resizeState = null;
+			}
+		}
+
+		document.addEventListener('mousemove', onMove);
+		document.addEventListener('mouseup', onEnd);
+		document.addEventListener('touchmove', onMove, { passive: false });
+		document.addEventListener('touchend', onEnd);
+
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape') {
+				windows.forEach((w, id) => {
+					if (w.element.classList.contains('open') && !w.minimized) {
+						closeWindow(id);
+					}
+				});
+			}
+		});
+	}
+
+	initWindowManager();
+</script>

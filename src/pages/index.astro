@@ -3,6 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Collapsible from '../components/Collapsible.astro';
 import Sidenote from '../components/Sidenote.astro';
 import HoverCard from '../components/HoverCard.astro';
+import Window from '../components/Window.astro';
+import WindowManager from '../components/WindowManager.astro';
 ---
 
 <BaseLayout
@@ -23,96 +25,102 @@ import HoverCard from '../components/HoverCard.astro';
 		</header>
 
 		<div class="cv-body">
+			<Collapsible title="Introduction">
+				<p>
+					I'm a founder-operator. The short version of my work is two seasons: four
+					years on the founding team of <HoverCard term="GMX">
+						<span class="hc-p">A decentralised perpetual exchange. Three-person founding team, no outside investment, $450M+ TVL and $40M+ in annualised fee revenue at peak.</span>
+						<span class="hc-p"><em>[PLACEHOLDER — replace with 200–300 word essay covering: GLP unified-liquidity-pool design, your specific role in growth/partnerships, the Arbitrum migration, the deal arithmetic that made it work.]</em></span>
+						<span class="hc-p further-reading">→ <a href="https://gmx.io" target="_blank" rel="noopener noreferrer">gmx.io</a> · <a href="https://defillama.com/protocol/gmx" target="_blank" rel="noopener noreferrer">DeFiLlama TVL chart</a></span>
+					</HoverCard>, then three years of independent AI deployments. Native English, fluent Russian, fluent Spanish; right to work in the UK, US, and EU.
+				</p>
+				<p>
+					Each role below opens as a window — click to read more. The PDF version is
+					<a href="/Paul_Diaz_Ashot_CV.pdf" download target="_blank" rel="noopener">here</a>.
+				</p>
+			</Collapsible>
 
-		<Collapsible title="Summary">
-			<p>
-				Founder-operator with deep experience selling technical products to sophisticated buyers.
-				Founding team at <HoverCard term="GMX">
-					<span class="hc-p">A decentralised perpetual exchange. Three-person founding team, no outside investment, $450M+ TVL and $40M+ in annualised fee revenue at peak.</span>
-					<span class="hc-p"><em>[PLACEHOLDER — replace with 200–300 word essay covering: GLP unified-liquidity-pool design, your specific role in growth/partnerships, the Arbitrum migration, the deal arithmetic that made it work.]</em></span>
-					<span class="hc-p further-reading">→ <a href="https://gmx.io" target="_blank" rel="noopener noreferrer">gmx.io</a> · <a href="https://defillama.com/protocol/gmx" target="_blank" rel="noopener noreferrer">DeFiLlama TVL chart</a></span>
-				</HoverCard>, a decentralised derivatives exchange that scaled to <b>$450M+ TVL</b> and <b>$40M+ annualised revenue</b> with a team of three.
-				Active Claude developer since 2023, shipping production AI deployments including a live, revenue-generating prediction-market analytics platform.
-				Native English, fluent Russian, fluent Spanish.
-			</p>
-		</Collapsible>
+			<Collapsible title="Experience">
+				<div class="role">
+					<button class="role-trigger" data-window-trigger="portico" aria-haspopup="dialog">
+						<b>Portico Ventures</b> — <em>Managing Partner</em>
+					</button>
+					<div class="dates">2021 – 2026</div>
+				</div>
+				<ul>
+					<li>
+						Venture consultancy advising early-stage DeFi and fintech founders.
+						Three portfolio companies including <a href="https://gammaswap.com" target="_blank" rel="noopener noreferrer"><b>Gammaswap</b></a>
+						and <a href="https://www.codex.io" target="_blank" rel="noopener noreferrer"><b>Codex</b></a>.
+						Influenced <b>$4M+ in aggregate fundraising</b> through advisory work and warm introductions.
+					</li>
+				</ul>
 
-		<Collapsible title="Experience">
-			<div class="role">
-				<div class="title"><b>Portico Ventures</b> — <em>Managing Partner</em></div>
-				<div class="dates">2021 – 2026</div>
-			</div>
-			<ul>
-				<li>
-					Venture consultancy advising early-stage DeFi and fintech founders.
-					Three portfolio companies including <a href="https://gammaswap.com" target="_blank" rel="noopener noreferrer"><b>Gammaswap</b></a>
-					and <a href="https://www.codex.io" target="_blank" rel="noopener noreferrer"><b>Codex</b></a>.
-					Influenced <b>$4M+ in aggregate fundraising</b> through advisory work and warm introductions.
-				</li>
-			</ul>
+				<div class="role">
+					<button class="role-trigger" data-window-trigger="gmx" aria-haspopup="dialog">
+						<b>GMX</b> — <em>Founding Team · Growth &amp; Partnerships</em>
+					</button>
+					<div class="dates">Dec 2020 – 2023</div>
+				</div>
+				<ul>
+					<li>
+						Three-person founding team. Top DeFi revenue generator during my tenure.
+						Co-led institutional partnerships and capital formation; personally sourced
+						<b>$20M+ in cumulative capital deployments</b>.
+					</li>
+					<li>
+						Closed and co-closed strategic partnerships with <Sidenote id="chainlink" term="Chainlink"><em>[PLACEHOLDER — 50 words]</em> The Chainlink BUILD programme integration gave us oracle pricing for the entire perpetuals book. Negotiated the grant component and the keeper-network configuration with Chainlink Labs.</Sidenote>, <Sidenote id="avalanche" term="Avalanche"><em>[PLACEHOLDER — 50 words]</em> The Avalanche Rush deployment incentive was one of the largest external capital injections into GMX, and the cross-chain expansion roughly doubled our TVL within two months.</Sidenote>, and <Sidenote id="frax" term="Frax"><em>[PLACEHOLDER — 50 words]</em> The Frax integration brought frxETH liquidity into GLP and gave us a stablecoin alternative to USDC. Co-designed the parameters with the Frax core team.</Sidenote>, plus three smaller protocol integrations. Coordinated the <HoverCard term="Gambit → GMX rebrand">
+							<span class="hc-p">The rebrand wasn't a marketing exercise; it was a chain migration from BSC (Gambit) to Arbitrum and Avalanche (GMX), with the partner network lined up to launch alongside.</span>
+							<span class="hc-p"><em>[PLACEHOLDER — replace with 150–200 word account: why the rebrand was technically necessary, your specific role, timeline coordination across partners.]</em></span>
+						</HoverCard> and organised outreach to future partners.
+					</li>
+					<li>
+						Built and led the institutional and community channels: <b>5,000+ Telegram members</b> and direct relationships with eight-figure liquidity providers.
+					</li>
+				</ul>
 
-			<div class="role">
-				<div class="title"><b>GMX</b> — <em>Founding Team · Growth &amp; Partnerships</em></div>
-				<div class="dates">Dec 2020 – 2023</div>
-			</div>
-			<ul>
-				<li>
-					Three-person founding team. Top DeFi revenue generator during my tenure.
-					Co-led institutional partnerships and capital formation; personally sourced
-					<b>$20M+ in cumulative capital deployments</b>.
-				</li>
-				<li>
-					Closed and co-closed strategic partnerships with <Sidenote id="chainlink" term="Chainlink"><em>[PLACEHOLDER — 50 words]</em> The Chainlink BUILD programme integration gave us oracle pricing for the entire perpetuals book. Negotiated the grant component and the keeper-network configuration with Chainlink Labs. <a href="https://chain.link" target="_blank" rel="noopener noreferrer">chain.link</a></Sidenote>, <Sidenote id="avalanche" term="Avalanche"><em>[PLACEHOLDER — 50 words]</em> The Avalanche Rush deployment incentive was one of the largest external capital injections into GMX, and the cross-chain expansion roughly doubled our TVL within two months.</Sidenote>, and <Sidenote id="frax" term="Frax"><em>[PLACEHOLDER — 50 words]</em> The Frax integration brought frxETH liquidity into GLP and gave us a stablecoin alternative to USDC. Co-designed the parameters with the Frax core team.</Sidenote>, plus three smaller protocol integrations. Coordinated the <HoverCard term="Gambit → GMX rebrand">
-						<span class="hc-p">The rebrand wasn't a marketing exercise; it was a chain migration from BSC (Gambit) to Arbitrum and Avalanche (GMX), with the partner network lined up to launch alongside.</span>
-						<span class="hc-p"><em>[PLACEHOLDER — replace with 150–200 word account: why the rebrand was technically necessary, your specific role, timeline coordination across partners.]</em></span>
-					</HoverCard> and organised outreach to future partners.
-				</li>
-				<li>
-					Built and led the institutional and community channels: <b>5,000+ Telegram members</b> and direct relationships with eight-figure liquidity providers.
-				</li>
-			</ul>
+				<div class="role">
+					<button class="role-trigger" data-window-trigger="effie" aria-haspopup="dialog">
+						<b>Effie Perine LTD.</b> — <em>Operations &amp; Client Relations</em>
+					</button>
+					<div class="dates">2019 – 2020</div>
+				</div>
+				<ul>
+					<li>
+						Managed financial accounts and operational administration for a private art dealership specialising in Old Master Pictures; annual transaction volumes in the £500K–£2.5M+ range.
+					</li>
+				</ul>
+			</Collapsible>
 
-			<div class="role">
-				<div class="title"><b>Effie Perine LTD.</b> — <em>Operations &amp; Client Relations</em></div>
-				<div class="dates">2019 – 2020</div>
-			</div>
-			<ul>
-				<li>
-					Managed financial accounts and operational administration for a private art dealership specialising in Old Master Pictures; annual transaction volumes in the £500K–£2.5M+ range.
-				</li>
-			</ul>
-		</Collapsible>
+			<Collapsible title="Current AI Deployments">
+				<ul>
+					<li>
+						<HoverCard term="Pawlymarket">
+							<span class="hc-p">Live scraper and statistical-arbitrage layer over prediction markets. Reads order books across Kalshi, Polymarket, and smaller venues; identifies systematic mispricings; surfaces them as actionable calls.</span>
+							<span class="hc-p"><em>[PLACEHOLDER — replace with 150 words on engineering architecture (scrape-aggregator, statistical model layer, P&amp;L attribution), revenue trajectory, lessons learned. Embed dashboard screenshot.]</em></span>
+							<span class="hc-p further-reading">→ <a href="https://pawlymarket.com" target="_blank" rel="noopener noreferrer">pawlymarket.com</a></span>
+						</HoverCard> — live scraper and data aggregator using statistical models to identify market inefficiencies. <b>$50K ARR</b> within two months of launch. <a href="https://pawlymarket.com" target="_blank" rel="noopener noreferrer">pawlymarket.com</a>.
+					</li>
+					<li>
+						<Sidenote id="vinted" term="Vinted-to-Depop reselling agent"><em>[PLACEHOLDER — 75 words]</em> An end-to-end autonomous fashion-arbitrage agent operating across Vinted and Depop. Driven by Claude through a Telegram interface; sources items, calculates margins, lists, fulfills.</Sidenote> — end-to-end autonomous fashion-arbitrage agent operated via Telegram.
+					</li>
+					<li>
+						<Sidenote id="booking" term="Intelligent booking system"><em>[PLACEHOLDER — 50 words]</em> Claude-powered scheduler for a small local business. Takes class bookings, reschedules around capacity constraints, and organises future classes from predicted demand.</Sidenote> — Claude-powered agentic scheduler for a small local business; takes class bookings and organises future classes based on predicted demand.
+					</li>
+				</ul>
+			</Collapsible>
 
-		<Collapsible title="Independent AI Deployments">
-			<ul>
-				<li>
-					<HoverCard term="Pawlymarket">
-						<span class="hc-p">Live scraper and statistical-arbitrage layer over prediction markets. Reads order books across Kalshi, Polymarket, and smaller venues; identifies systematic mispricings; surfaces them as actionable calls.</span>
-						<span class="hc-p"><em>[PLACEHOLDER — replace with 150 words on engineering architecture (scrape-aggregator, statistical model layer, P&amp;L attribution), revenue trajectory, lessons learned. Embed dashboard screenshot.]</em></span>
-						<span class="hc-p further-reading">→ <a href="https://pawlymarket.com" target="_blank" rel="noopener noreferrer">pawlymarket.com</a></span>
-					</HoverCard> — live scraper and data aggregator using statistical models to identify market inefficiencies. <b>$50K ARR</b> within two months of launch. <a href="https://pawlymarket.com" target="_blank" rel="noopener noreferrer">pawlymarket.com</a>.
-				</li>
-				<li>
-					<Sidenote id="vinted" term="Vinted-to-Depop reselling agent"><em>[PLACEHOLDER — 75 words]</em> An end-to-end autonomous fashion-arbitrage agent operating across Vinted and Depop. Driven by Claude through a Telegram interface; sources items, calculates margins, lists, fulfills.</Sidenote> — end-to-end autonomous fashion-arbitrage agent operated via Telegram.
-				</li>
-				<li>
-					<Sidenote id="booking" term="Intelligent booking system"><em>[PLACEHOLDER — 50 words]</em> Claude-powered scheduler for a small local business. Takes class bookings, reschedules around capacity constraints, and organises future classes from predicted demand.</Sidenote> — Claude-powered agentic scheduler for a small local business; takes class bookings and organises future classes based on predicted demand.
-				</li>
-			</ul>
-		</Collapsible>
+			<Collapsible title="Education">
+				<p>
+					<b>BSc Chemistry</b>, <em><Sidenote id="manchester" term="University of Manchester"><em>[PLACEHOLDER — 75 words]</em> The interesting work didn't happen in the lab. It happened in the basement of a friend's house in Fallowfield, where I ran a trading-bot operation arbitraging Steam item markets through several account-pool generations. First time I shipped code that made money while I slept.</Sidenote></em>, 2018.
+				</p>
+			</Collapsible>
 
-		<Collapsible title="Education">
-			<p>
-				<b>BSc Chemistry</b>, <em><Sidenote id="manchester" term="University of Manchester"><em>[PLACEHOLDER — 75 words]</em> The interesting work didn't happen in the lab. It happened in the basement of a friend's house in Fallowfield, where I ran a trading-bot operation arbitraging Steam item markets through several account-pool generations. First time I shipped code that made money while I slept.</Sidenote></em>, 2018.
-			</p>
-		</Collapsible>
-
-		<Collapsible title="Skills">
-			<p class="skills">
-				Consultative selling to technical buyers · enterprise negotiation · founder-network leverage · community-led growth · technical product evangelism · venture capital · startup operations · risk management · marketing outreach · financial modelling · <Sidenote id="claude-stack" term="Claude API">Claude API · Claude Code · prompt engineering · agentic workflows · MCP. Active developer since 2023.</Sidenote> · Claude Code · prompt engineering · agentic workflows · <Sidenote id="mcp" term="MCP"><em>[PLACEHOLDER — 50 words]</em> Model Context Protocol changed my development process the day it shipped. The model–tool boundary becoming a clean protocol is the kind of small, correct architectural decision that compounds.</Sidenote> · Python · JavaScript
-			</p>
-		</Collapsible>
-
+			<Collapsible title="Skills">
+				<p class="skills">
+					Consultative selling to technical buyers · enterprise negotiation · founder-network leverage · community-led growth · technical product evangelism · venture capital · startup operations · risk management · marketing outreach · financial modelling · Claude API · Claude Code · prompt engineering · agentic workflows · <Sidenote id="mcp" term="MCP"><em>[PLACEHOLDER — 50 words]</em> Model Context Protocol changed my development process the day it shipped. The model–tool boundary becoming a clean protocol is the kind of small, correct architectural decision that compounds.</Sidenote> · Python · JavaScript
+				</p>
+			</Collapsible>
 		</div>
 
 		<footer class="cv-footer">
@@ -121,6 +129,64 @@ import HoverCard from '../components/HoverCard.astro';
 			<a href="/Paul_Diaz_Ashot_CV.pdf" download target="_blank" rel="noopener">Download CV (PDF)</a>
 		</footer>
 	</main>
+
+	<!-- Role windows -->
+	<Window id="portico" title="Portico Ventures · Managing Partner" initialX={140} initialY={100}>
+		<p><b>Portico Ventures</b> — <em>Managing Partner, 2021 – 2026</em></p>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+			veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+			ea commodo consequat.
+		</p>
+		<p>
+			Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+			dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		</p>
+		<p>
+			<em>[PLACEHOLDER — fill with portfolio detail, deal narratives, advisory framework, specific founder relationships.]</em>
+		</p>
+	</Window>
+
+	<Window id="gmx" title="GMX · Founding Team · Growth & Partnerships" initialX={200} initialY={140} initialWidth={580}>
+		<p><b>GMX</b> — <em>Founding Team · Growth &amp; Partnerships, Dec 2020 – 2023</em></p>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+			veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+			ea commodo consequat.
+		</p>
+		<p>
+			Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+			dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		</p>
+		<p>
+			Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+			accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
+			ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
+			explicabo.
+		</p>
+		<p>
+			<em>[PLACEHOLDER — fill with: founding-team narrative, GLP design, partnership arithmetic, the Arbitrum migration, your personal arc through the rebrand. 400–600 words ideal.]</em>
+		</p>
+	</Window>
+
+	<Window id="effie" title="Effie Perine LTD. · Operations & Client Relations" initialX={260} initialY={180}>
+		<p><b>Effie Perine LTD.</b> — <em>Operations &amp; Client Relations, 2019 – 2020</em></p>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+			veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+			ea commodo consequat.
+		</p>
+		<p>
+			<em>[PLACEHOLDER — fill with: what an Old Master dealership actually does day-to-day, the consultative-sales arithmetic, why the year mattered before crypto.]</em>
+		</p>
+	</Window>
+
+	<WindowManager />
 </BaseLayout>
 
 <style>
@@ -144,8 +210,6 @@ import HoverCard from '../components/HoverCard.astro';
 			max-width: 1000px;
 			padding-right: 24px;
 		}
-		/* On wide screens, content stays 680px left-aligned within the 1000px container.
-		   Sidenotes float right into the 320px gutter. */
 	}
 
 	.cv-header {
@@ -191,13 +255,32 @@ import HoverCard from '../components/HoverCard.astro';
 		display: flex;
 		justify-content: space-between;
 		align-items: baseline;
-		margin: 10px 0 4px 0;
+		margin: 12px 0 4px 0;
 		flex-wrap: wrap;
 		gap: 4px;
 	}
 
-	.role .title {
+	.role-trigger {
+		all: unset;
+		cursor: pointer;
 		font-size: 15px;
+		color: var(--color-ink);
+		text-decoration: underline;
+		text-decoration-color: var(--color-rule);
+		text-underline-offset: 3px;
+		text-decoration-thickness: 1px;
+		transition: text-decoration-thickness 120ms ease-out;
+	}
+
+	.role-trigger:hover,
+	.role-trigger:focus-visible {
+		text-decoration-thickness: 1.5px;
+		text-decoration-color: var(--color-ink);
+	}
+
+	.role-trigger:focus-visible {
+		outline: 1px solid var(--color-rule);
+		outline-offset: 4px;
 	}
 
 	.role .dates {
@@ -254,7 +337,6 @@ import HoverCard from '../components/HoverCard.astro';
 	}
 
 	.cv-footer {
-		max-width: 680px;
 		margin: 32px auto 0 auto;
 		padding-top: 16px;
 		border-top: 0.5px solid var(--color-rule);

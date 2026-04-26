@@ -1,0 +1,197 @@
+---
+interface Props {
+	id: string;
+	title: string;
+	initialX?: number;
+	initialY?: number;
+	initialWidth?: number;
+	initialHeight?: number;
+}
+
+const {
+	id,
+	title,
+	initialX = 120,
+	initialY = 80,
+	initialWidth = 520,
+	initialHeight = 380,
+} = Astro.props;
+---
+
+<div
+	class="window"
+	data-window-id={id}
+	style={`left: ${initialX}px; top: ${initialY}px; width: ${initialWidth}px; height: ${initialHeight}px;`}
+>
+	<div class="window-titlebar">
+		<span class="window-title">{title}</span>
+		<div class="window-controls">
+			<button class="window-control window-minimize" aria-label="Minimize" title="Minimize">─</button>
+			<button class="window-control window-close" aria-label="Close" title="Close">×</button>
+		</div>
+	</div>
+	<div class="window-content">
+		<slot />
+	</div>
+	<div class="window-resize-handle" aria-hidden="true"></div>
+</div>
+
+<style>
+	.window {
+		position: fixed;
+		display: none;
+		flex-direction: column;
+		background: var(--color-paper);
+		border: 1px solid var(--color-bistre);
+		box-shadow: 4px 4px 0 var(--color-bistre), 0 6px 24px rgba(0, 0, 0, 0.18);
+		z-index: 300;
+		min-width: 280px;
+		min-height: 200px;
+		max-width: 95vw;
+		max-height: 90vh;
+		overflow: hidden;
+		font-family: var(--font-mono);
+	}
+
+	.window.open {
+		display: flex;
+	}
+
+	.window.minimized {
+		display: none;
+	}
+
+	.window-titlebar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 4px 6px 4px 10px;
+		background: var(--color-bistre);
+		color: var(--color-paper);
+		cursor: move;
+		user-select: none;
+		font-family: var(--font-mono);
+		font-size: 11px;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		border-bottom: 1px solid var(--color-bistre);
+		flex-shrink: 0;
+	}
+
+	.window-title {
+		flex: 1;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.window-controls {
+		display: flex;
+		gap: 3px;
+		margin-left: 8px;
+	}
+
+	.window-control {
+		all: unset;
+		width: 18px;
+		height: 18px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		background: var(--color-paper);
+		color: var(--color-bistre);
+		font-family: var(--font-mono);
+		font-size: 12px;
+		line-height: 1;
+		cursor: pointer;
+		border: 1px solid var(--color-paper);
+		font-weight: 700;
+	}
+
+	.window-control:hover {
+		background: var(--color-sidenote-bg);
+	}
+
+	.window-close:hover {
+		background: #b94a3a;
+		color: var(--color-paper);
+		border-color: #b94a3a;
+	}
+
+	.window-content {
+		flex: 1;
+		overflow: auto;
+		padding: 18px 22px;
+		font-family: var(--font-serif);
+		font-size: 14px;
+		line-height: 1.55;
+		color: var(--color-ink);
+		background: var(--color-paper);
+	}
+
+	.window-content :global(p) {
+		margin: 0 0 10px 0;
+	}
+
+	.window-content :global(p:last-child) {
+		margin-bottom: 0;
+	}
+
+	.window-content :global(a) {
+		color: var(--color-ink);
+		text-decoration: underline;
+		text-decoration-color: var(--color-rule);
+	}
+
+	.window-content :global(em) {
+		font-style: italic;
+	}
+
+	.window-content :global(b) {
+		font-weight: 700;
+	}
+
+	.window-resize-handle {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		width: 14px;
+		height: 14px;
+		cursor: nwse-resize;
+		background: linear-gradient(
+			135deg,
+			transparent 0%,
+			transparent 50%,
+			var(--color-bistre) 50%,
+			var(--color-bistre) 60%,
+			transparent 60%,
+			transparent 70%,
+			var(--color-bistre) 70%,
+			var(--color-bistre) 80%,
+			transparent 80%,
+			transparent 90%,
+			var(--color-bistre) 90%,
+			var(--color-bistre) 100%
+		);
+		z-index: 2;
+	}
+
+	.window.dragging,
+	.window.resizing {
+		user-select: none;
+	}
+
+	@media (max-width: 600px) {
+		.window {
+			width: calc(100vw - 24px) !important;
+			max-width: calc(100vw - 24px);
+			height: auto !important;
+			max-height: 80vh;
+			left: 12px !important;
+			top: 60px !important;
+		}
+		.window-resize-handle {
+			display: none;
+		}
+	}
+</style>

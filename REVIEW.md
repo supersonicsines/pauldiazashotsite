@@ -1,6 +1,30 @@
 # REVIEW.md — what to check before shipping `/`
 
-Status as of **I.1031**. Site has the traditional CV format with collapsible sections + LessWrong-style hypertextuality (hover-cards and sidenotes) layered on top. All visible body text is the actual CV; placeholders live INSIDE cards/sidenotes only.
+Status as of **I.1032**. Hybrid CV: traditional layout + collapsible sections + LessWrong hover-cards/sidenotes + retro Linux windows for each role.
+
+## Structure
+
+1. **Header** — name, locations, contact, work-auth
+2. **Introduction** (was "Summary") — short intro blurb + download CV link, contains GMX hover-card
+3. **Experience** — three roles. Each role title is a clickable trigger that opens a **retro window modal** with role detail. Sidenotes/hover-cards on Chainlink, Avalanche, Frax, Gambit→GMX rebrand.
+4. **Current AI Deployments** (was "Independent AI Deployments") — Pawlymarket hover-card, Vinted-Depop and booking-system sidenotes
+5. **Education** — Manchester sidenote
+6. **Skills** — MCP sidenote
+7. **Footer**
+
+## Window behavior to test
+
+- [ ] Click any role title (Portico, GMX, Effie Perine) → window opens
+- [ ] Drag the title bar to reposition the window anywhere
+- [ ] Click `─` (minimize) → window goes to a dock at the bottom of the page
+- [ ] Dock only appears when at least one window is minimized
+- [ ] Click dock entry → window restores to its previous position
+- [ ] Click `×` (close) → window closes; dock entry removed
+- [ ] Drag the bottom-right corner → resize the window
+- [ ] Click on a window → brings it to the front (z-index)
+- [ ] Press Esc → closes all open (non-minimized) windows
+- [ ] Multiple windows can be open simultaneously
+- [ ] Mobile (<600px) — windows take near-full width, fixed position; resize handle hidden
 
 ---
 
