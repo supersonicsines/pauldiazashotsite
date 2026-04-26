@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Section from '../components/Section.astro';
+import Collapsible from '../components/Collapsible.astro';
 import Sidenote from '../components/Sidenote.astro';
 import HoverCard from '../components/HoverCard.astro';
 ---
@@ -9,158 +9,162 @@ import HoverCard from '../components/HoverCard.astro';
 	title="Paul Diaz Ashot"
 	description="Founder-operator. Founding team at GMX. Active Claude developer. London, Barcelona, New York."
 >
-	<main class="essay">
-		<div class="essay-content">
-			<header class="essay-header">
-				<h1>Paul Diaz Ashot</h1>
-				<div class="locations">London, Barcelona, New York</div>
-				<div class="contact">
-					<a href="mailto:paul.ashot@icloud.com" target="_blank" rel="noopener">paul.ashot@icloud.com</a> ·
-					(646) 996 5037 ·
-					@supersonicsines
-				</div>
-				<div class="work-auth">Right to work: UK, US, EU. Native English, fluent Russian, fluent Spanish.</div>
-			</header>
-
-			<p class="lede">
-				I'm a founder-operator. The short version of my work is two seasons: four
-				years on the founding team of <HoverCard term="GMX">
-					<span class="hc-p">A decentralised perpetual exchange. Built originally as Gambit on Binance Smart Chain, then re-architected to Arbitrum and Avalanche as GMX. Three-person founding team, no outside investment, $450M+ TVL and $40M+ in annualised fee revenue at peak.</span>
-					<span class="hc-p"><em>[PLACEHOLDER — replace with 200–300 word essay covering: the GLP unified-liquidity-pool design, your specific role in growth/partnerships, the Arbitrum migration, the deal arithmetic that made it work. Include TVL screenshot.]</em></span>
-					<span class="hc-p further-reading">→ <a href="https://gmx.io" target="_blank" rel="noopener noreferrer">gmx.io</a> · <a href="https://defillama.com/protocol/gmx" target="_blank" rel="noopener noreferrer">DeFiLlama TVL chart</a></span>
-				</HoverCard>, then three years of independent AI deployments. The PDF version of
-				this CV is the index; this page is the network it points at.
-			</p>
-
-			<Section title="Now" id="now">
-				<p>
-					I'm currently running three things in parallel. The first is <HoverCard term="Pawlymarket">
-						<span class="hc-p">A live scraper and statistical-arbitrage layer over prediction markets. Reads order books across Kalshi, Polymarket, and a handful of smaller venues; identifies systematic mispricings; surfaces them as actionable calls to a small subscriber base.</span>
-						<span class="hc-p"><em>[PLACEHOLDER — replace with 150 words on the engineering architecture (scrape-aggregator, statistical model layer, P&amp;L attribution), revenue trajectory, and lessons learned. Embed dashboard screenshot.]</em></span>
-						<span class="hc-p further-reading">→ <a href="https://pawlymarket.com" target="_blank" rel="noopener noreferrer">pawlymarket.com</a></span>
-					</HoverCard>, a prediction-market analytics platform that's been live and
-					revenue-generating for the past year. The second is a <Sidenote id="vinted" term="Vinted-to-Depop reselling agent"><em>[PLACEHOLDER — 75 words]</em> An end-to-end autonomous fashion-arbitrage agent operating across Vinted and Depop. Driven by Claude through a Telegram interface; sources items, calculates margins, lists, fulfills.</Sidenote> that runs end-to-end through a Telegram interface. The third is an <Sidenote id="booking" term="intelligent booking system"><em>[PLACEHOLDER — 50 words]</em> Claude-powered scheduler for a small local business. Takes class bookings, reschedules around capacity, and organises future classes from predicted demand.</Sidenote> for a small local business.
-				</p>
-
-				<p>
-					Two utility tools run in the background: a Claude-based <Sidenote id="inventory" term="inventory automation"><em>[PLACEHOLDER — 50 words]</em> Backend pipelines that keep listings, stock, and pricing synchronised across marketplaces without human review. The unsexy half of e-commerce that, when working, is invisible.</Sidenote> pipeline that keeps cross-marketplace listings synchronised, and an <Sidenote id="email" term="email triage"><em>[PLACEHOLDER — 50 words]</em> A Claude-based classifier that drafts replies, escalates urgent threads, and snoozes the rest. Built it for myself; would happily ship it as a product.</Sidenote> system that drafts replies and escalates urgent threads. Both started as personal pain points and turned into running systems.
-				</p>
-			</Section>
-
-			<Section title="GMX" id="gmx">
-				<p>
-					From late 2020 to early 2023 I was on the founding team at GMX — a
-					decentralised perpetual exchange that grew, with three people and no
-					outside investment, into one of the highest-revenue DeFi protocols of its
-					era. We started on Binance Smart Chain as Gambit, re-architected to
-					Arbitrum and Avalanche as GMX, and at peak ran $450M+ TVL and $40M+ in
-					annualised fee revenue.
-				</p>
-
-				<p>
-					My role was growth and partnerships. I closed and co-closed strategic
-					integrations with <Sidenote id="chainlink" term="Chainlink"><em>[PLACEHOLDER — 50 words]</em> The Chainlink BUILD programme integration gave us oracle pricing for the entire perpetuals book. Negotiated the grant component and the keeper-network configuration with Chainlink Labs.</Sidenote>, <Sidenote id="avalanche" term="Avalanche"><em>[PLACEHOLDER — 50 words]</em> The Avalanche Rush deployment incentive was one of the largest external capital injections into GMX, and the cross-chain expansion onto Avalanche roughly doubled our TVL within two months.</Sidenote>, and <Sidenote id="frax" term="Frax"><em>[PLACEHOLDER — 50 words]</em> The Frax integration brought frxETH liquidity into GLP and gave us a stablecoin alternative to USDC. Co-designed the parameters with the Frax core team over a couple of weeks of technical back-and-forth.</Sidenote>, plus three smaller protocol integrations along the way. I co-led the <HoverCard term="Gambit → GMX rebrand">
-						<span class="hc-p">The rebrand wasn't a marketing exercise; it was a chain migration. Binance Smart Chain to Arbitrum, Gambit to GMX, with the partner network lined up to launch alongside.</span>
-						<span class="hc-p"><em>[PLACEHOLDER — replace with 150–200 word account: why the rebrand was technically necessary, your specific contribution to the partner outreach, the timeline coordination across Chainlink/Avalanche/Frax. Include rebrand announcement link.]</em></span>
-					</HoverCard> and the chain migration that came with it.
-				</p>
-
-				<p>
-					Across three years I sourced $20M+ in cumulative professional liquidity to
-					the protocol. I built and ran the institutional and community channels —
-					five thousand Telegram members and direct relationships with eight-figure
-					liquidity providers. I exited at a <Sidenote id="exit" term="seven-figure number">Crystallised proportionally to my equity. The dryness of this footnote is intentional.</Sidenote>; the protocol's numbers from that period are public, the personal arithmetic is less so.
-				</p>
-
-				<p>
-					Since GMX I've run <em>Portico Ventures</em>, a small advisory practice for
-					early-stage DeFi and fintech founders. Three portfolio companies — including
-					<a href="https://gammaswap.com" target="_blank" rel="noopener noreferrer">Gammaswap</a>
-					and <a href="https://www.codex.io" target="_blank" rel="noopener noreferrer">Codex</a> —
-					and roughly $4M in influenced fundraising through advisory work and warm
-					introductions.
-				</p>
-			</Section>
-
-			<Section title="Before GMX" id="before">
-				<p>
-					Before GMX I was in <Sidenote id="manchester" term="Manchester"><em>[PLACEHOLDER — 75 words]</em> BSc Chemistry at the University of Manchester, 2018. The interesting work didn't happen in the lab; it happened in the basement of a friend's house in Fallowfield, where I ran a trading-bot operation arbitraging Steam item markets through several account-pool generations. First time I shipped code that made money while I slept.</Sidenote> reading chemistry. The interesting work didn't happen in the lab; it happened on the side, in a small trading-bot operation that taught me to ship code that runs unattended.
-				</p>
-
-				<p>
-					The intellectual line that mattered most ran from <HoverCard term="Wittgenstein">
-						<span class="hc-p"><em>[PLACEHOLDER — replace with 200 words on the late Wittgenstein and the specific insight (substrate-bound thought) that prefigured the language-model paradigm for you. Include a pull-quote that's specifically yours, not the famous one.]</em></span>
-						<span class="hc-quote">"Philosophy is a battle against the bewitchment of our intelligence by means of language."</span>
-						<span class="hc-p further-reading">→ <em>Philosophical Investigations</em> · <a href="https://plato.stanford.edu/entries/wittgenstein/" target="_blank" rel="noopener noreferrer">SEP entry on Wittgenstein</a></span>
-					</HoverCard> through to <Sidenote id="yudkowsky" term="Yudkowsky"><em>[PLACEHOLDER — 75 words]</em> The early LessWrong sequences were the first place I encountered serious thinking about cognition as something to be engineered rather than studied. <em>The Sequences</em> in particular set the frame for taking AI seriously a decade before everyone else did.</Sidenote>, by way of the LessWrong sequences. I came to the late Wittgenstein in 2014, and the slow point underneath the famous formulation — that thinking is something we do <em>in</em> language, not <em>before</em> it — turned out a decade later to be almost identical to the insight behind language models.
-				</p>
-
-				<p>
-					In between Manchester and crypto I spent a year at <em>Effie Perine LTD.</em>,
-					a private dealership of Old Master pictures, learning what consultative
-					sales of high-ticket items in the £500K to £2.5M range actually look like
-					day-to-day.
-				</p>
-			</Section>
-
-			<Section title="Why Anthropic" id="why">
-				<p>
-					I want to work at Anthropic for the same reason I came to crypto in 2020:
-					there's a small window where a category-defining product gets built by a
-					small team, and the work is not yet a commodity. I've spent the last three
-					years using Claude in production and treating <Sidenote id="cai" term="Constitutional AI"><em>[PLACEHOLDER — 50 words]</em> The CAI paper and the more recent character-training work. The aesthetic restraint of the approach is the thing that distinguishes Anthropic's outputs from the rest of the field for me.</Sidenote>, the <Sidenote id="interp" term="interpretability"><em>[PLACEHOLDER — 50 words]</em> The interpretability team's work on superposition, dictionary learning, and feature extraction is, for my money, the most important applied research programme in AI right now.</Sidenote> work, and <Sidenote id="mcp" term="MCP"><em>[PLACEHOLDER — 50 words]</em> MCP changed my development process the day it shipped. The model–tool boundary becoming a clean protocol is the kind of small, correct architectural decision that compounds.</Sidenote> as living documents I keep returning to.
-				</p>
-
-				<p>
-					What I bring is a founder's instinct for getting product into the hands of
-					users who pay for it, attached to a working knowledge of where Claude
-					genuinely wins and where the abstractions still leak. I've shipped six
-					small production AI deployments in the last eighteen months. The next
-					thing I want to do is ship them inside the company that builds the model.
-				</p>
-			</Section>
-
-			<footer class="essay-footer">
+	<main class="cv">
+		<header class="cv-header">
+			<h1>Paul Diaz Ashot</h1>
+			<div class="locations">London, Barcelona, New York</div>
+			<div class="contact">
 				<a href="mailto:paul.ashot@icloud.com" target="_blank" rel="noopener">paul.ashot@icloud.com</a> ·
-				@supersonicsines ·
-				<a href="/Paul_Diaz_Ashot_CV.pdf" download target="_blank" rel="noopener">Download CV (PDF)</a> ·
-				<a href="/cv" target="_blank" rel="noopener">/cv</a>
-			</footer>
+				(646) 996 5037 ·
+				<a href="https://pauldiazashot.com" target="_blank" rel="noopener noreferrer">pauldiazashot.com</a> ·
+				@supersonicsines
+			</div>
+			<div class="work-auth">Right to work: UK, US, EU</div>
+		</header>
+
+		<div class="cv-body">
+
+		<Collapsible title="Summary">
+			<p>
+				Founder-operator with deep experience selling technical products to sophisticated buyers.
+				Founding team at <HoverCard term="GMX">
+					<span class="hc-p">A decentralised perpetual exchange. Three-person founding team, no outside investment, $450M+ TVL and $40M+ in annualised fee revenue at peak.</span>
+					<span class="hc-p"><em>[PLACEHOLDER — replace with 200–300 word essay covering: GLP unified-liquidity-pool design, your specific role in growth/partnerships, the Arbitrum migration, the deal arithmetic that made it work.]</em></span>
+					<span class="hc-p further-reading">→ <a href="https://gmx.io" target="_blank" rel="noopener noreferrer">gmx.io</a> · <a href="https://defillama.com/protocol/gmx" target="_blank" rel="noopener noreferrer">DeFiLlama TVL chart</a></span>
+				</HoverCard>, a decentralised derivatives exchange that scaled to <b>$450M+ TVL</b> and <b>$40M+ annualised revenue</b> with a team of three.
+				Active Claude developer since 2023, shipping production AI deployments including a live, revenue-generating prediction-market analytics platform.
+				Native English, fluent Russian, fluent Spanish.
+			</p>
+		</Collapsible>
+
+		<Collapsible title="Experience">
+			<div class="role">
+				<div class="title"><b>Portico Ventures</b> — <em>Managing Partner</em></div>
+				<div class="dates">2021 – 2026</div>
+			</div>
+			<ul>
+				<li>
+					Venture consultancy advising early-stage DeFi and fintech founders.
+					Three portfolio companies including <a href="https://gammaswap.com" target="_blank" rel="noopener noreferrer"><b>Gammaswap</b></a>
+					and <a href="https://www.codex.io" target="_blank" rel="noopener noreferrer"><b>Codex</b></a>.
+					Influenced <b>$4M+ in aggregate fundraising</b> through advisory work and warm introductions.
+				</li>
+			</ul>
+
+			<div class="role">
+				<div class="title"><b>GMX</b> — <em>Founding Team · Growth &amp; Partnerships</em></div>
+				<div class="dates">Dec 2020 – 2023</div>
+			</div>
+			<ul>
+				<li>
+					Three-person founding team. Top DeFi revenue generator during my tenure.
+					Co-led institutional partnerships and capital formation; personally sourced
+					<b>$20M+ in cumulative capital deployments</b>.
+				</li>
+				<li>
+					Closed and co-closed strategic partnerships with <Sidenote id="chainlink" term="Chainlink"><em>[PLACEHOLDER — 50 words]</em> The Chainlink BUILD programme integration gave us oracle pricing for the entire perpetuals book. Negotiated the grant component and the keeper-network configuration with Chainlink Labs. <a href="https://chain.link" target="_blank" rel="noopener noreferrer">chain.link</a></Sidenote>, <Sidenote id="avalanche" term="Avalanche"><em>[PLACEHOLDER — 50 words]</em> The Avalanche Rush deployment incentive was one of the largest external capital injections into GMX, and the cross-chain expansion roughly doubled our TVL within two months.</Sidenote>, and <Sidenote id="frax" term="Frax"><em>[PLACEHOLDER — 50 words]</em> The Frax integration brought frxETH liquidity into GLP and gave us a stablecoin alternative to USDC. Co-designed the parameters with the Frax core team.</Sidenote>, plus three smaller protocol integrations. Coordinated the <HoverCard term="Gambit → GMX rebrand">
+						<span class="hc-p">The rebrand wasn't a marketing exercise; it was a chain migration from BSC (Gambit) to Arbitrum and Avalanche (GMX), with the partner network lined up to launch alongside.</span>
+						<span class="hc-p"><em>[PLACEHOLDER — replace with 150–200 word account: why the rebrand was technically necessary, your specific role, timeline coordination across partners.]</em></span>
+					</HoverCard> and organised outreach to future partners.
+				</li>
+				<li>
+					Built and led the institutional and community channels: <b>5,000+ Telegram members</b> and direct relationships with eight-figure liquidity providers.
+				</li>
+			</ul>
+
+			<div class="role">
+				<div class="title"><b>Effie Perine LTD.</b> — <em>Operations &amp; Client Relations</em></div>
+				<div class="dates">2019 – 2020</div>
+			</div>
+			<ul>
+				<li>
+					Managed financial accounts and operational administration for a private art dealership specialising in Old Master Pictures; annual transaction volumes in the £500K–£2.5M+ range.
+				</li>
+			</ul>
+		</Collapsible>
+
+		<Collapsible title="Independent AI Deployments">
+			<ul>
+				<li>
+					<HoverCard term="Pawlymarket">
+						<span class="hc-p">Live scraper and statistical-arbitrage layer over prediction markets. Reads order books across Kalshi, Polymarket, and smaller venues; identifies systematic mispricings; surfaces them as actionable calls.</span>
+						<span class="hc-p"><em>[PLACEHOLDER — replace with 150 words on engineering architecture (scrape-aggregator, statistical model layer, P&amp;L attribution), revenue trajectory, lessons learned. Embed dashboard screenshot.]</em></span>
+						<span class="hc-p further-reading">→ <a href="https://pawlymarket.com" target="_blank" rel="noopener noreferrer">pawlymarket.com</a></span>
+					</HoverCard> — live scraper and data aggregator using statistical models to identify market inefficiencies. <b>$50K ARR</b> within two months of launch. <a href="https://pawlymarket.com" target="_blank" rel="noopener noreferrer">pawlymarket.com</a>.
+				</li>
+				<li>
+					<Sidenote id="vinted" term="Vinted-to-Depop reselling agent"><em>[PLACEHOLDER — 75 words]</em> An end-to-end autonomous fashion-arbitrage agent operating across Vinted and Depop. Driven by Claude through a Telegram interface; sources items, calculates margins, lists, fulfills.</Sidenote> — end-to-end autonomous fashion-arbitrage agent operated via Telegram.
+				</li>
+				<li>
+					<Sidenote id="booking" term="Intelligent booking system"><em>[PLACEHOLDER — 50 words]</em> Claude-powered scheduler for a small local business. Takes class bookings, reschedules around capacity constraints, and organises future classes from predicted demand.</Sidenote> — Claude-powered agentic scheduler for a small local business; takes class bookings and organises future classes based on predicted demand.
+				</li>
+			</ul>
+		</Collapsible>
+
+		<Collapsible title="Education">
+			<p>
+				<b>BSc Chemistry</b>, <em><Sidenote id="manchester" term="University of Manchester"><em>[PLACEHOLDER — 75 words]</em> The interesting work didn't happen in the lab. It happened in the basement of a friend's house in Fallowfield, where I ran a trading-bot operation arbitraging Steam item markets through several account-pool generations. First time I shipped code that made money while I slept.</Sidenote></em>, 2018.
+			</p>
+		</Collapsible>
+
+		<Collapsible title="Skills">
+			<p class="skills">
+				Consultative selling to technical buyers · enterprise negotiation · founder-network leverage · community-led growth · technical product evangelism · venture capital · startup operations · risk management · marketing outreach · financial modelling · <Sidenote id="claude-stack" term="Claude API">Claude API · Claude Code · prompt engineering · agentic workflows · MCP. Active developer since 2023.</Sidenote> · Claude Code · prompt engineering · agentic workflows · <Sidenote id="mcp" term="MCP"><em>[PLACEHOLDER — 50 words]</em> Model Context Protocol changed my development process the day it shipped. The model–tool boundary becoming a clean protocol is the kind of small, correct architectural decision that compounds.</Sidenote> · Python · JavaScript
+			</p>
+		</Collapsible>
+
 		</div>
+
+		<footer class="cv-footer">
+			<a href="mailto:paul.ashot@icloud.com" target="_blank" rel="noopener">paul.ashot@icloud.com</a> ·
+			@supersonicsines ·
+			<a href="/Paul_Diaz_Ashot_CV.pdf" download target="_blank" rel="noopener">Download CV (PDF)</a>
+		</footer>
 	</main>
 </BaseLayout>
 
 <style>
-	.essay {
-		max-width: 1000px;
+	.cv {
+		max-width: 680px;
 		margin: 0 auto;
-		padding: 64px 24px;
+		padding: 48px 24px;
 		position: relative;
 		z-index: 1;
 		counter-reset: sidenote;
 	}
 
-	.essay-content {
+	.cv-header,
+	.cv-body,
+	.cv-footer {
 		max-width: 680px;
 	}
 
-	.essay-header {
-		text-align: center;
-		padding-bottom: 16px;
-		border-bottom: 0.5px solid var(--color-rule);
-		margin-bottom: 32px;
+	@media (min-width: 1280px) {
+		.cv {
+			max-width: 1000px;
+			padding-right: 24px;
+		}
+		/* On wide screens, content stays 680px left-aligned within the 1000px container.
+		   Sidenotes float right into the 320px gutter. */
 	}
 
-	.essay-header h1 {
+	.cv-header {
+		text-align: center;
+		padding-bottom: 14px;
+		border-bottom: 0.5px solid var(--color-rule);
+		margin-bottom: 12px;
+	}
+
+	.cv-header h1 {
 		margin: 0 0 8px 0;
 		font-family: var(--font-serif);
-		font-size: 36px;
+		font-size: 32px;
 		font-weight: 400;
-		letter-spacing: 1px;
+		letter-spacing: 1.5px;
 	}
 
 	.locations {
-		font-size: 16px;
+		font-size: 15px;
 		color: var(--color-ink);
 		margin-bottom: 6px;
 		letter-spacing: 0.5px;
@@ -168,7 +172,7 @@ import HoverCard from '../components/HoverCard.astro';
 
 	.contact {
 		font-family: var(--font-sans);
-		font-size: 13px;
+		font-size: 12px;
 		color: var(--color-muted);
 		margin-bottom: 4px;
 	}
@@ -179,62 +183,103 @@ import HoverCard from '../components/HoverCard.astro';
 
 	.work-auth {
 		font-style: italic;
-		font-size: 13px;
+		font-size: 12px;
 		color: var(--color-muted);
 	}
 
-	.lede {
-		font-size: 18px;
-		line-height: 1.65;
-		margin: 32px 0 16px 0;
+	.role {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		margin: 10px 0 4px 0;
+		flex-wrap: wrap;
+		gap: 4px;
 	}
 
-	.essay-content :global(p) {
-		font-size: 18px;
-		line-height: 1.65;
-		margin: 0 0 16px 0;
+	.role .title {
+		font-size: 15px;
 	}
 
-	.essay-content :global(a) {
+	.role .dates {
+		font-family: var(--font-sans);
+		font-size: 12px;
+		color: var(--color-muted);
+		font-style: italic;
+		white-space: nowrap;
+	}
+
+	.cv :global(p),
+	.cv :global(li) {
+		font-size: 15px;
+		line-height: 1.5;
+		margin: 0 0 6px 0;
+	}
+
+	.cv :global(ul) {
+		margin: 4px 0 10px 0;
+		padding-left: 16px;
+		list-style: none;
+	}
+
+	.cv :global(li) {
+		position: relative;
+		padding-left: 14px;
+		margin-bottom: 6px;
+	}
+
+	.cv :global(li::before) {
+		content: "–";
+		position: absolute;
+		left: 0;
+		color: var(--color-ink);
+	}
+
+	.cv :global(a) {
 		color: var(--color-ink);
 		text-decoration: underline;
 		text-decoration-color: var(--color-rule);
 		text-underline-offset: 2px;
 	}
 
-	.essay-content :global(em) {
+	.cv :global(em) {
 		font-style: italic;
 	}
 
-	.essay-content :global(b) {
+	.cv :global(b) {
 		font-weight: 700;
 	}
 
-	.essay-footer {
-		margin-top: 64px;
-		padding-top: 24px;
+	.skills {
+		line-height: 1.55;
+	}
+
+	.cv-footer {
+		max-width: 680px;
+		margin: 32px auto 0 auto;
+		padding-top: 16px;
 		border-top: 0.5px solid var(--color-rule);
 		text-align: center;
 		font-family: var(--font-sans);
-		font-size: 13px;
+		font-size: 12px;
 		color: var(--color-muted);
 	}
 
-	.essay-footer a {
+	.cv-footer a {
 		color: var(--color-ink);
 	}
 
 	@media (max-width: 768px) {
-		.essay {
-			padding: 40px 20px;
+		.cv {
+			padding: 32px 20px;
 		}
 
-		.essay-content :global(p) {
-			font-size: 16px;
+		.role {
+			flex-direction: column;
+			gap: 2px;
 		}
 
-		.lede {
-			font-size: 16px;
+		.role .dates {
+			font-size: 11px;
 		}
 	}
 </style>

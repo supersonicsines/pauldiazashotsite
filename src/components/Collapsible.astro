@@ -1,0 +1,104 @@
+---
+interface Props {
+	title: string;
+	id?: string;
+}
+
+const { title, id } = Astro.props;
+---
+
+<section class="collapsible" data-open="true" id={id}>
+	<h2>
+		<button class="toggle-btn" aria-expanded="true">
+			<span class="arrow" aria-hidden="true">▾</span>
+			<span class="title-text">{title}</span>
+		</button>
+	</h2>
+	<div class="content-wrapper">
+		<div class="content">
+			<slot />
+		</div>
+	</div>
+</section>
+
+<style>
+	.collapsible {
+		margin: 28px 0;
+	}
+
+	h2 {
+		margin: 0 0 10px 0;
+		padding-bottom: 6px;
+		border-bottom: 0.5px solid var(--color-rule);
+	}
+
+	.toggle-btn {
+		all: unset;
+		cursor: pointer;
+		display: flex;
+		align-items: baseline;
+		gap: 10px;
+		width: 100%;
+		font-family: var(--font-serif);
+		font-size: 14px;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 2.5px;
+		color: var(--color-ink);
+	}
+
+	.toggle-btn:hover .arrow,
+	.toggle-btn:focus-visible .arrow {
+		color: var(--color-ink);
+	}
+
+	.toggle-btn:focus-visible {
+		outline: 1px solid var(--color-rule);
+		outline-offset: 4px;
+	}
+
+	.arrow {
+		display: inline-block;
+		font-size: 11px;
+		color: var(--color-muted);
+		transition: transform 220ms cubic-bezier(0.4, 0, 0.2, 1);
+		line-height: 1;
+		transform-origin: center;
+		min-width: 12px;
+	}
+
+	.collapsible[data-open="false"] .arrow {
+		transform: rotate(-90deg);
+	}
+
+	.content-wrapper {
+		display: grid;
+		grid-template-rows: 1fr;
+		transition: grid-template-rows 300ms cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.collapsible[data-open="false"] .content-wrapper {
+		grid-template-rows: 0fr;
+	}
+
+	.content {
+		overflow: hidden;
+		min-height: 0;
+	}
+</style>
+
+<script>
+	function initCollapsibles() {
+		document.querySelectorAll<HTMLElement>('.collapsible').forEach((section) => {
+			const btn = section.querySelector<HTMLButtonElement>('.toggle-btn');
+			if (!btn) return;
+			btn.addEventListener('click', () => {
+				const isOpen = section.getAttribute('data-open') === 'true';
+				section.setAttribute('data-open', String(!isOpen));
+				btn.setAttribute('aria-expanded', String(!isOpen));
+			});
+		});
+	}
+
+	initCollapsibles();
+</script>

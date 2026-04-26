@@ -1,93 +1,85 @@
 # REVIEW.md — what to check before shipping `/`
 
-Status as of **I.1029**. Everything below is filler / placeholder content I wrote to give you a sense of the visual shape. Replace each item with your own prose, then we delete it from this list.
+Status as of **I.1031**. Site has the traditional CV format with collapsible sections + LessWrong-style hypertextuality (hover-cards and sidenotes) layered on top. All visible body text is the actual CV; placeholders live INSIDE cards/sidenotes only.
 
 ---
 
-## Prose blocks (you write)
+## Things to test on the page
 
-These are full paragraphs of placeholder text. Each is marked `[... PLACEHOLDER]` in the body text so they're easy to find.
-
-| ID | Section | Word target | Notes |
-|---|---|---|---|
-| `LEDE` | Top of page | 2-3 sentences | The frame-setter. Tone-defining. |
-| `BEFORE GMX FILLER` | "Before GMX" intro | 1-2 paragraphs | The Manchester → trading bots → reading lineage arc |
-| `WHY ANTHROPIC FILLER` | "Why Anthropic" body | 2-3 paragraphs | Shorter, sharper version of your Why Anthropic essay |
-
-I also wrote rough filler paragraphs around the sidenotes/hover-cards in **Now** and **GMX** sections — read them top to bottom, replace anything that sounds wrong or off-voice.
+- [ ] **Collapsible headings** — every section has a ▾ arrow that rotates to ▸ when collapsed. Click the heading or arrow to toggle. Default: all expanded.
+- [ ] **Hover cards** (4 anchors with solid underline): GMX, Pawlymarket, Gambit→GMX rebrand, Wittgenstein-area. Hover to preview.
+- [ ] **Click-to-pin** — when a hover-card is open, click on it to convert to a draggable modal. Drag it anywhere. X or Esc to close.
+- [ ] **Sidenotes** (anchors with dotted underline): on viewports ≥1280px they float into the right gutter. On <1280px, they're hidden until you click the marker, then expand inline.
+- [ ] **Loading animation** — symbol cycles for 3s or until click; zooms; cuts to CV; persistent watermark per session.
+- [ ] **Watermark** — different symbol every refresh (caught at trigger time), 5% opacity behind content.
+- [ ] **All links open in new tab** (`target="_blank"`).
 
 ---
 
-## Annotations (you write — 14 total)
-
-Each annotation has its placeholder text inline in `index.astro`. Find them by searching for `PLACEHOLDER`.
+## Placeholder content (you write these)
 
 ### Hover-cards (rich, 150-300 words)
 
-- [ ] **Pawlymarket** — 150 words. Currently: live link, screenshot mention, P&L mention. Add: actual screenshot, link to live dashboard, one-line testimonial if you have one.
-- [ ] **GMX** — 200-300 words. Currently: 2-paragraph sketch + further-reading footer. Add: link to gmx.io, DeFiLlama TVL chart link, one TVL screenshot, contemporaneous Bankless/Decrypt links.
-- [ ] **Gambit → GMX rebrand** — 150-200 words. Currently: 2-paragraph sketch. Add: link to rebrand announcement, optional before/after logo image.
-- [ ] **Wittgenstein** — 200 words. Currently: prose + one pull-quote + further reading. Add: better pull-quote choice (one that's specifically yours), link to <em>Philosophical Investigations</em>, SEP entry.
+These are hidden until hovered. Body text reads cleanly without them.
+
+- [ ] **GMX** (in Summary) — 200-300 words. Currently: 1-paragraph sketch + placeholder note + further-reading footer with gmx.io and DeFiLlama links. Add: TVL screenshot, contemporaneous Bankless/Decrypt links, your specific role narrative.
+- [ ] **Gambit → GMX rebrand** (in Experience > GMX) — 150-200 words.
+- [ ] **Pawlymarket** (in Independent AI Deployments) — 150 words. Add dashboard screenshot.
+
+*The PRD also calls for a Wittgenstein hover-card, but that anchor isn't naturally in the traditional CV. Worth deciding: do you want to add a personal/intellectual section, or skip Wittgenstein from this version?*
 
 ### Sidenotes (short, 30-75 words)
 
-- [ ] **Vinted-Depop agent** — 75 words. Maybe attach a Telegram bot screenshot.
-- [ ] **inventory automation** — 50 words.
-- [ ] **email triage** — 50 words.
-- [ ] **Chainlink** — 50 words. Add link to Chainlink BUILD announcement.
-- [ ] **Avalanche** — 50 words. Add link to relevant ecosystem post if public.
-- [ ] **Frax** — 50 words. Add link to integration page or relevant tweet.
-- [ ] **seven-figure exit** — 30 words. *PRD says "the dryness is the point" — keep it short, no link.*
-- [ ] **Manchester** — 75 words.
-- [ ] **Yudkowsky** — 75 words. Add link to LessWrong, link to one specific essay that mattered.
-- [ ] **Constitutional AI** — 50 words. Add link to CAI paper.
-- [ ] **interpretability** — 50 words. Add link to relevant Anthropic paper / dashboard.
-- [ ] **MCP** — 50 words. Add link to MCP docs.
+Show in the right gutter on wide screens, expand inline on narrow.
+
+- [ ] **Chainlink** — 50 words.
+- [ ] **Avalanche** — 50 words.
+- [ ] **Frax** — 50 words.
+- [ ] **Vinted-to-Depop reselling agent** — 75 words.
+- [ ] **Intelligent booking system** — 50 words.
+- [ ] **University of Manchester** (in Education) — 75 words. Trading-bot operation, etc.
+- [ ] **MCP** (in Skills) — 50 words.
+- [ ] **Claude API** (in Skills) — already a placeholder. Decide if this stack-block is worth a real footnote.
 
 ---
 
-## Visual / layout review
+## Out of the picture (was in essay-CV, removed for traditional CV)
 
-Things I built but you should sanity-check by looking at the page:
+These were in the previous essay-CV draft but don't fit the traditional CV format:
+- "Why Anthropic" section (the dedicated section for the application narrative)
+- Intellectual lineage section (Wittgenstein → Yudkowsky)
+- "Now" / "Before GMX" / lede paragraph
 
-- [ ] **Loading animation timing** — 3 second cycle then click-skip; symbol zooms; cuts to content with watermark. Watch on desktop and mobile.
-- [ ] **Watermark opacity** — currently `0.05`. Too subtle? Too loud? Different per refresh.
-- [ ] **Sidenote behavior** — desktop ≥1200px: gutter on right. <1200px: numbered marker, click to expand inline. Mobile <768px: same.
-- [ ] **Hover-card behavior** — desktop: hover with 200ms-in / 600ms-out delay. Mobile/touch: tap to open as modal with close button. Press Esc to close.
-- [ ] **Anchor styles** — sidenote anchors get dotted underline + small superscript number. Hover-card anchors get solid underline (no number). Convention should be obvious within 5 seconds.
-- [ ] **Typography** — H1 (your name) 36px, H2 (section) 22px small-caps with letter-spacing 2.5px. Body 18px desktop / 16px mobile. Times New Roman throughout.
+If you want any of these, options:
+- Add a new collapsible section "Personal / Reading" with the Wittgenstein hover-card and Yudkowsky/Manchester sidenotes
+- Add a section "Why Anthropic" at the top or bottom
+- Keep them out and let the depth come purely from the annotations
+
+---
+
+## Design / visual checks
+
+- [ ] **Watermark opacity** — 5% currently. Adjust if too subtle/loud.
+- [ ] **Layout breakpoint** — gutter activates at ≥1280px (not 1200px) to ensure sidenotes don't get clipped at the threshold.
+- [ ] **Header alignment** — on wide screens, header is left-aligned at 680px width inside a 1000px container, so content leans left of viewport center. This is the gwern/Tufte aesthetic. Tell me if you want it centered instead.
 - [ ] **Color palette** — paper `#FBFAF7`, ink `#1A1A1A`, muted `#666666`, rule `#999999`, sidenote bg `#F2EFE8`, bistre `#3D2B1F`.
 
 ---
 
 ## Still missing (will build next)
 
-- [ ] **OG image** — 1200×630 PNG showing "Paul Diaz Ashot" on paper-tone background. Generated from the page or hand-designed.
-- [ ] **Twitter card metadata** — needs the OG image first.
-- [ ] **404 page** — same aesthetic. Currently using Astro's default.
-- [ ] **`<MetaHead>` consolidation** — currently meta tags are inline; PRD calls for one source-of-truth component.
-- [ ] **Lighthouse audit** — should be 95+ across Perf / A11y / SEO / Best Practices.
-- [ ] **Real iPhone / Android device testing** — per PRD §11 step 11.
+- [ ] **OG image** — 1200×630 PNG.
+- [ ] **404 page** — same aesthetic.
+- [ ] **`<MetaHead>` consolidation** — single source of truth for head tags.
+- [ ] **Lighthouse audit** — should be 95+ across all four metrics.
 
 ---
 
-## Out of scope (per PRD §2)
-
-For your reference — explicitly NOT to build:
+## Out of scope per PRD §2
 
 - ~~Claude-powered chat agent~~
 - ~~Terminal route~~
 - ~~Blog index~~
-- ~~Analytics dashboards beyond the optional Pawlymarket chart~~
+- ~~Analytics dashboards~~
 - ~~Login / comments / newsletter~~
 - ~~Dark-mode toggle~~
-
----
-
-## Decisions made for you (flag if you want changed)
-
-- I split the **Pawlymarket** mention in the lead paragraph as a hover-card (PRD says hover-card for Pawlymarket — confirmed).
-- I made **Vinted-Depop** a sidenote (PRD says sidenote — confirmed).
-- I treat **inventory automation** and **email triage** as your "current Claude work" sidenotes per PRD §6, but you may want them differently sliced or merged into one.
-- The Wittgenstein hover-card has a placeholder pull-quote ("Philosophy is a battle…" — the famous Tractatus-adjacent line). PRD says "pick something specific, not the famous one" — I deliberately picked a famous one as a marker; replace with your actual choice.
-- I positioned the "Why Anthropic" section last, before the footer. PRD §5 confirms this order.

@@ -58,7 +58,7 @@ const { id, term } = Astro.props;
 	}
 
 	/* Desktop ≥1200px: float into right gutter */
-	@media (min-width: 1200px) {
+	@media (min-width: 1280px) {
 		.sidenote {
 			float: right;
 			clear: right;
@@ -73,7 +73,7 @@ const { id, term } = Astro.props;
 	}
 
 	/* <1200px: hidden by default, click marker to expand */
-	@media (max-width: 1199px) {
+	@media (max-width: 1279px) {
 		.sidenote {
 			display: none;
 			background: var(--color-sidenote-bg);
