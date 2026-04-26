@@ -1,0 +1,43 @@
+---
+
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Paul Diaz Ashot</title>
+	</head>
+	<body>
+		<div class="loader" id="loader">&</div>
+	</body>
+</html>
+
+<style>
+	body {
+		background: #FBFAF7;
+		color: #1A1A1A;
+		font-family: "Times New Roman", Times, serif;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 100vh;
+		margin: 0;
+	}
+	.loader {
+		font-size: 72px;
+		font-weight: 700;
+		color: #3D2B1F;
+	}
+</style>
+
+<script>
+	const symbols = ['&', '/', '*', '?', '·', '#', '§', '†', '‡', '¶'];
+	let i = 0;
+	const el = document.getElementById('loader');
+	setInterval(() => {
+		i = (i + 1) % symbols.length;
+		el.textContent = symbols[i];
+	}, 250);
+</script>
