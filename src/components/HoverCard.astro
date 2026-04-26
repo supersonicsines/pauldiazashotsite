@@ -8,12 +8,10 @@ const { term, id } = Astro.props;
 ---
 
 <span class="hover-trigger" tabindex="0" data-id={id}>
-	<span class="anchor">{term}</span>
-	<span class="hover-card" role="tooltip">
+	<span class="anchor">{term}</span><span class="hover-card" role="tooltip">
+		<span class="hover-card-handle"></span>
 		<button class="close-btn" aria-label="Close">×</button>
-		<div class="hover-card-content">
-			<slot />
-		</div>
+		<span class="hover-card-content"><slot /></span>
 	</span>
 </span>
 
@@ -33,28 +31,33 @@ const { term, id } = Astro.props;
 
 	.hover-card {
 		position: absolute;
-		top: calc(100% + 8px);
+		top: calc(1.5em + 4px);
 		left: 0;
 		width: 380px;
 		max-width: calc(100vw - 32px);
-		background: var(--color-paper);
+		background: var(--color-sidenote-bg);
 		border: 0.5px solid var(--color-rule);
-		padding: 16px 20px;
+		padding: 18px 22px 16px 22px;
 		font-family: var(--font-serif);
 		font-size: 15px;
-		line-height: 1.5;
+		line-height: 1.55;
 		color: var(--color-ink);
 		opacity: 0;
 		visibility: hidden;
-		transition: opacity 200ms ease-out 200ms, visibility 0s 600ms;
+		transition: opacity 220ms ease-out 200ms, visibility 0s 600ms;
 		z-index: 50;
-		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.06);
 		text-align: left;
+		display: block;
+	}
+
+	.hover-card-content {
+		display: block;
 	}
 
 	.hover-card-content :global(.hc-p) {
-		margin: 0 0 8px 0;
 		display: block;
+		margin: 0 0 10px 0;
 	}
 
 	.hover-card-content :global(.hc-p:last-child) {
@@ -64,10 +67,11 @@ const { term, id } = Astro.props;
 	.hover-card-content :global(a) {
 		text-decoration: underline;
 		text-decoration-color: var(--color-rule);
+		color: var(--color-ink);
 	}
 
 	.hover-card-content :global(.further-reading) {
-		margin-top: 12px;
+		margin-top: 14px;
 		padding-top: 12px;
 		border-top: 0.5px solid var(--color-rule);
 		font-size: 13px;
@@ -76,18 +80,30 @@ const { term, id } = Astro.props;
 
 	.hover-card-content :global(.hc-quote) {
 		display: block;
-		margin: 8px 0;
-		padding-left: 12px;
+		margin: 10px 0;
+		padding-left: 14px;
 		border-left: 2px solid var(--color-rule);
 		font-style: italic;
 		color: var(--color-muted);
 	}
 
+	.hover-card-handle {
+		display: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 28px;
+		cursor: move;
+		background: linear-gradient(var(--color-paper), transparent);
+		border-bottom: 0.5px solid var(--color-rule);
+	}
+
 	.close-btn {
 		display: none;
 		position: absolute;
-		top: 8px;
-		right: 12px;
+		top: 4px;
+		right: 8px;
 		background: none;
 		border: none;
 		font-family: var(--font-serif);
@@ -95,13 +111,18 @@ const { term, id } = Astro.props;
 		line-height: 1;
 		color: var(--color-muted);
 		cursor: pointer;
-		padding: 0;
+		padding: 4px 8px;
+		z-index: 2;
 	}
 
-	/* Desktop: hover behavior */
-	@media (min-width: 769px) and (hover: hover) {
-		.hover-trigger:hover .hover-card,
-		.hover-trigger:focus-within .hover-card,
+	.close-btn:hover {
+		color: var(--color-ink);
+	}
+
+	/* Hover behavior on devices that support it */
+	@media (hover: hover) {
+		.hover-trigger:hover > .hover-card,
+		.hover-trigger:focus-within > .hover-card,
 		.hover-card:hover {
 			opacity: 1;
 			visibility: visible;
@@ -109,70 +130,144 @@ const { term, id } = Astro.props;
 		}
 	}
 
-	/* Mobile: tap to toggle, modal-style */
-	@media (max-width: 768px), (hover: none) {
-		.close-btn {
-			display: block;
-		}
+	/* Pinned (modal) state — works on all devices */
+	.hover-card.pinned {
+		position: fixed;
+		opacity: 1 !important;
+		visibility: visible !important;
+		transition: none;
+		z-index: 200;
+		padding-top: 32px;
+		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+		user-select: text;
+	}
 
-		.hover-trigger.open .hover-card {
-			position: fixed;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			width: calc(100vw - 32px);
-			max-width: 420px;
-			max-height: 70vh;
-			overflow-y: auto;
-			opacity: 1;
-			visibility: visible;
-			transition: opacity 200ms ease-out;
-			z-index: 200;
-			box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-		}
+	.hover-card.pinned .hover-card-handle,
+	.hover-card.pinned .close-btn {
+		display: block;
+	}
+
+	.hover-card.dragging {
+		transition: none;
+		cursor: grabbing;
 	}
 </style>
 
 <script>
+	type DragState = {
+		card: HTMLElement;
+		offsetX: number;
+		offsetY: number;
+	} | null;
+
+	let drag: DragState = null;
+
+	function pinCard(card: HTMLElement) {
+		const rect = card.getBoundingClientRect();
+		card.classList.add('pinned');
+		card.style.left = rect.left + 'px';
+		card.style.top = rect.top + 'px';
+		card.style.right = 'auto';
+		card.style.bottom = 'auto';
+	}
+
+	function unpinCard(card: HTMLElement) {
+		card.classList.remove('pinned');
+		card.style.left = '';
+		card.style.top = '';
+		card.style.right = '';
+		card.style.bottom = '';
+	}
+
+	function getEventPoint(e: MouseEvent | TouchEvent) {
+		if ('touches' in e) {
+			const t = e.touches[0] || e.changedTouches[0];
+			return { x: t.clientX, y: t.clientY };
+		}
+		return { x: e.clientX, y: e.clientY };
+	}
+
+	function startDrag(card: HTMLElement, e: MouseEvent | TouchEvent) {
+		const target = e.target as HTMLElement;
+		if (target.closest('.close-btn') || target.tagName === 'A' || target.tagName === 'BUTTON') return;
+		if (!card.classList.contains('pinned')) return;
+
+		const rect = card.getBoundingClientRect();
+		const point = getEventPoint(e);
+		drag = {
+			card,
+			offsetX: point.x - rect.left,
+			offsetY: point.y - rect.top,
+		};
+		card.classList.add('dragging');
+		e.preventDefault();
+	}
+
+	function onMove(e: MouseEvent | TouchEvent) {
+		if (!drag) return;
+		const point = getEventPoint(e);
+		const x = point.x - drag.offsetX;
+		const y = point.y - drag.offsetY;
+		drag.card.style.left = x + 'px';
+		drag.card.style.top = y + 'px';
+		if (e.cancelable) e.preventDefault();
+	}
+
+	function onEnd() {
+		if (!drag) return;
+		drag.card.classList.remove('dragging');
+		drag = null;
+	}
+
 	function initHoverCards() {
-		const triggers = document.querySelectorAll('.hover-trigger');
+		const triggers = document.querySelectorAll<HTMLElement>('.hover-trigger');
 
 		triggers.forEach((trigger) => {
-			const closeBtn = trigger.querySelector('.close-btn');
+			const card = trigger.querySelector<HTMLElement>('.hover-card');
+			const closeBtn = trigger.querySelector<HTMLButtonElement>('.close-btn');
+			const handle = trigger.querySelector<HTMLElement>('.hover-card-handle');
+			if (!card) return;
 
-			// Mobile: tap to open
+			// Click on the card → pin it; click on trigger anchor on touch → pin it
 			trigger.addEventListener('click', (e) => {
-				if (window.matchMedia('(hover: none), (max-width: 768px)').matches) {
-					if ((e.target as Element).classList.contains('close-btn')) {
-						return;
-					}
+				const target = e.target as HTMLElement;
+				if (target.closest('.close-btn')) return;
+				if (target.tagName === 'A') return;
+
+				if (!card.classList.contains('pinned')) {
 					e.preventDefault();
-					document.querySelectorAll('.hover-trigger.open').forEach((t) => {
-						if (t !== trigger) t.classList.remove('open');
-					});
-					trigger.classList.toggle('open');
+					pinCard(card);
 				}
 			});
 
 			// Close button
-			if (closeBtn) {
-				closeBtn.addEventListener('click', (e) => {
-					e.stopPropagation();
-					trigger.classList.remove('open');
-				});
-			}
+			closeBtn?.addEventListener('click', (e) => {
+				e.stopPropagation();
+				unpinCard(card);
+			});
+
+			// Drag handlers — anywhere on pinned card except interactive elements
+			card.addEventListener('mousedown', (e) => startDrag(card, e));
+			handle?.addEventListener('touchstart', (e) => startDrag(card, e), { passive: false });
+			card.addEventListener('touchstart', (e) => {
+				const target = e.target as HTMLElement;
+				if (target.closest('.hover-card-handle')) return;
+				if (!card.classList.contains('pinned')) return;
+				startDrag(card, e);
+			}, { passive: false });
 		});
 
-		// Close on escape
+		document.addEventListener('mousemove', onMove);
+		document.addEventListener('mouseup', onEnd);
+		document.addEventListener('touchmove', onMove, { passive: false });
+		document.addEventListener('touchend', onEnd);
+
 		document.addEventListener('keydown', (e) => {
 			if (e.key === 'Escape') {
-				document.querySelectorAll('.hover-trigger.open').forEach((t) => {
-					t.classList.remove('open');
-				});
+				document.querySelectorAll<HTMLElement>('.hover-card.pinned').forEach(unpinCard);
 			}
 		});
 	}
 
 	initHoverCards();
-	document.addEventListener('astro:page-load', initHoverCards);
 </script>

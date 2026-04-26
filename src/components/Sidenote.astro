@@ -10,11 +10,7 @@ const { id, term } = Astro.props;
 <span class="anchor">{term}</span><label
 	for={`sn-${id}`}
 	class="sidenote-marker"
-></label>
-<input type="checkbox" id={`sn-${id}`} class="sidenote-checkbox" />
-<span class="sidenote" role="note">
-	<slot />
-</span>
+></label><input type="checkbox" id={`sn-${id}`} class="sidenote-checkbox" /><span class="sidenote" role="note"><slot /></span>
 
 <style>
 	.anchor {
@@ -46,7 +42,7 @@ const { id, term } = Astro.props;
 	.sidenote {
 		font-family: var(--font-serif);
 		font-size: 14px;
-		line-height: 1.5;
+		line-height: 1.55;
 		color: var(--color-ink);
 		display: block;
 	}
@@ -61,20 +57,22 @@ const { id, term } = Astro.props;
 		margin-right: 2px;
 	}
 
-	/* Desktop: float into right gutter */
+	/* Desktop ≥1200px: float into right gutter */
 	@media (min-width: 1200px) {
 		.sidenote {
 			float: right;
 			clear: right;
 			width: 280px;
 			margin-right: -320px;
-			margin-top: 0.2em;
-			margin-bottom: 1em;
+			margin-top: 0.3em;
+			margin-bottom: 1.2em;
 			position: relative;
+			padding-left: 12px;
+			border-left: 0.5px solid var(--color-rule);
 		}
 	}
 
-	/* Mobile/tablet: hidden by default, expandable via marker click */
+	/* <1200px: hidden by default, click marker to expand */
 	@media (max-width: 1199px) {
 		.sidenote {
 			display: none;
