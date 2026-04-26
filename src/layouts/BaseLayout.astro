@@ -1,0 +1,147 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = 'Paul Diaz Ashot' } = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="description" content={description} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<!-- Loading overlay with cycling symbols + watermark transition -->
+		<div class="overlay" id="overlay">
+			<span class="loader" id="loader">&</span>
+		</div>
+
+		<!-- Page content -->
+		<slot />
+	</body>
+</html>
+
+<style>
+	body {
+		background: var(--color-paper);
+		margin: 0;
+		min-height: 100vh;
+		overflow-x: hidden;
+	}
+
+	.overlay {
+		position: fixed;
+		inset: 0;
+		background: var(--color-paper);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 100;
+		cursor: pointer;
+		overflow: hidden;
+	}
+
+	.overlay.zooming {
+		pointer-events: none;
+	}
+
+	.overlay.watermarked {
+		z-index: 0;
+		background: transparent;
+		pointer-events: none;
+	}
+
+	.loader {
+		font-family: var(--font-serif);
+		font-size: 72px;
+		font-weight: 700;
+		color: var(--color-bistre);
+		display: inline-block;
+		line-height: 1;
+		transform-origin: center center;
+		will-change: transform;
+	}
+
+	.loader.zooming {
+		animation: zoomIn 1200ms cubic-bezier(0.65, 0, 0.35, 1) forwards;
+	}
+
+	.loader.watermarked {
+		opacity: 0.05;
+	}
+
+	@keyframes zoomIn {
+		0% {
+			transform: scale(1);
+		}
+		100% {
+			transform: scale(80);
+		}
+	}
+
+	@media (max-width: 768px) {
+		.loader {
+			font-size: 56px;
+		}
+	}
+</style>
+
+<script>
+	const baseSymbols = ['&', '/', '*', '?', '·', '#', '§', '†', '‡', '¶'];
+	const loader = document.getElementById('loader');
+	const overlay = document.getElementById('overlay');
+
+	let queue: string[] = [];
+	let transitioned = false;
+	let interval: number;
+	let timeout: number;
+
+	function shuffle(array: string[]) {
+		const arr = [...array];
+		for (let i = arr.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+			[arr[i], arr[j]] = [arr[j], arr[i]];
+		}
+		return arr;
+	}
+
+	function getNextSymbol() {
+		if (queue.length === 0) {
+			queue = shuffle(baseSymbols);
+		}
+		return queue.shift()!;
+	}
+
+	function tick() {
+		if (loader) loader.textContent = getNextSymbol();
+	}
+
+	function triggerTransition() {
+		if (transitioned || !loader || !overlay) return;
+		transitioned = true;
+		clearInterval(interval);
+		clearTimeout(timeout);
+
+		loader.classList.add('zooming');
+		overlay.classList.add('zooming');
+
+		setTimeout(() => {
+			overlay.classList.add('watermarked');
+			loader.classList.add('watermarked');
+		}, 1200);
+	}
+
+	if (loader && overlay) {
+		tick();
+		interval = window.setInterval(tick, 250);
+		timeout = window.setTimeout(triggerTransition, 3000);
+		overlay.addEventListener('click', triggerTransition);
+	}
+</script>

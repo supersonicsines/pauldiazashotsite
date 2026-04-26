@@ -1,0 +1,208 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Paul Diaz Ashot — CV">
+	<main class="cv-content">
+		<header class="cv-header">
+			<h1>Paul Diaz Ashot</h1>
+			<div class="locations">London, Barcelona, New York</div>
+			<div class="contact">
+				<a href="mailto:paul.ashot@icloud.com">paul.ashot@icloud.com</a> ·
+				(646) 996 5037 ·
+				<a href="https://pauldiazashot.com">pauldiazashot.com</a> ·
+				@supersonicsines
+			</div>
+			<div class="work-auth">Right to work: UK, US, EU</div>
+		</header>
+
+		<section>
+			<h2>Summary</h2>
+			<p>Founder-operator with deep experience selling technical products to sophisticated buyers. Founding team at <b>GMX</b>, a decentralised derivatives exchange that scaled to $450M+ TVL and $40M+ annualised revenue with a team of three. Active Claude developer since 2023, shipping production AI deployments including a live, revenue-generating prediction-market analytics platform. Native English, fluent Russian, fluent Spanish.</p>
+		</section>
+
+		<section>
+			<h2>Experience</h2>
+
+			<div class="role">
+				<div class="title"><b>Portico Ventures</b> — <em>Managing Partner</em></div>
+				<div class="dates">2021 – 2026</div>
+			</div>
+			<ul>
+				<li>Venture consultancy advising early-stage DeFi and fintech founders. Three portfolio companies including <b>Gammaswap</b> and <b>Codex</b>. Influenced <b>$4M+ in aggregate fundraising</b> through advisory work and warm introductions.</li>
+			</ul>
+
+			<div class="role">
+				<div class="title"><b>GMX</b> — <em>Founding Team · Growth & Partnerships</em></div>
+				<div class="dates">Dec 2020 – 2023</div>
+			</div>
+			<ul>
+				<li>Three-person founding team. Top DeFi revenue generator during my tenure. Co-led institutional partnerships and capital formation; personally sourced <b>$20M+ in cumulative capital deployments</b>.</li>
+				<li>Closed and co-closed strategic partnerships with <b>Chainlink</b>, <b>Avalanche</b>, and <b>Frax</b>, plus three smaller protocol integrations. Coordinated the Gambit → GMX rebrand and organised outreach to future partners.</li>
+				<li>Built and led the institutional and community channels: 5,000+ Telegram members and direct relationships with eight-figure liquidity providers.</li>
+			</ul>
+
+			<div class="role">
+				<div class="title"><b>Effie Perine LTD.</b> — <em>Operations & Client Relations</em></div>
+				<div class="dates">2019 – 2020</div>
+			</div>
+			<ul>
+				<li>Managed financial accounts and operational administration for a private art dealership specialising in Old Master Pictures; annual transaction volumes in the £500K–£2.5M+ range.</li>
+			</ul>
+		</section>
+
+		<section>
+			<h2>Independent AI Deployments</h2>
+			<ul>
+				<li><b>Pawlymarket</b> — live scraper and data aggregator using statistical models to identify market inefficiencies. $50K ARR within two months of launch. <a href="https://pawlymarket.com">pawlymarket.com</a>.</li>
+				<li><b>Vinted-to-Depop reselling agent</b> — end-to-end autonomous fashion-arbitrage agent operated via Telegram.</li>
+				<li><b>Intelligent booking system</b> — Claude-powered agentic scheduler for a small local business; takes class bookings and organises future classes based on predicted demand.</li>
+			</ul>
+		</section>
+
+		<section>
+			<h2>Education</h2>
+			<p><b>BSc Chemistry</b>, <em>University of Manchester</em>, 2018.</p>
+		</section>
+
+		<section>
+			<h2>Skills</h2>
+			<p class="skills">Consultative selling to technical buyers · enterprise negotiation · founder-network leverage · community-led growth · technical product evangelism · venture capital · startup operations · risk management · marketing outreach · financial modelling · Claude API · Claude Code · prompt engineering · agentic workflows · MCP · Python · JavaScript</p>
+		</section>
+
+		<footer class="cv-footer">
+			<a href="mailto:paul.ashot@icloud.com">paul.ashot@icloud.com</a> ·
+			<a href="https://t.me/supersonicsines">Telegram</a> ·
+			<a href="/Paul_Diaz_Ashot_CV.pdf" download>Download CV (PDF)</a>
+		</footer>
+	</main>
+</BaseLayout>
+
+<style>
+	.cv-content {
+		max-width: 680px;
+		margin: 0 auto;
+		padding: 48px 24px;
+		opacity: 1;
+		position: relative;
+		z-index: 1;
+	}
+
+	.cv-header {
+		text-align: center;
+		padding-bottom: 16px;
+		border-bottom: 0.5px solid var(--color-rule);
+		margin-bottom: 24px;
+	}
+
+	.cv-header h1 {
+		margin: 0 0 8px 0;
+	}
+
+	.locations {
+		font-size: 16px;
+		color: var(--color-ink);
+		margin-bottom: 6px;
+		letter-spacing: 0.5px;
+	}
+
+	.contact {
+		font-family: var(--font-sans);
+		font-size: 13px;
+		color: var(--color-muted);
+		margin-bottom: 4px;
+	}
+
+	.work-auth {
+		font-style: italic;
+		font-size: 13px;
+		color: var(--color-muted);
+	}
+
+	section {
+		margin-bottom: 24px;
+	}
+
+	h2 {
+		margin: 0 0 12px 0;
+		padding-bottom: 6px;
+		border-bottom: 0.5px solid var(--color-rule);
+	}
+
+	.role {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		margin: 12px 0 4px 0;
+		flex-wrap: wrap;
+		gap: 4px;
+	}
+
+	.role .title {
+		font-size: 16px;
+	}
+
+	.role .dates {
+		font-family: var(--font-sans);
+		font-size: 13px;
+		color: var(--color-muted);
+		font-style: italic;
+		white-space: nowrap;
+	}
+
+	p {
+		margin: 0 0 8px 0;
+	}
+
+	ul {
+		margin: 4px 0 12px 0;
+		padding-left: 20px;
+		list-style: none;
+	}
+
+	li {
+		position: relative;
+		padding-left: 16px;
+		margin-bottom: 6px;
+	}
+
+	li::before {
+		content: "–";
+		position: absolute;
+		left: 0;
+		color: var(--color-ink);
+	}
+
+	.skills {
+		line-height: 1.6;
+	}
+
+	.cv-footer {
+		margin-top: 48px;
+		padding-top: 16px;
+		border-top: 0.5px solid var(--color-rule);
+		text-align: center;
+		font-family: var(--font-sans);
+		font-size: 13px;
+		color: var(--color-muted);
+	}
+
+	.cv-footer a {
+		color: var(--color-ink);
+	}
+
+	@media (max-width: 768px) {
+		.cv-content {
+			padding: 32px 20px;
+		}
+
+		.role {
+			flex-direction: column;
+			gap: 2px;
+		}
+
+		.role .dates {
+			font-size: 12px;
+		}
+	}
+</style>

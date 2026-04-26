@@ -1,41 +1,71 @@
 ---
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<title>Paul Diaz Ashot</title>
-	</head>
-	<body>
-		<div class="loader" id="loader">&</div>
-	</body>
-</html>
+<BaseLayout title="Paul Diaz Ashot">
+	<main class="essay">
+		<header class="essay-header">
+			<h1>Paul Diaz Ashot</h1>
+			<div class="locations">London, Barcelona, New York</div>
+			<div class="contact">
+				<a href="mailto:paul.ashot@icloud.com">paul.ashot@icloud.com</a> ·
+				(646) 996 5037 ·
+				@supersonicsines
+			</div>
+		</header>
+
+		<p class="lede">
+			This page is under construction. The traditional CV is at <a href="/cv">/cv</a>.
+		</p>
+	</main>
+</BaseLayout>
 
 <style>
-	body {
-		background: var(--color-paper);
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		min-height: 100vh;
-		margin: 0;
+	.essay {
+		max-width: 680px;
+		margin: 0 auto;
+		padding: 48px 24px;
+		position: relative;
+		z-index: 1;
 	}
-	.loader {
-		font-size: 72px;
-		font-weight: 700;
-		color: var(--color-bistre);
+
+	.essay-header {
+		text-align: center;
+		padding-bottom: 16px;
+		border-bottom: 0.5px solid var(--color-rule);
+		margin-bottom: 32px;
+	}
+
+	.essay-header h1 {
+		margin: 0 0 8px 0;
+	}
+
+	.locations {
+		font-size: 16px;
+		color: var(--color-ink);
+		margin-bottom: 6px;
+		letter-spacing: 0.5px;
+	}
+
+	.contact {
+		font-family: var(--font-sans);
+		font-size: 13px;
+		color: var(--color-muted);
+	}
+
+	.contact a {
+		color: var(--color-ink);
+	}
+
+	.lede {
+		font-size: 18px;
+		line-height: 1.6;
+		color: var(--color-ink);
+	}
+
+	@media (max-width: 768px) {
+		.essay {
+			padding: 32px 20px;
+		}
 	}
 </style>
-
-<script>
-	const symbols = ['&', '/', '*', '?', '·', '#', '§', '†', '‡', '¶'];
-	let i = 0;
-	const el = document.getElementById('loader');
-	setInterval(() => {
-		i = (i + 1) % symbols.length;
-		el.textContent = symbols[i];
-	}, 250);
-</script>
