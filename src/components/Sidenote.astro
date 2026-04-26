@@ -1,0 +1,98 @@
+---
+interface Props {
+	id: string;
+	term: string;
+}
+
+const { id, term } = Astro.props;
+---
+
+<span class="anchor">{term}</span><label
+	for={`sn-${id}`}
+	class="sidenote-marker"
+></label>
+<input type="checkbox" id={`sn-${id}`} class="sidenote-checkbox" />
+<span class="sidenote" role="note">
+	<slot />
+</span>
+
+<style>
+	.anchor {
+		text-decoration: underline;
+		text-decoration-style: dotted;
+		text-decoration-color: var(--color-rule);
+		text-underline-offset: 3px;
+	}
+
+	.sidenote-marker {
+		counter-increment: sidenote;
+		cursor: pointer;
+		font-family: var(--font-sans);
+		font-size: 0.7em;
+		vertical-align: super;
+		color: var(--color-bistre);
+		font-weight: 500;
+		padding: 0 2px;
+	}
+
+	.sidenote-marker::before {
+		content: counter(sidenote);
+	}
+
+	.sidenote-checkbox {
+		display: none;
+	}
+
+	.sidenote {
+		font-family: var(--font-serif);
+		font-size: 14px;
+		line-height: 1.5;
+		color: var(--color-ink);
+		display: block;
+	}
+
+	.sidenote::before {
+		content: counter(sidenote) ". ";
+		font-family: var(--font-sans);
+		font-size: 11px;
+		font-weight: 500;
+		vertical-align: super;
+		color: var(--color-bistre);
+		margin-right: 2px;
+	}
+
+	/* Desktop: float into right gutter */
+	@media (min-width: 1200px) {
+		.sidenote {
+			float: right;
+			clear: right;
+			width: 280px;
+			margin-right: -320px;
+			margin-top: 0.2em;
+			margin-bottom: 1em;
+			position: relative;
+		}
+	}
+
+	/* Mobile/tablet: hidden by default, expandable via marker click */
+	@media (max-width: 1199px) {
+		.sidenote {
+			display: none;
+			background: var(--color-sidenote-bg);
+			padding: 12px 16px;
+			margin: 12px 0;
+			border-left: 2px solid var(--color-rule);
+		}
+
+		.sidenote-checkbox:checked ~ .sidenote {
+			display: block;
+		}
+
+		.sidenote-marker {
+			text-decoration: underline;
+			text-decoration-style: dotted;
+			text-decoration-color: var(--color-rule);
+			text-underline-offset: 2px;
+		}
+	}
+</style>
