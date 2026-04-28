@@ -27,11 +27,7 @@ import WindowManager from '../components/WindowManager.astro';
 			<Collapsible title="Introduction">
 				<p>
 					I'm a founder-operator. The short version of my work is two seasons: four
-					years on the founding team of <HoverCard term="GMX">
-						<span class="hc-p">A decentralised perpetual exchange. Three-person founding team, no outside investment, $450M+ TVL and $40M+ in annualised fee revenue at peak.</span>
-						<span class="hc-p"><em>[PLACEHOLDER — replace with 200–300 word essay covering: GLP unified-liquidity-pool design, your specific role in growth/partnerships, the Arbitrum migration, the deal arithmetic that made it work.]</em></span>
-						<span class="hc-p further-reading">→ <a href="https://gmx.io" target="_blank" rel="noopener noreferrer">gmx.io</a> · <a href="https://defillama.com/protocol/gmx" target="_blank" rel="noopener noreferrer">DeFiLlama TVL chart</a></span>
-					</HoverCard>, then three years of independent AI deployments. Native English, fluent Russian, fluent Spanish; <Sidenote id="right-to-work" term="right to work in the UK, US, and EU"><em>[PLACEHOLDER — expand with the exact right-to-work basis for each jurisdiction.]</em></Sidenote>.
+					years on the founding team of <button type="button" class="inline-preview-trigger" data-window-trigger="preview-gmx" aria-haspopup="dialog"><b>GMX</b></button>, then three years of independent AI deployments. Native English, fluent Russian, fluent Spanish; <Sidenote id="right-to-work" term="right to work in the UK, US, and EU"><em>[PLACEHOLDER — expand with the exact right-to-work basis for each jurisdiction.]</em></Sidenote>.
 				</p>
 				<p>
 					Each role below opens as a window — click to read more. The PDF version is
@@ -130,6 +126,22 @@ import WindowManager from '../components/WindowManager.astro';
 	</main>
 
 	<!-- External preview windows -->
+	<Window
+		id="preview-gmx"
+		title="https://gmx.io"
+		initialX={154}
+		initialY={96}
+		initialWidth={640}
+		initialHeight={388}
+		resizable={false}
+		variant="preview"
+	>
+		<div class="external-preview">
+			<img src="/previews/gmx.png" alt="Preview of https://gmx.io" loading="lazy" />
+			<a class="external-preview-arrow" href="https://gmx.io" target="_blank" rel="noopener noreferrer" aria-label="Open https://gmx.io">→</a>
+		</div>
+	</Window>
+
 	<Window
 		id="preview-gammaswap"
 		title="https://gammaswap.com"

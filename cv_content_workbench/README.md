@@ -8,7 +8,8 @@ agent integration work stay visible in diffs.
 
 - `daggers/` contains inline dagger notes rendered by `Sidenote.astro`.
 - `modals/` contains hover-card previews rendered by `HoverCard.astro`.
-- `popups/` contains Linux-style role windows rendered by `Window.astro`.
+- `popups/` contains Linux-style role windows rendered by `Window.astro`,
+  including fixed URL-preview windows where noted.
 
 Each content target has its own folder and a `content.md` file. Add replacement
 copy directly in that file. If a target needs screenshots, images, charts, or

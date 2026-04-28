@@ -16,10 +16,13 @@ capture() {
 		--disable-gpu \
 		--no-sandbox \
 		--hide-scrollbars \
-		--window-size=1280,720 \
+		--force-prefers-reduced-motion=reduce \
+		--virtual-time-budget=10000 \
+		--window-size=1920,1080 \
 		--screenshot="$OUT_DIR/$file" \
 		"$url"
 }
 
+capture "https://gmx.io" "gmx.png"
 capture "https://gammaswap.com" "gammaswap.png"
 capture "https://www.codex.io" "codex.png"
