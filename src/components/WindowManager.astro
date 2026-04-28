@@ -7,7 +7,7 @@
 
 <style>
 	.window-dock {
-		--dock-item-width: 248px;
+		--dock-item-width: 286px;
 		position: fixed;
 		top: 96px;
 		left: 12px;
@@ -333,15 +333,6 @@
 			return w?.element.querySelector('.window-title')?.textContent ?? id;
 		}
 
-		function calculateDockItemWidth(minimized: [string, WinState][]) {
-			const longestTitle = minimized.reduce((longest, [id]) => {
-				const title = getTitle(id);
-				return title.length > longest.length ? title : longest;
-			}, '');
-			const approximateTextWidth = longestTitle.length * 5.2;
-			return Math.round(Math.min(Math.max(approximateTextWidth + 48, 214), 286));
-		}
-
 		function ensureMobilePanel(id: string, trigger: HTMLElement) {
 			const existing = mobilePanels.get(id);
 			if (existing) return existing;
@@ -441,7 +432,6 @@
 				return;
 			}
 			dock!.classList.add('has-windows');
-			dock!.style.setProperty('--dock-item-width', `${calculateDockItemWidth(minimized)}px`);
 			dock!.innerHTML = minimized
 				.map(([id, w]) => {
 					const title = w.element.querySelector('.window-title')?.textContent ?? id;
