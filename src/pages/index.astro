@@ -49,8 +49,8 @@ import WindowManager from '../components/WindowManager.astro';
 				<ul>
 					<li>
 						Venture consultancy advising early-stage DeFi and fintech founders.
-						Three portfolio companies including <a href="https://gammaswap.com" target="_blank" rel="noopener noreferrer"><b>Gammaswap</b></a>
-						and <a href="https://www.codex.io" target="_blank" rel="noopener noreferrer"><b>Codex</b></a>.
+						Three portfolio companies including <button type="button" class="inline-preview-trigger" data-window-trigger="preview-gammaswap" aria-haspopup="dialog"><b>Gammaswap</b></button>
+						and <button type="button" class="inline-preview-trigger" data-window-trigger="preview-codex" aria-haspopup="dialog"><b>Codex</b></button>.
 						Influenced <b>$4M+ in aggregate fundraising</b> through advisory work and warm introductions.
 					</li>
 				</ul>
@@ -128,6 +128,39 @@ import WindowManager from '../components/WindowManager.astro';
 			<a href="/Paul_Diaz_Ashot_CV.pdf" download target="_blank" rel="noopener">Download CV (PDF)</a>
 		</footer>
 	</main>
+
+	<!-- External preview windows -->
+	<Window
+		id="preview-gammaswap"
+		title="https://gammaswap.com"
+		initialX={176}
+		initialY={112}
+		initialWidth={640}
+		initialHeight={388}
+		resizable={false}
+		variant="preview"
+	>
+		<div class="external-preview">
+			<img src="/previews/gammaswap.png" alt="Preview of https://gammaswap.com" loading="lazy" />
+			<a class="external-preview-arrow" href="https://gammaswap.com" target="_blank" rel="noopener noreferrer" aria-label="Open https://gammaswap.com">→</a>
+		</div>
+	</Window>
+
+	<Window
+		id="preview-codex"
+		title="https://www.codex.io"
+		initialX={220}
+		initialY={144}
+		initialWidth={640}
+		initialHeight={388}
+		resizable={false}
+		variant="preview"
+	>
+		<div class="external-preview">
+			<img src="/previews/codex.png" alt="Preview of https://www.codex.io" loading="lazy" />
+			<a class="external-preview-arrow" href="https://www.codex.io" target="_blank" rel="noopener noreferrer" aria-label="Open https://www.codex.io">→</a>
+		</div>
+	</Window>
 
 	<!-- Role windows -->
 	<Window id="portico" title="Portico Ventures · Managing Partner" initialX={140} initialY={100}>
@@ -269,6 +302,30 @@ import WindowManager from '../components/WindowManager.astro';
 		outline-offset: 4px;
 	}
 
+	.inline-preview-trigger {
+		all: unset;
+		cursor: pointer;
+		color: var(--color-ink);
+		text-decoration: underline;
+		text-decoration-color: var(--color-rule);
+		text-underline-offset: 2px;
+		text-decoration-thickness: 1px;
+		transition:
+			text-decoration-color 120ms ease-out,
+			text-decoration-thickness 120ms ease-out;
+	}
+
+	.inline-preview-trigger:hover,
+	.inline-preview-trigger:focus-visible {
+		text-decoration-color: var(--color-ink);
+		text-decoration-thickness: 1.5px;
+	}
+
+	.inline-preview-trigger:focus-visible {
+		outline: 1px solid var(--color-rule);
+		outline-offset: 3px;
+	}
+
 	.role .dates {
 		font-family: var(--font-sans);
 		font-size: 12px;
@@ -316,6 +373,76 @@ import WindowManager from '../components/WindowManager.astro';
 
 	.cv :global(b) {
 		font-weight: 700;
+	}
+
+	.external-preview {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		min-height: 0;
+		overflow: hidden;
+		background:
+			linear-gradient(135deg, rgba(251, 250, 247, 0.08), rgba(61, 43, 31, 0.2)),
+			#17110d;
+	}
+
+	.external-preview img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		filter: saturate(0.88) contrast(0.96);
+	}
+
+	.external-preview::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		border: 1px solid rgba(251, 250, 247, 0.16);
+		pointer-events: none;
+	}
+
+	.external-preview .external-preview-arrow {
+		position: absolute;
+		right: 26px;
+		top: 50%;
+		transform: translateY(-52%);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 132px;
+		height: 132px;
+		color: rgba(251, 250, 247, 0.44);
+		font-family: Georgia, 'Times New Roman', serif;
+		font-size: 122px;
+		font-weight: 400;
+		line-height: 1;
+		text-decoration: none;
+		text-shadow: 0 2px 12px rgba(23, 17, 13, 0.42);
+		transition:
+			color 140ms ease-out,
+			text-shadow 140ms ease-out,
+			transform 140ms ease-out;
+	}
+
+	.external-preview .external-preview-arrow:hover,
+	.external-preview .external-preview-arrow:focus-visible {
+		color: rgba(251, 250, 247, 0.92);
+		text-shadow: 0 2px 18px rgba(23, 17, 13, 0.74);
+		transform: translateY(-52%) translateX(2px);
+		outline: none;
+	}
+
+	:global(.mobile-window-inline-content) .external-preview {
+		height: auto;
+		aspect-ratio: 16 / 9;
+	}
+
+	:global(.mobile-window-inline-content) .external-preview .external-preview-arrow {
+		right: 12px;
+		width: 84px;
+		height: 84px;
+		font-size: 76px;
 	}
 
 	.skills {

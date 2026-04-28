@@ -6,6 +6,8 @@ interface Props {
 	initialY?: number;
 	initialWidth?: number;
 	initialHeight?: number;
+	resizable?: boolean;
+	variant?: 'standard' | 'preview';
 }
 
 const {
@@ -15,12 +17,16 @@ const {
 	initialY = 80,
 	initialWidth = 520,
 	initialHeight = 380,
+	resizable = true,
+	variant = 'standard',
 } = Astro.props;
 ---
 
 <div
 	class="window"
 	data-window-id={id}
+	data-window-variant={variant}
+	data-resizable={String(resizable)}
 	style={`left: ${initialX}px; top: ${initialY}px; width: ${initialWidth}px; height: ${initialHeight}px;`}
 >
 	<div class="window-titlebar">
@@ -33,7 +39,7 @@ const {
 	<div class="window-content">
 		<slot />
 	</div>
-	<div class="window-resize-handle" aria-hidden="true"></div>
+	{resizable && <div class="window-resize-handle" aria-hidden="true"></div>}
 </div>
 
 <style>
@@ -149,6 +155,16 @@ const {
 
 	.window-content :global(b) {
 		font-weight: 700;
+	}
+
+	.window[data-window-variant="preview"] {
+		background: var(--color-bistre);
+	}
+
+	.window[data-window-variant="preview"] .window-content {
+		padding: 0;
+		overflow: hidden;
+		background: #17110d;
 	}
 
 	.window-resize-handle {
