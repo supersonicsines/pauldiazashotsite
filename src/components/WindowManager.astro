@@ -12,13 +12,12 @@
 		left: 0;
 		right: 0;
 		display: none;
-		gap: 4px;
-		padding: 4px 8px;
-		background: var(--color-bistre);
-		border-top: 1px solid var(--color-paper);
+		gap: 6px;
+		padding: 6px 10px;
+		background: #2a1f17;
+		border-top: 1px solid #1a1410;
 		z-index: 400;
 		font-family: var(--font-mono);
-		font-size: 11px;
 	}
 
 	.window-dock.has-windows {
@@ -32,24 +31,29 @@
 		display: inline-flex;
 		align-items: center;
 		gap: 6px;
-		padding: 4px 12px;
-		background: var(--color-paper);
-		color: var(--color-bistre);
+		padding: 4px 10px;
+		background: var(--color-bistre);
+		color: var(--color-paper);
 		cursor: pointer;
 		font-family: var(--font-mono);
 		font-size: 11px;
 		text-transform: uppercase;
-		letter-spacing: 0.8px;
-		border: 1px solid var(--color-paper);
+		letter-spacing: 1px;
+		border-top: 1px solid #5a4a3a;
+		border-left: 1px solid #5a4a3a;
+		border-right: 1px solid #1a1410;
+		border-bottom: 1px solid #1a1410;
 	}
 
 	.dock-item:hover {
-		background: var(--color-sidenote-bg);
+		background: #4d3b2a;
 	}
 
-	.dock-item::before {
-		content: "▣";
-		opacity: 0.5;
+	.dock-item:active {
+		border-top: 1px solid #1a1410;
+		border-left: 1px solid #1a1410;
+		border-right: 1px solid #5a4a3a;
+		border-bottom: 1px solid #5a4a3a;
 	}
 </style>
 

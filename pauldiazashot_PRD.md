@@ -35,7 +35,7 @@ The implicit signal to the right reader (Anthropic hiring manager, anyone LW-adj
 | Framework | **Astro** | Content-first, zero-JS-by-default, MDX support, easy static export |
 | Styling | **Tailwind CSS** | Fast iteration; pairs well with Claude Code |
 | Content | **MDX** | Markdown for prose + JSX components for sidenotes inline |
-| Typography | **Times New Roman** (system font) for body and headings, **Inter** for UI/metadata | Consistency with the CV; Times is recognisable, classical, and signals restraint. No web-font load required — Times is on every device. |
+| Typography | **Times New Roman** (system font), used **exclusively** for body, headings, sidenotes, metadata, and code | One typeface throughout. Times is universal, classical, and signals restraint; no web-font load required, no UI/serif split. |
 | Hosting | **Vercel** (Hobby tier, free) | Edge-served, GitHub integration, custom domain |
 | Repo | **GitHub** | Standard |
 | Domain | **pauldiazashot.com** (already owned) | CNAME to Vercel |
@@ -58,13 +58,15 @@ The implicit signal to the right reader (Anthropic hiring manager, anyone LW-adj
 
 ### Typography
 
+**Times New Roman is the only typeface on the site.** No Inter, no JetBrains Mono, no system-sans fallbacks for metadata or code. Differentiation between body, metadata, captions, and code comes from size, weight, italics, small caps, and colour — never from a different font.
+
 - Body: **Times New Roman**, 18px on desktop, 16px on mobile, line-height 1.6
 - H1 (page title — the name): **Times New Roman**, 36px, regular weight (not bold), letter-spacing 1px
 - H2 (section): **Times New Roman**, 22px, **small caps**, letter-spacing 2.5px, regular weight
 - Sidenote text: **Times New Roman**, 14px, line-height 1.5
-- Metadata (dates, contact, etc.): **Inter**, 13px, `#666666`
-- Inline `<code>` (rare — only for things like API names): **JetBrains Mono**, 0.9em
-- Font stack: `font-family: "Times New Roman", Times, serif;` — no web font load needed; Times is universal.
+- Metadata (dates, contact, etc.): **Times New Roman**, 13px, italic, `#666666`
+- Inline `<code>` (rare — only for things like API names): **Times New Roman**, 0.95em, optionally with a thin background tint to set it off
+- Font stack (single source of truth): `font-family: "Times New Roman", Times, serif;` — applied site-wide. No web font load needed; Times is universal.
 
 ### Layout
 
@@ -157,7 +159,7 @@ If an annotation is just "see [link] for more" without a real paragraph above it
 8. Custom 404 page in the same aesthetic
 9. `pauldiazashot.com` and `www.pauldiazashot.com` both resolve correctly with proper redirects
 10. Open Graph metadata: title, description, og:image (a clean text-on-paper card), Twitter card metadata
-11. Favicon: a single serif character (e.g. "P" in EB Garamond) on the paper-tone background
+11. Favicon: a single serif character (e.g. "P" in Times New Roman) on the paper-tone background
 12. **Download CV** link points to a PDF version of the existing CV (place `Paul_Diaz_Ashot_CV.pdf` in `/public`)
 
 ### Nice-to-have (post-v1)
@@ -257,7 +259,7 @@ pauldiazashot/
 In this order, with verification checkpoints:
 
 1. **Scaffold**: `npm create astro@latest`, choose minimal template, add Tailwind via `npx astro add tailwind`, add MDX via `npx astro add mdx`. Verify dev server runs.
-2. **Typography setup**: install EB Garamond and Inter from Google Fonts, configure Tailwind theme with the colour palette and font families from §4.
+2. **Typography setup**: no font installs — Times New Roman is system-resident on every target platform. Configure Tailwind theme with the colour palette and a single `font-serif` family pointing at `"Times New Roman", Times, serif` per §4.
 3. **Layout**: build `Base.astro` layout with the centred 680px column, paper background, and right gutter zone. Test with placeholder Lorem.
 4. **Components**: build `Sidenote`, `HoverCard`, `Section` in that order. For each, verify desktop and mobile behaviour with placeholder content before moving on.
 5. **Content scaffolding**: create `content/index.mdx` with all 6 sections from §5 using the MVP placeholder text. Wire up annotation slots.

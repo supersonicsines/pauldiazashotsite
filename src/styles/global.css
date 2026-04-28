@@ -8,9 +8,12 @@
   --color-sidenote-bg: #F2EFE8;
   --color-bistre: #3D2B1F;
 
+  /* Times New Roman is the only typeface on the site. The --font-sans and
+     --font-mono aliases point at the same stack so any legacy usage in the
+     components still resolves to Times. */
   --font-serif: "Times New Roman", Times, serif;
-  --font-sans: "Inter", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
+  --font-sans: "Times New Roman", Times, serif;
+  --font-mono: "Times New Roman", Times, serif;
 }
 
 @layer base {
