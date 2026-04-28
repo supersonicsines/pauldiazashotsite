@@ -28,6 +28,10 @@ const { id, term } = Astro.props;
 		color: var(--color-bistre);
 		font-weight: 500;
 		padding: 0 2px;
+		text-decoration: underline;
+		text-decoration-style: dotted;
+		text-decoration-color: var(--color-rule);
+		text-underline-offset: 2px;
 	}
 
 	.sidenote-marker::before {
@@ -43,6 +47,14 @@ const { id, term } = Astro.props;
 		font-size: 14px;
 		line-height: 1.55;
 		color: var(--color-ink);
+		display: none;
+		background: var(--color-sidenote-bg);
+		padding: 10px 14px;
+		margin: 8px 0;
+		border-left: 2px solid var(--color-rule);
+	}
+
+	.sidenote-checkbox:checked ~ .sidenote {
 		display: block;
 	}
 
@@ -56,40 +68,4 @@ const { id, term } = Astro.props;
 		margin-right: 2px;
 	}
 
-	/* Desktop ≥1200px: float into right gutter */
-	@media (min-width: 1280px) {
-		.sidenote {
-			float: right;
-			clear: right;
-			width: 280px;
-			margin-right: -320px;
-			margin-top: 0.3em;
-			margin-bottom: 1.2em;
-			position: relative;
-			padding-left: 12px;
-			border-left: 0.5px solid var(--color-rule);
-		}
-	}
-
-	/* <1200px: hidden by default, click marker to expand */
-	@media (max-width: 1279px) {
-		.sidenote {
-			display: none;
-			background: var(--color-sidenote-bg);
-			padding: 12px 16px;
-			margin: 12px 0;
-			border-left: 2px solid var(--color-rule);
-		}
-
-		.sidenote-checkbox:checked ~ .sidenote {
-			display: block;
-		}
-
-		.sidenote-marker {
-			text-decoration: underline;
-			text-decoration-style: dotted;
-			text-decoration-color: var(--color-rule);
-			text-underline-offset: 2px;
-		}
-	}
 </style>
