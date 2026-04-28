@@ -2,14 +2,15 @@
 interface Props {
 	title: string;
 	id?: string;
+	open?: boolean;
 }
 
-const { title, id } = Astro.props;
+const { title, id, open = true } = Astro.props;
 ---
 
-<section class="collapsible" data-open="true" id={id}>
+<section class="collapsible" data-open={String(open)} id={id}>
 	<h2>
-		<button class="toggle-btn" aria-expanded="true">
+		<button class="toggle-btn" aria-expanded={String(open)}>
 			<span class="arrow" aria-hidden="true">▾</span>
 			<span class="title-text">{title}</span>
 		</button>
@@ -23,7 +24,7 @@ const { title, id } = Astro.props;
 
 <style>
 	.collapsible {
-		margin: 28px 0;
+		margin: 0 0 18px 0;
 	}
 
 	h2 {
@@ -69,6 +70,10 @@ const { title, id } = Astro.props;
 
 	.collapsible[data-open="false"] .arrow {
 		transform: rotate(-90deg);
+	}
+
+	.collapsible[data-open="false"] h2 {
+		margin-bottom: 0;
 	}
 
 	.content-wrapper {
