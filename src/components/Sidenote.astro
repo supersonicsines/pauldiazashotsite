@@ -2,12 +2,13 @@
 interface Props {
 	id: string;
 	term: string;
+	italic?: boolean;
 }
 
-const { id, term } = Astro.props;
+const { id, term, italic = false } = Astro.props;
 ---
 
-<span class="anchor">{term}</span><label
+<span class:list={['anchor', { italic }]}>{term}</span><label
 	for={`sn-${id}`}
 	class="sidenote-marker"
 ></label><input type="checkbox" id={`sn-${id}`} class="sidenote-checkbox" /><span class="sidenote" role="note"><slot /></span>
@@ -18,6 +19,10 @@ const { id, term } = Astro.props;
 		text-decoration-style: dotted;
 		text-decoration-color: var(--color-rule);
 		text-underline-offset: 3px;
+	}
+
+	.anchor.italic {
+		font-style: italic;
 	}
 
 	.sidenote-marker {
