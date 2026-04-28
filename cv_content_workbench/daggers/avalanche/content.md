@@ -16,7 +16,9 @@ within two months.
 
 ## Replacement Content
 
-Write the final dagger text here.
+The Avalanche Rush deployment incentive was one of the biggest incentive packages secured in DeFi at the time. The $4M in trading rewards led to eight-figure increases in TVL within a few months.
+
+https://medium.com/avalancheavax/gmx-joins-avalanche-rush-with-4m-in-trading-rewards-ce5c66f0e3b3
 
 ## Media
 

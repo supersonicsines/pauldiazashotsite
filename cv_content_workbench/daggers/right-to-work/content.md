@@ -10,7 +10,7 @@ Source: `src/pages/index.astro`
 
 ## Replacement Content
 
-Write the final dagger text here.
+UK indefinite leave to remain status holder + US/EU dual national.
 
 ## Media
 
