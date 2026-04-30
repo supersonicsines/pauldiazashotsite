@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Analytics from '@vercel/analytics/astro';
 
 interface Props {
 	title: string;
@@ -16,6 +17,7 @@ const { title, description = 'Paul Diaz Ashot' } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<meta name="description" content={description} />
 		<title>{title}</title>
+		<Analytics />
 	</head>
 	<body>
 		<!-- Loading overlay with cycling symbols + watermark transition.
