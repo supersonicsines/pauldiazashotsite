@@ -18,11 +18,11 @@ capture() {
 		--hide-scrollbars \
 		--force-prefers-reduced-motion=reduce \
 		--virtual-time-budget=10000 \
-		--window-size=1920,1080 \
+		--window-size=1280,720 \
 		--screenshot="$OUT_DIR/$file" \
 		"$url"
 }
 
-capture "https://gmx.io" "gmx.png"
-capture "https://gammaswap.com" "gammaswap.png"
-capture "https://www.codex.io" "codex.png"
+capture "https://gmx.io" "gmx-preview-1280.png"
+capture "https://gammaswap.com" "gammaswap-preview-1280.png"
+capture "https://www.codex.io" "codex-preview-1280.png"

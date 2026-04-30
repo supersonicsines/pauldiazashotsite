@@ -20,4 +20,4 @@ No prose needed here unless the URL preview behaviour changes.
 
 ## Media
 
-Cached screenshot: `public/previews/gmx.png`.
+Cached screenshot: `public/previews/gmx-preview-1280.png`.
