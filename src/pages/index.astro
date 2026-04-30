@@ -9,7 +9,7 @@ import WindowManager from '../components/WindowManager.astro';
 
 <BaseLayout
 	title="Paul Diaz Ashot"
-	description="Founder-operator. Founding team at GMX. Active Claude developer. London, Barcelona, New York."
+	description="Founder-operator. Founding team at GMX. Active AI developer using Claude Code, Codex CLI, and GPT-5.5. London, Barcelona, New York."
 >
 	<main class="cv">
 		<header class="cv-header">
@@ -26,7 +26,7 @@ import WindowManager from '../components/WindowManager.astro';
 		<div class="cv-body">
 			<Collapsible title="Introduction">
 				<p>
-					I am a founder-operator. I have been selling since I was 12. First it was paintings, now it's ideas. I spent four years on the founding team of <button type="button" class="inline-preview-trigger" data-window-trigger="preview-gmx" aria-haspopup="dialog"><b>GMX</b></button>, where I handled go-to-market and onboarded major partners. I spent four years running a venture consultancy practice alongside and after it, where I helped portfolio companies raise funding and pivot strategies to become profitable. My current obsession is deploying AI agents to automate and scale real businesses. Native English, fluent Russian, fluent Spanish; <Sidenote id="right-to-work" term="right to work in the UK, US, and EU">UK indefinite leave to remain status holder + US/EU dual national.</Sidenote>.
+					I am a founder-operator. I have been selling since I was 12. First it was paintings, now it's ideas. I spent four years on the founding team of <button type="button" class="inline-preview-trigger" data-window-trigger="preview-gmx" aria-haspopup="dialog"><b>GMX</b></button>, where I handled go-to-market and onboarded major partners. I spent four years running a venture consultancy practice alongside and after it, where I helped portfolio companies raise funding and pivot strategies to become profitable. My current obsession is deploying AI agents with the best model for each job, from Claude to GPT-5.5, to automate and scale real businesses. Native English, fluent Russian, fluent Spanish; <Sidenote id="right-to-work" term="right to work in the UK, US, and EU">UK indefinite leave to remain status holder + US/EU dual national.</Sidenote>.
 				</p>
 				<p>
 					This is a hypertextual page, underlined items can be interacted with for additional context and information. The PDF version is
@@ -45,7 +45,7 @@ import WindowManager from '../components/WindowManager.astro';
 					<li>
 						Venture capital fund specialising in advising and investing in early stage DeFi/Fintech.
 						Worked closely on GTM with several portfolio companies including <button type="button" class="inline-preview-trigger" data-window-trigger="preview-gammaswap" aria-haspopup="dialog"><b>Gammaswap</b></button>
-						and <button type="button" class="inline-preview-trigger" data-window-trigger="preview-codex" aria-haspopup="dialog"><b>Codex</b></button>.
+						and <button type="button" class="inline-preview-trigger" data-window-trigger="preview-codex" aria-haspopup="dialog"><b>Codex.io</b></button>.
 						Influenced <b>$4M+ in aggregate fundraising</b> through advisory work and warm introductions.
 					</li>
 				</ul>
@@ -100,7 +100,7 @@ import WindowManager from '../components/WindowManager.astro';
 						<button type="button" class="inline-preview-trigger" data-window-trigger="vinted" aria-haspopup="dialog"><b>Vinted-to-Depop reselling agent</b></button> — autonomous fashion-arbitrage system operating across Vinted and Depop.
 					</li>
 					<li>
-						<Sidenote id="booking" term="Intelligent booking system">A Barcelona dance school with 100+ weekly individual bookings moved onto a Claude-coded management and analytics system. The agent tracks seasonality across evening vs afternoon classes, Salsa vs Bachata, and experience level, then suggests schedules from basic regression and heuristics. Estimated admin efficiency increased about 50%.</Sidenote> — Claude-powered agentic scheduler for a small local business; takes class bookings and organises future classes based on predicted demand.
+						<Sidenote id="booking" term="Intelligent booking system">A Barcelona dance school with 100+ weekly individual bookings moved onto an AI-coded management and analytics system built with Claude Code and Codex CLI. The agent tracks seasonality across evening vs afternoon classes, Salsa vs Bachata, and experience level, then suggests schedules from basic regression and heuristics. Estimated admin efficiency increased about 50%.</Sidenote> — Codex CLI-assisted agentic scheduler for a small local business; takes class bookings and organises future classes based on predicted demand.
 					</li>
 				</ul>
 			</Collapsible>
@@ -113,7 +113,7 @@ import WindowManager from '../components/WindowManager.astro';
 
 			<Collapsible title="Skills" open={false}>
 				<p class="skills">
-					Consultative selling to technical buyers · enterprise negotiation · founder-network leverage · community-led growth · technical product evangelism · venture capital · startup operations · risk management · marketing outreach · financial modelling · Claude API · Claude Code · prompt engineering · agentic workflows · MCP · Python · JavaScript
+					Consultative selling to technical buyers · enterprise negotiation · founder-network leverage · community-led growth · technical product evangelism · venture capital · startup operations · risk management · marketing outreach · financial modelling · Claude API · Claude Code · Codex CLI · GPT-5.5 · prompt engineering · agentic workflows · MCP · Python · JavaScript
 				</p>
 			</Collapsible>
 		</div>
@@ -218,25 +218,37 @@ import WindowManager from '../components/WindowManager.astro';
 
 	<!-- Current deployment windows -->
 	<Window id="pawlymarket" title="Pawlymarket · Prediction-Market Analytics" initialX={236} initialY={108} initialWidth={820} initialHeight={650}>
-		<p><b>Pawlymarket</b> — <em>prediction-market analytics and statistical arbitrage</em></p>
+		<p><b>Pawlymarket</b> — <em>decentralised quantitative-analysis community for Polymarket</em></p>
 		<p>
-			Live scraper and statistical-arbitrage layer over prediction markets. Reads order
-			books across Kalshi, Polymarket, and smaller venues; identifies systematic
-			mispricings; surfaces them as actionable calls.
+			A members' room built over Polymarket. The engine runs statistical regression on
+			the full live order book, AI curates the survivors, and members assemble hedges
+			against the curated pairs to extract yield from mispriced beta. Closer to a small
+			quant desk than another arbitrage bot.
 		</p>
 		<div class="window-media window-media--sixty-five">
 			<img src="/images/cv/pawlymarket-dashboard-1280-rgb.png" width="1280" height="1025" alt="Pawlymarket explorer showing curated market pairs, correlation scores, and chart controls" loading="lazy" decoding="async" />
 		</div>
 		<p>
-			The system scrapes public market data, screens for correlations with Pearson
-			coefficients, then runs a second pass over divergence, beta, and theta-decay
-			opportunities. Subscribers can assemble hedged strategies around mean reversion
-			or geopolitical event risk; a community layer lets users share and discuss trades.
+			The analyzer scrapes Polymarket every five minutes and computes Tier 1 stats on
+			every viable pair — Spearman, lagged correlation, volume-weighted beta,
+			Engle-Granger cointegration, half-life — then a three-pass funnel (thresholds →
+			AI categorical screen → written macro thesis) lands at roughly 250 curated pairs
+			at any given time. Output sorts into five signal types: <b>✕-DEAD</b>
+			(mutual-exclusion arbitrage where YES prices sum past 100¢), <b>θ-THETA</b>
+			(calendar-spread decay with a β &lt; 1 edge), <b>β-NEG</b>, <b>β-PARTIAL</b>,
+			and <b>β-DRIFT</b>. Yield comes from spread reconvergence, not directional bets.
 		</p>
 		<p>
-			Built end-to-end with Claude Code and agentic curation at every stage, with
-			Haiku, Sonnet, and Opus each assigned to the parts of the workflow where they are
-			strongest. <a href="https://pawlymarket.com" target="_blank" rel="noopener noreferrer">pawlymarket.com</a>
+			$59/mo opens the curated Telegram and web alert feed; $599/mo opens the explorer
+			— charts, outcome modelers, saved pairs — and a Kitsune-only community where
+			members submit and discuss their own pairs and copytrade the top wallets tracked
+			on Polygon's Conditional Token Framework.
+		</p>
+		<p>
+			Built end-to-end on Claude Code and Codex CLI. Haiku, Sonnet, Opus, and GPT-5.5
+			each run the part of the workflow where they are strongest. Wallet-connect auth,
+			USDC/USDT on Polygon, no KYC.
+			<a href="https://pawlymarket.com" target="_blank" rel="noopener noreferrer">pawlymarket.com</a>
 		</p>
 	</Window>
 
@@ -251,9 +263,9 @@ import WindowManager from '../components/WindowManager.astro';
 			<img src="/images/cv/vinted-depop-glitter-1100-rgb.png" width="1100" height="701" alt="Glitter Vinted intelligence platform terminal interface" loading="lazy" decoding="async" />
 		</div>
 		<p>
-			The agent is driven by a multipass Haiku and Opus flow running through a terminal
-			interface. Seeded with $10K, it generated $25K in six months, averaging close to
-			100% returns per item with a sub-10% loss rate.
+			The agent is driven by a multipass Haiku, Opus, and GPT-5.5 flow running through a
+			terminal interface. Seeded with $10K, it generated $25K in six months, averaging
+			close to 100% returns per item with a sub-10% loss rate.
 		</p>
 	</Window>
 
