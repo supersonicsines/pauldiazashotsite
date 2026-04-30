@@ -341,7 +341,7 @@
 			if (!w) return null;
 
 			const sourceContent = w.element.querySelector<HTMLElement>('.window-content');
-			const anchor = trigger.closest<HTMLElement>('.role') ?? trigger;
+			const anchor = trigger.closest<HTMLElement>('.role') ?? trigger.closest<HTMLElement>('li') ?? trigger;
 			const panel = document.createElement('div');
 			const title = document.createElement('div');
 			const content = document.createElement('div');

@@ -4,10 +4,6 @@ Type: dagger
 Anchor text: `Intelligent booking system`
 Source: `src/pages/index.astro`
 
-## Current Placeholder
-
-`[PLACEHOLDER - 50 words]`
-
 ## Current Draft Text
 
 Claude-powered scheduler for a small local business. Takes class bookings,
@@ -16,7 +12,11 @@ predicted demand.
 
 ## Replacement Content
 
-Write the final dagger text here.
+A Barcelona dance school with 100+ weekly individual bookings moved onto a
+Claude-coded management and analytics system. The agent tracks seasonality
+across evening vs afternoon classes, Salsa vs Bachata, and experience level,
+then suggests schedules from basic regression and heuristics. Estimated admin
+efficiency increased about 50%.
 
 ## Media
 

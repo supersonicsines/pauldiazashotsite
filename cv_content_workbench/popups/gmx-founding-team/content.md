@@ -8,27 +8,20 @@ Source: `src/pages/index.astro`
 
 GMX - Founding Team - Growth & Partnerships
 
-## Current Placeholder
-
-`[PLACEHOLDER - fill with: founding-team narrative, GLP design, partnership arithmetic, the Arbitrum migration, your personal arc through the rebrand. 400-600 words ideal.]`
-
-## Current Body Draft
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-culpa qui officia deserunt mollit anim id est laborum.
-
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
-veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-
 ## Replacement Content
 
-Write the final popup content here.
+Working on GMX was a labour of love in a ruthless, high-pressure environment
+where execution failures or exploits could permanently damage your reputation.
+
+As a decentralised perps exchange, we were not just pioneers. We were operating
+in regulatory uncertainty, launching in the first year of a new US presidency
+during intense scrutiny for DeFi.
+
+The work matched my skill set and interests more than anything I had done
+before. I built lifelong relationships there, and the biggest personal lesson
+was how rewarding I find the front line of a technological space: users asking
+hard questions, partners needing conviction, liquidity providers weighing risk,
+and a product whose credibility had to be earned in public.
 
 ## Media
 

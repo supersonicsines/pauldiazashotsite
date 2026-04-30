@@ -29,7 +29,7 @@ import WindowManager from '../components/WindowManager.astro';
 					I am a founder-operator. I have been selling since I was 12. First it was paintings, now it's ideas. I spent four years on the founding team of <button type="button" class="inline-preview-trigger" data-window-trigger="preview-gmx" aria-haspopup="dialog"><b>GMX</b></button>, where I handled go-to-market and onboarded major partners. I spent four years running a venture consultancy practice alongside and after it, where I helped portfolio companies raise funding and pivot strategies to become profitable. My current obsession is deploying AI agents to automate and scale real businesses. Native English, fluent Russian, fluent Spanish; <Sidenote id="right-to-work" term="right to work in the UK, US, and EU">UK indefinite leave to remain status holder + US/EU dual national.</Sidenote>.
 				</p>
 				<p>
-					Each role below opens as a window — click to read more. The PDF version is
+					This is a hypertextual page, underlined items can be interacted with for additional context and information. The PDF version is
 					<a href="/Paul_Diaz_Ashot_CV.pdf" download target="_blank" rel="noopener">here</a>.
 				</p>
 			</Collapsible>
@@ -65,7 +65,8 @@ import WindowManager from '../components/WindowManager.astro';
 					<li>
 						Closed and co-closed strategic partnerships with <Sidenote id="arbitrum" term="Arbitrum" italic>Arbitrum is an L2 for Ethereum that GMX utilised for lower transaction costs. Part of being an early adopter was negotiating for grants and trader rebates worth $10M+. <a href="https://gmxio.substack.com/p/how-gmx-will-utilise-the-12-million" target="_blank" rel="noopener noreferrer">Read the GMX Arbitrum incentive post</a>.</Sidenote>, <Sidenote id="avalanche" term="Avalanche" italic>The Avalanche Rush deployment incentive was one of the biggest incentive packages secured in DeFi at the time. The $4M in trading rewards led to eight-figure increases in TVL within a few months. <a href="https://medium.com/avalancheavax/gmx-joins-avalanche-rush-with-4m-in-trading-rewards-ce5c66f0e3b3" target="_blank" rel="noopener noreferrer">Read the Avalanche Rush announcement</a>.</Sidenote>, <em>Chainlink</em>, and <em>Frax</em>, plus two other protocol integrations. Coordinated the <HoverCard term="Gambit → GMX rebrand">
 							<span class="hc-p">The rebrand wasn't a marketing exercise; it was a chain migration from BSC (Gambit) to <em>Arbitrum</em> and <em>Avalanche</em> (GMX), with the partner network lined up to launch alongside.</span>
-							<span class="hc-p"><em>[PLACEHOLDER — replace with 150–200 word account: why the rebrand was technically necessary, your specific role, timeline coordination across partners.]</em></span>
+							<span class="hc-p">Gambit was initially successful on BSC, reaching nine-figure TVL and issuing GUSDT, a stablecoin backed by aggregate long/short position float and funding fees. The product was thoughtful, but market volatility broke the peg, so the migration demanded a technical rethink rather than a cosmetic rename.</span>
+							<span class="hc-p">My role as de facto community lead was to move users into a new product on new chains without fracturing the community after losses in the first system. It worked: users who held through the migration saw 500%+ ROI, and the Telegram community largely stayed intact through the transition.</span>
 						</HoverCard> and organised outreach to future partners.
 					</li>
 					<li>
@@ -74,9 +75,13 @@ import WindowManager from '../components/WindowManager.astro';
 				</ul>
 
 				<div class="role">
-					<button class="role-trigger" data-window-trigger="effie" aria-haspopup="dialog">
-						<b>Effie Perine LTD.</b> — <em>Operations &amp; Client Relations</em>
-					</button>
+					<div class="role-title">
+						<HoverCard term="Effie Perine LTD.">
+							<span class="hc-p">Effie Perine is a dealership and consignment business run by my brother, Alexis Ashot, a world-class expert in Dutch Pictures.</span>
+							<span class="hc-p">My work there extended my first exposure to selling antiques and paintings as a child. During that period I learned the importance of client relationships, building and maintaining good deal flow, sourcing leads, and managing risk in highly seasonal businesses.</span>
+							<span class="hc-p">It was a brief transition from education into professional life, but it laid the foundation for many of the commercial habits I later used in crypto, venture advisory, and AI deployments.</span>
+						</HoverCard> — <em>Operations &amp; Client Relations</em>
+					</div>
 					<div class="dates">2019 – 2020</div>
 				</div>
 				<ul>
@@ -89,17 +94,13 @@ import WindowManager from '../components/WindowManager.astro';
 			<Collapsible title="Current AI Deployments">
 				<ul>
 					<li>
-						<HoverCard term="Pawlymarket">
-							<span class="hc-p">Live scraper and statistical-arbitrage layer over prediction markets. Reads order books across Kalshi, Polymarket, and smaller venues; identifies systematic mispricings; surfaces them as actionable calls.</span>
-							<span class="hc-p"><em>[PLACEHOLDER — replace with 150 words on engineering architecture (scrape-aggregator, statistical model layer, P&amp;L attribution), revenue trajectory, lessons learned. Embed dashboard screenshot.]</em></span>
-							<span class="hc-p further-reading">→ <a href="https://pawlymarket.com" target="_blank" rel="noopener noreferrer">pawlymarket.com</a></span>
-						</HoverCard> — live scraper and data aggregator using statistical models to identify market inefficiencies. <b>$50K ARR</b> within two months of launch. <a href="https://pawlymarket.com" target="_blank" rel="noopener noreferrer">pawlymarket.com</a>.
+						<button type="button" class="inline-preview-trigger" data-window-trigger="pawlymarket" aria-haspopup="dialog"><b>Pawlymarket</b></button> — live scraper and data aggregator using statistical models to identify market inefficiencies. <b>$50K ARR</b> within two months of launch. <a href="https://pawlymarket.com" target="_blank" rel="noopener noreferrer">pawlymarket.com</a>.
 					</li>
 					<li>
-						<Sidenote id="vinted" term="Vinted-to-Depop reselling agent"><em>[PLACEHOLDER — 75 words]</em> An end-to-end autonomous fashion-arbitrage agent operating across Vinted and Depop. Driven by Claude through a Telegram interface; sources items, calculates margins, lists, fulfills.</Sidenote> — end-to-end autonomous fashion-arbitrage agent operated via Telegram.
+						<button type="button" class="inline-preview-trigger" data-window-trigger="vinted" aria-haspopup="dialog"><b>Vinted-to-Depop reselling agent</b></button> — autonomous fashion-arbitrage system operating across Vinted and Depop.
 					</li>
 					<li>
-						<Sidenote id="booking" term="Intelligent booking system"><em>[PLACEHOLDER — 50 words]</em> Claude-powered scheduler for a small local business. Takes class bookings, reschedules around capacity constraints, and organises future classes from predicted demand.</Sidenote> — Claude-powered agentic scheduler for a small local business; takes class bookings and organises future classes based on predicted demand.
+						<Sidenote id="booking" term="Intelligent booking system">A Barcelona dance school with 100+ weekly individual bookings moved onto a Claude-coded management and analytics system. The agent tracks seasonality across evening vs afternoon classes, Salsa vs Bachata, and experience level, then suggests schedules from basic regression and heuristics. Estimated admin efficiency increased about 50%.</Sidenote> — Claude-powered agentic scheduler for a small local business; takes class bookings and organises future classes based on predicted demand.
 					</li>
 				</ul>
 			</Collapsible>
@@ -177,55 +178,82 @@ import WindowManager from '../components/WindowManager.astro';
 	<Window id="portico" title="Portico Ventures · Managing Partner" initialX={140} initialY={100}>
 		<p><b>Portico Ventures</b> — <em>Managing Partner, 2021 – 2026</em></p>
 		<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-			veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-			ea commodo consequat.
+			Portico Ventures was a boutique fund built around accelerator and
+			consultancy work for DeFi and fintech companies.
 		</p>
 		<p>
-			Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-			dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			The partnership had seven managing partners from different backgrounds, with
+			specialisations across engineering, finance, marketing, and distribution. I
+			usually worked with consumer-facing products where distribution and
+			product-market fit mattered most.
 		</p>
 		<p>
-			<em>[PLACEHOLDER — fill with portfolio detail, deal narratives, advisory framework, specific founder relationships.]</em>
+			My strongest contributions were around diagnosing demand, closing distribution
+			deals, sharpening founder narratives, and helping technical products reach
+			clearer buyers. Across the portfolio, Portico backed 20 companies, recorded
+			six exits, and reached eight-figure peak AUM.
 		</p>
 	</Window>
 
 	<Window id="gmx" title="GMX · Founding Team · Growth & Partnerships" initialX={200} initialY={140} initialWidth={580}>
 		<p><b>GMX</b> — <em>Founding Team · Growth &amp; Partnerships, 2020 – 2023</em></p>
 		<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-			veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-			ea commodo consequat.
+			Working on GMX was a labour of love in a ruthless, high-pressure
+			environment where execution failures or exploits could permanently damage
+			your reputation.
 		</p>
 		<p>
-			Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-			dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			As a decentralised perps exchange, we were not just pioneers. We were
+			operating in regulatory uncertainty, launching in the first year of a new US
+			presidency during intense scrutiny for DeFi.
 		</p>
 		<p>
-			Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-			accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
-			ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
-			explicabo.
-		</p>
-		<p>
-			<em>[PLACEHOLDER — fill with: founding-team narrative, GLP design, partnership arithmetic, the Arbitrum migration, your personal arc through the rebrand. 400–600 words ideal.]</em>
+			The work matched my skill set and interests more than anything I had done
+			before. I built lifelong relationships there, and the biggest personal lesson
+			was how rewarding I find the front line of a technological space: users
+			asking hard questions, partners needing conviction, liquidity providers
+			weighing risk, and a product whose credibility had to be earned in public.
 		</p>
 	</Window>
 
-	<Window id="effie" title="Effie Perine LTD. · Operations & Client Relations" initialX={260} initialY={180}>
-		<p><b>Effie Perine LTD.</b> — <em>Operations &amp; Client Relations, 2019 – 2020</em></p>
+	<!-- Current deployment windows -->
+	<Window id="pawlymarket" title="Pawlymarket · Prediction-Market Analytics" initialX={236} initialY={108} initialWidth={820} initialHeight={650}>
+		<p><b>Pawlymarket</b> — <em>prediction-market analytics and statistical arbitrage</em></p>
 		<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-			veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-			ea commodo consequat.
+			Live scraper and statistical-arbitrage layer over prediction markets. Reads order
+			books across Kalshi, Polymarket, and smaller venues; identifies systematic
+			mispricings; surfaces them as actionable calls.
+		</p>
+		<div class="window-media window-media--sixty-five">
+			<img src="/images/cv/pawlymarket-dashboard.png" alt="Pawlymarket explorer showing curated market pairs, correlation scores, and chart controls" loading="lazy" />
+		</div>
+		<p>
+			The system scrapes public market data, screens for correlations with Pearson
+			coefficients, then runs a second pass over divergence, beta, and theta-decay
+			opportunities. Subscribers can assemble hedged strategies around mean reversion
+			or geopolitical event risk; a community layer lets users share and discuss trades.
 		</p>
 		<p>
-			<em>[PLACEHOLDER — fill with: what an Old Master dealership actually does day-to-day, the consultative-sales arithmetic, why the year mattered before crypto.]</em>
+			Built end-to-end with Claude Code and agentic curation at every stage, with
+			Haiku, Sonnet, and Opus each assigned to the parts of the workflow where they are
+			strongest. <a href="https://pawlymarket.com" target="_blank" rel="noopener noreferrer">pawlymarket.com</a>
+		</p>
+	</Window>
+
+	<Window id="vinted" title="Vinted → Depop · Reselling Agent" initialX={300} initialY={124} initialWidth={640} initialHeight={560}>
+		<p><b>Vinted-to-Depop reselling agent</b> — <em>autonomous fashion arbitrage</em></p>
+		<p>
+			End-to-end autonomous fashion-arbitrage agent operating across Vinted and Depop.
+			It manages inventory, makes purchases, pushes listings, and sends final shipment
+			review to the end user via Telegram.
+		</p>
+		<div class="window-media window-media--seventy-five">
+			<img src="/images/cv/vinted-depop-glitter.png" alt="Glitter Vinted intelligence platform terminal interface" loading="lazy" />
+		</div>
+		<p>
+			The agent is driven by a multipass Haiku and Opus flow running through a terminal
+			interface. Seeded with $10K, it generated $25K in six months, averaging close to
+			100% returns per item with a sub-10% loss rate.
 		</p>
 	</Window>
 
@@ -311,6 +339,11 @@ import WindowManager from '../components/WindowManager.astro';
 	.role-trigger:focus-visible {
 		outline: 1px solid var(--color-rule);
 		outline-offset: 4px;
+	}
+
+	.role-title {
+		font-size: 15px;
+		color: var(--color-ink);
 	}
 
 	.inline-preview-trigger {

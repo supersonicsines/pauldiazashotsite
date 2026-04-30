@@ -4,10 +4,6 @@ Type: dagger
 Anchor text: `right to work in the UK, US, and EU`
 Source: `src/pages/index.astro`
 
-## Current Placeholder
-
-`[PLACEHOLDER - expand with the exact right-to-work basis for each jurisdiction.]`
-
 ## Replacement Content
 
 UK indefinite leave to remain status holder + US/EU dual national.

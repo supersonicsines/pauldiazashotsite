@@ -157,6 +157,29 @@ const {
 		font-weight: 700;
 	}
 
+	.window-content :global(.window-media) {
+		display: block;
+		margin: 14px 0;
+	}
+
+	.window-content :global(.window-media img) {
+		display: block;
+		width: 100%;
+		height: auto;
+		border: 1px solid rgba(61, 43, 31, 0.24);
+		background: var(--color-sidenote-bg);
+	}
+
+	.window-content :global(.window-media--seventy-five img) {
+		width: 75%;
+		margin: 0 auto;
+	}
+
+	.window-content :global(.window-media--sixty-five img) {
+		width: 65%;
+		margin: 0 auto;
+	}
+
 	.window[data-window-variant="preview"] {
 		background: var(--color-bistre);
 	}
@@ -208,6 +231,14 @@ const {
 		}
 		.window-resize-handle {
 			display: none;
+		}
+
+		.window-content :global(.window-media--seventy-five img) {
+			width: 100%;
+		}
+
+		.window-content :global(.window-media--sixty-five img) {
+			width: 100%;
 		}
 	}
 </style>

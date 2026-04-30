@@ -4,10 +4,6 @@ Type: dagger
 Anchor text: `Arbitrum`
 Source: `src/pages/index.astro`
 
-## Current Placeholder
-
-`[PLACEHOLDER - 50 words]`
-
 ## Current Draft Text
 
 Arbitrum is an L2 for Ethereum that GMX utilised for lower transaction costs. Part of being an early adopter was negotiating for grants and trader rebates worth 10+ million USD.

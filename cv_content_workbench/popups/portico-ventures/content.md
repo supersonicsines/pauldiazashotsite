@@ -8,23 +8,20 @@ Source: `src/pages/index.astro`
 
 Portico Ventures - Managing Partner
 
-## Current Placeholder
-
-`[PLACEHOLDER - fill with portfolio detail, deal narratives, advisory framework, specific founder relationships.]`
-
-## Current Body Draft
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-culpa qui officia deserunt mollit anim id est laborum.
-
 ## Replacement Content
 
-Write the final popup content here.
+Portico Ventures was a boutique fund built around accelerator and consultancy
+work for DeFi and fintech companies.
+
+The partnership had seven managing partners from different backgrounds, with
+specialisations across engineering, finance, marketing, and distribution. I
+usually worked with consumer-facing products where distribution and
+product-market fit mattered most.
+
+My strongest contributions were around diagnosing demand, closing distribution
+deals, sharpening founder narratives, and helping technical products reach
+clearer buyers. Across the portfolio, Portico backed 20 companies, recorded six
+exits, and reached eight-figure peak AUM.
 
 ## Media
 

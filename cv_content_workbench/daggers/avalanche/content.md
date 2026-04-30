@@ -4,10 +4,6 @@ Type: dagger
 Anchor text: `Avalanche`
 Source: `src/pages/index.astro`
 
-## Current Placeholder
-
-`[PLACEHOLDER - 50 words]`
-
 ## Current Draft Text
 
 The Avalanche Rush deployment incentive was one of the largest external capital

@@ -91,6 +91,12 @@ const { term, id } = Astro.props;
 		display: block;
 	}
 
+	.hover-card-content::after {
+		content: "";
+		display: block;
+		clear: both;
+	}
+
 	.hover-card-content :global(.hc-p) {
 		display: block;
 		margin: 0 0 10px 0;
@@ -107,11 +113,33 @@ const { term, id } = Astro.props;
 	}
 
 	.hover-card-content :global(.further-reading) {
+		clear: both;
 		margin-top: 14px;
 		padding-top: 12px;
 		border-top: 1px solid rgba(61, 43, 31, 0.18);
 		font-size: 13px;
 		color: var(--color-muted);
+	}
+
+	.hover-card-content :global(.hc-media) {
+		display: block;
+		margin: 2px 0 12px 0;
+		border: 1px solid rgba(61, 43, 31, 0.22);
+		background: var(--color-sidenote-bg);
+		overflow: hidden;
+	}
+
+	.hover-card-content :global(.hc-media--half) {
+		float: right;
+		width: 50%;
+		margin: 2px 0 10px 14px;
+	}
+
+	.hover-card-content :global(.hc-media img) {
+		display: block;
+		width: 100%;
+		height: auto;
+		filter: saturate(0.92) contrast(0.98);
 	}
 
 	.hover-card-content :global(.hc-quote) {
@@ -144,6 +172,12 @@ const { term, id } = Astro.props;
 			left: 50%;
 			width: min(400px, calc(100vw - 32px));
 			transform: translate(-50%, 4px);
+		}
+
+		.hover-card-content :global(.hc-media--half) {
+			float: none;
+			width: 100%;
+			margin: 2px 0 12px 0;
 		}
 
 		@media (hover: hover) {
