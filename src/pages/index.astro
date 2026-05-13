@@ -26,7 +26,7 @@ import WindowManager from '../components/WindowManager.astro';
 		<div class="cv-body">
 			<Collapsible title="Introduction">
 				<p>
-					I am a founder-operator. I have been selling since I was 12. First it was paintings, now it's ideas. I spent four years on the founding team of <button type="button" class="inline-preview-trigger" data-window-trigger="preview-gmx" aria-haspopup="dialog"><b>GMX</b></button>, where I handled go-to-market and onboarded major partners. I spent four years running a venture consultancy practice alongside and after it, where I helped portfolio companies raise funding and pivot strategies to become profitable. My current obsession is deploying AI agents with the best model for each job, from Claude to GPT-5.5, to automate and scale real businesses. Native English, fluent Russian, fluent Spanish; <Sidenote id="right-to-work" term="right to work in the UK, US, and EU">UK indefinite leave to remain status holder + US/EU dual national.</Sidenote>.
+					I am a founder-operator. I have been selling since I was 12. First it was paintings, now it's ideas. I spent four years on the founding team of <button type="button" class="inline-preview-trigger" data-window-trigger="preview-gmx" aria-haspopup="dialog"><b>GMX</b></button>, where I handled go-to-market and onboarded major partners. I spent four years running a venture consultancy practice alongside and after it, where I helped portfolio companies raise funding and pivot strategies to become profitable. My current obsession is deploying AI agents with the best model for each job, from Claude to GPT-5.5, to automate and scale real businesses such as Pawlymarket and Slashwork. Native English, fluent Russian, fluent Spanish; <Sidenote id="right-to-work" term="right to work in the UK, US, and EU">UK indefinite leave to remain status holder + US/EU dual national.</Sidenote>.
 				</p>
 				<p>
 					This is a hypertextual page, underlined items can be interacted with for additional context and information. The PDF version is
@@ -94,6 +94,9 @@ import WindowManager from '../components/WindowManager.astro';
 			<Collapsible title="Current AI Deployments">
 				<ul>
 					<li>
+						<button type="button" class="inline-preview-trigger" data-window-trigger="preview-slashwork" aria-haspopup="dialog"><b>Slashwork.xyz</b></button> — fully live, free AI-deployed job-search engine for the startup and technical community, focused on fresh roles at tracked public-market companies. Built end-to-end with Claude Opus.
+					</li>
+					<li>
 						<button type="button" class="inline-preview-trigger" data-window-trigger="pawlymarket" aria-haspopup="dialog"><b>Pawlymarket</b></button> — live scraper and data aggregator using statistical models to identify market inefficiencies. <b>$50K ARR</b> within two months of launch. <a href="https://pawlymarket.com" target="_blank" rel="noopener noreferrer">pawlymarket.com</a>.
 					</li>
 					<li>
@@ -113,7 +116,7 @@ import WindowManager from '../components/WindowManager.astro';
 
 			<Collapsible title="Skills" open={false}>
 				<p class="skills">
-					Consultative selling to technical buyers · enterprise negotiation · founder-network leverage · community-led growth · technical product evangelism · venture capital · startup operations · risk management · marketing outreach · financial modelling · Claude API · Claude Code · Codex CLI · GPT-5.5 · prompt engineering · agentic workflows · MCP · Python · JavaScript
+					Consultative selling to technical buyers · enterprise negotiation · founder-network leverage · community-led growth · technical product evangelism · venture capital · startup operations · risk management · market intelligence · financial modelling · ATS scraping · SQLite/FTS · Claude API · Claude Code · Codex CLI · GPT-5.5 · prompt engineering · agentic workflows · MCP · Python · JavaScript
 				</p>
 			</Collapsible>
 		</div>
@@ -155,6 +158,22 @@ import WindowManager from '../components/WindowManager.astro';
 		<div class="external-preview">
 			<img src="/previews/gammaswap-preview-1280.png" width="1280" height="720" alt="Preview of https://gammaswap.com" loading="lazy" decoding="async" />
 			<a class="external-preview-arrow" href="https://gammaswap.com" target="_blank" rel="noopener noreferrer" aria-label="Open https://gammaswap.com">→</a>
+		</div>
+	</Window>
+
+	<Window
+		id="preview-slashwork"
+		title="https://slashwork.xyz"
+		initialX={188}
+		initialY={128}
+		initialWidth={640}
+		initialHeight={388}
+		resizable={false}
+		variant="preview"
+	>
+		<div class="external-preview">
+			<img src="/previews/slashwork-preview-1280.png" width="1280" height="720" alt="Preview of https://slashwork.xyz" loading="lazy" decoding="async" />
+			<a class="external-preview-arrow" href="https://slashwork.xyz" target="_blank" rel="noopener noreferrer" aria-label="Open https://slashwork.xyz">→</a>
 		</div>
 	</Window>
 
@@ -229,20 +248,16 @@ import WindowManager from '../components/WindowManager.astro';
 			<img src="/images/cv/pawlymarket-dashboard-1280-rgb.png" width="1280" height="1025" alt="Pawlymarket explorer showing curated market pairs, correlation scores, and chart controls" loading="lazy" decoding="async" />
 		</div>
 		<p>
-			The analyzer scrapes Polymarket every five minutes and computes Tier 1 stats on
-			every viable pair — Spearman, lagged correlation, volume-weighted beta,
-			Engle-Granger cointegration, half-life — then a three-pass funnel (thresholds →
-			AI categorical screen → written macro thesis) lands at roughly 250 curated pairs
-			at any given time. Output sorts into five signal types: <b>✕-DEAD</b>
-			(mutual-exclusion arbitrage where YES prices sum past 100¢), <b>θ-THETA</b>
-			(calendar-spread decay with a β &lt; 1 edge), <b>β-NEG</b>, <b>β-PARTIAL</b>,
-			and <b>β-DRIFT</b>. Yield comes from spread reconvergence, not directional bets.
+			Every five minutes, the analyzer refreshes Polymarket and ranks viable pairs by
+			correlation, beta, cointegration, half-life, and volume. Rules, AI categorization,
+			and a written macro thesis narrow that universe to roughly 250 live pairs,
+			grouped as dead-market, theta, negative-beta, partial-beta, or drift signals.
+			The edge is spread reconvergence, not directional betting.
 		</p>
 		<p>
-			$59/mo opens the curated Telegram and web alert feed; $599/mo opens the explorer
-			— charts, outcome modelers, saved pairs — and a Kitsune-only community where
-			members submit and discuss their own pairs and copytrade the top wallets tracked
-			on Polygon's Conditional Token Framework.
+			The product ships signals through Telegram, web alerts, and an Explorer with
+			charts, outcome models, saved pairs, member-submitted pair discussions, and wallet
+			tracking for top Polymarket accounts on Polygon CTF.
 		</p>
 		<p>
 			Built end-to-end on Claude Code and Codex CLI. Haiku, Sonnet, Opus, and GPT-5.5

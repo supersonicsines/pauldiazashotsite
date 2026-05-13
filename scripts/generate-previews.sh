@@ -25,4 +25,5 @@ capture() {
 
 capture "https://gmx.io" "gmx-preview-1280.png"
 capture "https://gammaswap.com" "gammaswap-preview-1280.png"
+capture "https://slashwork.xyz" "slashwork-preview-1280.png"
 capture "https://www.codex.io" "codex-preview-1280.png"

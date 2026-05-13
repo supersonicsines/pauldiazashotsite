@@ -7,7 +7,7 @@ interface Props {
 const { term, id } = Astro.props;
 ---
 
-<span class="hover-trigger" tabindex="0" data-id={id}>
+<span class="hover-trigger" tabindex="0" role="button" aria-expanded="false" data-id={id}>
 	<span class="anchor">{term}</span><span class="hover-card" role="tooltip">
 		<span class="hover-card-content"><slot /></span>
 	</span>
@@ -209,11 +209,49 @@ const { term, id } = Astro.props;
 			transform 200ms ease-out 140ms,
 			visibility 0s 0s;
 	}
+
+	:global(.hover-card-mobile-inline) {
+		display: none;
+		margin: 8px 0 10px 0;
+		background: var(--color-sidenote-bg);
+		border-left: 2px solid var(--color-rule);
+		padding: 10px 14px 12px 14px;
+		font-family: var(--font-serif);
+		font-size: 14px;
+		line-height: 1.55;
+		color: var(--color-ink);
+	}
+
+	:global(.hover-card-mobile-inline-title) {
+		margin: 0 0 8px 0;
+		font-family: var(--font-serif);
+		font-size: 12px;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		color: var(--color-bistre);
+	}
+
+	:global(.hover-card-mobile-inline-content .hc-p) {
+		display: block;
+		margin: 0 0 10px 0;
+	}
+
+	:global(.hover-card-mobile-inline-content .hc-p:last-child) {
+		margin-bottom: 0;
+	}
+
+	@media (max-width: 700px), (hover: none) and (pointer: coarse) {
+		:global(.hover-card-mobile-inline.open) {
+			display: block;
+		}
+	}
 </style>
 
 <script>
 	const HOVER_CARD_MARGIN = 16;
 	const HOVER_CARD_GAP = 12;
+	const MOBILE_INLINE_QUERY = '(max-width: 700px), (hover: none) and (pointer: coarse)';
 
 	function clamp(value: number, min: number, max: number) {
 		return Math.min(Math.max(value, min), max);
@@ -299,5 +337,80 @@ const { term, id } = Astro.props;
 		});
 	}
 
+	function initMobileHoverCards() {
+		const mobileInlineQuery = window.matchMedia(MOBILE_INLINE_QUERY);
+		const mobilePanels = new Map<HTMLElement, HTMLElement>();
+
+		document.querySelectorAll<HTMLElement>('.hover-trigger').forEach((trigger, index) => {
+			const card = trigger.querySelector<HTMLElement>('.hover-card');
+			const sourceContent = card?.querySelector<HTMLElement>('.hover-card-content');
+			if (!sourceContent) return;
+
+			function getTitle() {
+				return trigger.querySelector<HTMLElement>('.anchor')?.textContent?.trim() ?? 'More';
+			}
+
+			function isMobileInlineMode() {
+				return mobileInlineQuery.matches;
+			}
+
+			function ensureMobilePanel() {
+				const existing = mobilePanels.get(trigger);
+				if (existing) return existing;
+
+				const anchor = trigger.closest<HTMLElement>('.role') ?? trigger.closest<HTMLElement>('li') ?? trigger;
+				const panel = document.createElement('div');
+				const title = document.createElement('div');
+				const content = document.createElement('div');
+				const panelId = `hover-card-mobile-${index}`;
+
+				panel.className = 'mobile-window-inline hover-card-mobile-inline';
+				panel.id = panelId;
+				panel.dataset.mobileHoverCard = 'true';
+				title.className = 'mobile-window-inline-title hover-card-mobile-inline-title';
+				title.textContent = getTitle();
+				content.className = 'mobile-window-inline-content hover-card-mobile-inline-content';
+				content.append(...Array.from(sourceContent.childNodes).map((node) => node.cloneNode(true)));
+
+				panel.append(title, content);
+				anchor.insertAdjacentElement('afterend', panel);
+				trigger.setAttribute('aria-controls', panelId);
+				mobilePanels.set(trigger, panel);
+				return panel;
+			}
+
+			function closeMobilePanel() {
+				const panel = mobilePanels.get(trigger);
+				if (!panel) return;
+				panel.classList.remove('open');
+				trigger.classList.remove('is-active');
+				trigger.setAttribute('aria-expanded', 'false');
+			}
+
+			function toggleMobilePanel(event: MouseEvent | KeyboardEvent) {
+				if (!isMobileInlineMode()) return;
+
+				event.preventDefault();
+				const panel = ensureMobilePanel();
+				const willOpen = !panel.classList.contains('open');
+
+				panel.classList.toggle('open', willOpen);
+				trigger.classList.toggle('is-active', willOpen);
+				trigger.setAttribute('aria-expanded', String(willOpen));
+			}
+
+			trigger.addEventListener('click', toggleMobilePanel);
+			trigger.addEventListener('keydown', (event) => {
+				if (event.key !== 'Enter' && event.key !== ' ') return;
+				toggleMobilePanel(event);
+			});
+
+			mobileInlineQuery.addEventListener('change', (event) => {
+				if (!event.matches) closeMobilePanel();
+			});
+		});
+	}
+
 	initHoverCards();
+	initMobileHoverCards();
 </script>

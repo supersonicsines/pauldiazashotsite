@@ -23,3 +23,11 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 .vercel
+
+# docs not for source control
+README.md
+**/README.md
+REVIEW.md
+**/REVIEW.md
+PRD.md
+**/PRD.md

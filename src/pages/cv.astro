@@ -17,7 +17,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 		<section>
 			<h2>Summary</h2>
-			<p>Founder-operator with deep experience selling technical products to sophisticated buyers. Founding team at <b>GMX</b>, a decentralised derivatives exchange that scaled to $450M+ TVL and $40M+ annualised revenue with a team of three. Active Claude developer since 2023, shipping production AI deployments including a live, revenue-generating prediction-market analytics platform. Native English, fluent Russian, fluent Spanish.</p>
+			<p>Founder-operator and technical GTM lead with deep experience selling technical products to sophisticated buyers. Founding team at <b>GMX</b>, a decentralised derivatives exchange that scaled to $450M+ TVL and $40M+ annualised revenue with a team of three. Active AI developer since 2023; currently pairs OpenAI GPT-5.5 and Codex CLI with Anthropic Claude to ship production AI deployments including a live, revenue-generating prediction-market analytics platform and a public job-search engine. Native English, fluent Russian, fluent Spanish.</p>
 		</section>
 
 		<section>
@@ -28,7 +28,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 				<div class="dates">2021 – 2026</div>
 			</div>
 			<ul>
-				<li>Venture capital fund specialising in advising and investing in early stage DeFi/Fintech. Worked closely on GTM with several portfolio companies including <b>Gammaswap</b> and <b>Codex</b>. Influenced <b>$4M+ in aggregate fundraising</b> through advisory work and warm introductions.</li>
+				<li>Venture capital fund specialising in advising and investing in early stage DeFi/Fintech. Worked closely on GTM with several portfolio companies including <b>Gammaswap</b> and <b>Codex.io</b>. Influenced <b>$4M+ in aggregate fundraising</b> through advisory work and warm introductions.</li>
 			</ul>
 
 			<div class="role">
@@ -53,9 +53,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		<section>
 			<h2>Independent AI Deployments</h2>
 			<ul>
+				<li><b>Slashwork.xyz</b> — fully live, free AI-deployed job-search engine for the startup and technical community, focused on fresh roles at tracked public-market companies. Built end-to-end with Claude Opus. <a href="https://slashwork.xyz">slashwork.xyz</a>.</li>
 				<li><b>Pawlymarket</b> — live scraper and data aggregator using statistical models to identify market inefficiencies. $50K ARR within two months of launch. <a href="https://pawlymarket.com">pawlymarket.com</a>.</li>
 				<li><b>Vinted-to-Depop reselling agent</b> — end-to-end autonomous fashion-arbitrage agent operated via Telegram.</li>
-				<li><b>Intelligent booking system</b> — Claude-powered agentic scheduler for a small local business; takes class bookings and organises future classes based on predicted demand.</li>
+				<li><b>Intelligent booking system</b> — Codex CLI-assisted agentic scheduler for a small local business; takes class bookings and organises future classes based on predicted demand.</li>
 			</ul>
 		</section>
 
@@ -66,7 +67,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 		<section>
 			<h2>Skills</h2>
-			<p class="skills">Consultative selling to technical buyers · enterprise negotiation · founder-network leverage · community-led growth · technical product evangelism · venture capital · startup operations · risk management · marketing outreach · financial modelling · Claude API · Claude Code · prompt engineering · agentic workflows · MCP · Python · JavaScript</p>
+			<p class="skills">Technical GTM & account strategy · consultative selling to technical buyers · founder/C-level relationships · platform/API product evangelism · enterprise negotiation · founder-network leverage · community-led growth · venture capital · startup operations · risk management · market intelligence · financial modelling · ATS scraping · SQLite/FTS · OpenAI GPT-5.5 · Codex CLI · Claude API · prompt engineering · agentic workflows · MCP · Python · JavaScript</p>
 		</section>
 
 		<footer class="cv-footer">
@@ -196,6 +197,98 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 		.role .dates {
 			font-size: 12px;
+		}
+	}
+
+	@media print {
+		@page {
+			size: A4;
+			margin: 10mm 11mm;
+		}
+
+		:global(html) {
+			font-size: 11px;
+			line-height: 1.26;
+			background: #fff;
+		}
+
+		:global(body) {
+			background: #fff;
+		}
+
+		:global(.overlay) {
+			display: none !important;
+		}
+
+		.cv-content {
+			max-width: none;
+			padding: 0;
+		}
+
+		.cv-header {
+			padding-bottom: 7px;
+			margin-bottom: 9px;
+		}
+
+		.cv-header h1 {
+			font-size: 24px;
+			margin-bottom: 3px;
+		}
+
+		.locations {
+			font-size: 11px;
+			margin-bottom: 2px;
+		}
+
+		.contact {
+			font-size: 9.5px;
+			margin-bottom: 0;
+		}
+
+		section {
+			margin-bottom: 9px;
+			break-inside: avoid;
+		}
+
+		h2 {
+			font-size: 13px;
+			margin-bottom: 5px;
+			padding-bottom: 2px;
+			letter-spacing: 1.8px;
+		}
+
+		.role {
+			margin: 6px 0 2px 0;
+		}
+
+		.role .title {
+			font-size: 11px;
+		}
+
+		.role .dates {
+			font-size: 9.5px;
+		}
+
+		p {
+			margin-bottom: 4px;
+		}
+
+		ul {
+			margin: 2px 0 6px 0;
+			padding-left: 12px;
+		}
+
+		li {
+			padding-left: 10px;
+			margin-bottom: 3px;
+		}
+
+		.skills {
+			line-height: 1.35;
+		}
+
+		.cv-footer {
+			display: none;
 		}
 	}
 </style>

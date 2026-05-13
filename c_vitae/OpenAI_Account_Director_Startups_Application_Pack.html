@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Paul Diaz Ashot - OpenAI Account Director, Startups Application Pack</title>
+	<style>
+		@page {
+			size: A4;
+			margin: 10mm 11mm;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			margin: 0;
+			background: #f3f1eb;
+			color: #191714;
+			font-family: Georgia, "Times New Roman", serif;
+			-webkit-print-color-adjust: exact;
+			print-color-adjust: exact;
+		}
+
+		.sheet {
+			width: 210mm;
+			min-height: 297mm;
+			margin: 0 auto 16px;
+			padding: 0;
+			background: #fffdf8;
+			page-break-after: always;
+		}
+
+		.sheet:last-child {
+			page-break-after: auto;
+		}
+
+		h1,
+		h2,
+		h3,
+		p,
+		ul,
+		ol {
+			margin-top: 0;
+		}
+
+		.sheet.cv {
+			padding: 5.8mm 6.8mm 0;
+		}
+
+		.cv {
+			font-size: 15.2px;
+			line-height: 1.24;
+		}
+
+		.cv header {
+			text-align: center;
+			padding-bottom: 17px;
+			border-bottom: 0.5px solid #c7bfb3;
+			margin-bottom: 18px;
+		}
+
+		.cv h1 {
+			font-size: 38px;
+			font-weight: 400;
+			letter-spacing: 0.4px;
+			margin-bottom: 17px;
+		}
+
+		.cv .locations {
+			font-size: 16px;
+			margin-bottom: 11px;
+		}
+
+		.cv .contact,
+		.cv .dates {
+			font-family: Georgia, "Times New Roman", serif;
+			font-size: 14.4px;
+			color: #5e554c;
+		}
+
+		.cv .contact {
+			white-space: nowrap;
+		}
+
+		.cv a {
+			color: inherit;
+			text-decoration: underline;
+			text-decoration-thickness: 0.5px;
+			text-underline-offset: 2px;
+		}
+
+		.cv .right-to-work {
+			font-size: 15px;
+			font-style: italic;
+			color: #6f6860;
+			margin-top: 9px;
+		}
+
+		.cv section {
+			margin-bottom: 12px;
+			break-inside: avoid;
+		}
+
+		.cv h2 {
+			font-size: 16.2px;
+			font-weight: 700;
+			letter-spacing: 5px;
+			text-transform: uppercase;
+			padding-bottom: 7px;
+			border-bottom: 0.5px solid #c7bfb3;
+			margin-bottom: 9px;
+		}
+
+		.cv p {
+			margin-bottom: 5px;
+		}
+
+		.cv .role {
+			display: flex;
+			justify-content: space-between;
+			gap: 12px;
+			align-items: baseline;
+			margin: 0 0 5px;
+		}
+
+		.cv .title {
+			font-size: 15.2px;
+		}
+
+		.cv ul {
+			list-style: none;
+			padding-left: 20px;
+			margin: 0 0 8px;
+		}
+
+		.cv li {
+			position: relative;
+			padding-left: 15px;
+			margin-bottom: 5px;
+		}
+
+		.cv li::before {
+			content: "-";
+			position: absolute;
+			left: 0;
+		}
+
+		.cv .skills {
+			line-height: 1.35;
+		}
+
+		.pack {
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 10.4px;
+			line-height: 1.38;
+		}
+
+		.pack h1 {
+			font-family: Georgia, "Times New Roman", serif;
+			font-size: 25px;
+			font-weight: 400;
+			letter-spacing: 0.2px;
+			margin-bottom: 4px;
+		}
+
+		.pack h2 {
+			font-family: Georgia, "Times New Roman", serif;
+			font-size: 16px;
+			font-weight: 700;
+			margin: 12px 0 6px;
+			border-bottom: 0.5px solid #c7bfb3;
+			padding-bottom: 3px;
+		}
+
+		.pack h3 {
+			font-size: 10px;
+			text-transform: uppercase;
+			letter-spacing: 0.7px;
+			margin: 8px 0 3px;
+			color: #6a5542;
+		}
+
+		.pack p {
+			margin-bottom: 6px;
+		}
+
+		.pack ul,
+		.pack ol {
+			padding-left: 18px;
+			margin-bottom: 8px;
+		}
+
+		.pack li {
+			margin-bottom: 4px;
+		}
+
+		.kicker {
+			font-size: 10px;
+			letter-spacing: 1.2px;
+			text-transform: uppercase;
+			color: #6a5542;
+			margin-bottom: 2px;
+		}
+
+		.callout {
+			border: 0.5px solid #d6cfc4;
+			background: #fbf7ef;
+			padding: 8px 9px;
+			margin: 8px 0;
+		}
+
+		.grid {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 10px;
+		}
+
+		.three {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+			gap: 8px;
+		}
+
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin: 7px 0 9px;
+		}
+
+		th,
+		td {
+			border-top: 0.5px solid #d6cfc4;
+			vertical-align: top;
+			text-align: left;
+			padding: 5px 6px;
+		}
+
+		th {
+			font-size: 9px;
+			text-transform: uppercase;
+			letter-spacing: 0.6px;
+			color: #6a5542;
+		}
+
+		.quote {
+			font-family: Georgia, "Times New Roman", serif;
+			font-size: 12.2px;
+			line-height: 1.38;
+			border-left: 2px solid #a98c6c;
+			padding-left: 9px;
+			margin: 7px 0 9px;
+		}
+
+		.small {
+			font-size: 9.4px;
+			color: #5e554c;
+		}
+
+		@media print {
+			body {
+				background: #fff;
+			}
+
+			.sheet {
+				width: auto;
+				min-height: auto;
+				margin: 0;
+				background: #fff;
+			}
+		}
+	</style>
+</head>
+<body>
+	<section class="sheet cv">
+		<header>
+			<h1>Paul Diaz Ashot</h1>
+			<div class="contact">London, UK &middot; <a href="mailto:paul.ashot@icloud.com">paul.ashot@icloud.com</a> &middot; (646) 996 5037 &middot; <a href="https://pauldiazashot.com">pauldiazashot.com</a> &middot; <a href="https://t.me/supersonicsines">Telegram @supersonicsines</a></div>
+			<div class="right-to-work">Right to work: UK, US, EU</div>
+		</header>
+
+		<section>
+			<h2>Summary</h2>
+			<p>Founder-operator and technical GTM lead with deep experience selling technical products to sophisticated buyers. Founding team at <b>GMX</b>, a decentralised derivatives exchange that scaled to $450M+ TVL and $40M+ annualised revenue with a team of three. Active AI developer since 2023, using OpenAI GPT-5.5, Codex CLI, and Claude to ship production AI deployments including a live, revenue-generating prediction-market analytics platform. Native English, fluent Russian, fluent Spanish.</p>
+		</section>
+
+		<section>
+			<h2>Experience</h2>
+			<div class="role">
+				<div class="title"><b>Portico Ventures</b> &mdash; <em>Managing Partner</em></div>
+				<div class="dates">2021 &ndash; 2026</div>
+			</div>
+			<ul>
+				<li>Venture consultancy; 20+ early-stage DeFi and fintech investments including <b>Codex.io</b>; influenced <b>$4M+ in aggregate fundraising</b> through strategic advisory.</li>
+			</ul>
+
+			<div class="role">
+				<div class="title"><b>GMX</b> &mdash; <em>Founding Team &middot; Growth &amp; Partnerships</em></div>
+				<div class="dates">2020 &ndash; 2023</div>
+			</div>
+			<ul>
+				<li>Three-person founding team; top DeFi revenue generator during tenure. Co-led institutional partnerships and capital formation, personally sourcing <b>$20M+ in cumulative capital deployments</b> from sophisticated counterparties.</li>
+				<li>Closed and co-closed strategic partnerships with <b>Chainlink</b>, <b>Avalanche</b>, and <b>Frax</b>, plus three further protocol integrations. Led outbound to ecosystem partners and coordinated the Gambit &rarr; GMX rebrand.</li>
+				<li>Built institutional and community channels: 5,000+ Telegram, eight-figure LP relationships.</li>
+			</ul>
+
+			<div class="role">
+				<div class="title"><b>Effie Perine LTD.</b> &mdash; <em>Operations &amp; Client Relations</em></div>
+				<div class="dates">2019 &ndash; 2020</div>
+			</div>
+			<ul>
+				<li>Accounts and operations for a private Old Master Pictures dealership; &pound;2MM+ P.A. deal flow.</li>
+			</ul>
+		</section>
+
+		<section>
+			<h2>Independent AI Deployments</h2>
+			<ul>
+				<li><b>Pawlymarket</b> &mdash; live scraper and data aggregator using statistical models to identify market inefficiencies. $50K ARR within two months of launch. pawlymarket.com.</li>
+				<li><b>Vinted-to-Depop reselling agent</b> &mdash; end-to-end autonomous fashion-arbitrage agent operated via Telegram.</li>
+				<li><b>Intelligent booking system</b> &mdash; Codex-assisted agentic scheduler for a small local business; takes class bookings and organises future classes based on predicted demand.</li>
+			</ul>
+		</section>
+
+		<section>
+			<h2>Education</h2>
+			<p><b>BSc Chemistry</b>, <em>University of Manchester</em>, 2018.</p>
+		</section>
+
+		<section>
+			<h2>Skills</h2>
+			<p class="skills">Technical GTM &amp; account strategy &middot; consultative selling to technical buyers &middot; founder/C-level relationships &middot; enterprise negotiation &middot; strategic partnerships &middot; platform/API product evangelism &middot; market intelligence &middot; OpenAI GPT-5.5 &middot; Codex CLI &middot; Claude API &middot; Claude Code &middot; prompt engineering &middot; agentic workflows &middot; MCP</p>
+		</section>
+	</section>
+
+	<section class="sheet pack">
+		<div class="kicker">Application pack</div>
+		<h1>OpenAI - Account Director, Startups</h1>
+		<p class="small">Role: Sales, London, UK. Target submit window: weekend of May 2-3, 2026.</p>
+
+		<div class="callout">
+			<h3>Core positioning</h3>
+			<p class="quote">I help highly technical startups turn powerful infrastructure into products, markets, and durable revenue because I have done it as a founder, partner lead, investor/advisor, and AI product builder.</p>
+			<p>Lead with <b>technical GTM for high-growth startup infrastructure</b>. DeFi is the proof base, not the identity. The story is founder trust, technical products, ecosystem building, capital/revenue, and now hands-on AI deployment.</p>
+		</div>
+
+		<h2>Role Fit Map</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>OpenAI wants</th>
+					<th>Your evidence</th>
+					<th>How to say it</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Scout and engage high-potential startups</td>
+					<td>Portico advisory/investing; founder network; GMX ecosystem relationships.</td>
+					<td>"I have spent years around technical founders at the point where product, distribution, and capital all collide."</td>
+				</tr>
+				<tr>
+					<td>Own strategic startup accounts</td>
+					<td>GMX institutional/community channels, eight-figure liquidity providers, $20M+ sourced capital deployments.</td>
+					<td>"I have been the front line for high-conviction technical buyers where trust and product credibility had to be earned."</td>
+				</tr>
+				<tr>
+					<td>Drive ecosystem development</td>
+					<td>Arbitrum, Avalanche, Chainlink, Frax; 5,000+ Telegram community; Portico portfolio work.</td>
+					<td>"My strongest pattern is building partner surfaces around technical products before the market is fully legible."</td>
+				</tr>
+				<tr>
+					<td>Partner with solutions architects</td>
+					<td>Built Pawlymarket, Vinted agent, and booking agent with model workflows, scraping, stats, and product constraints.</td>
+					<td>"I can translate between founders, GTM, and technical teams because I build with the tools myself."</td>
+				</tr>
+				<tr>
+					<td>Improve startup experience and feed product insight back</td>
+					<td>GMX user migration, community trust after product risk, own OpenAI/Codex-style deployment experience.</td>
+					<td>"I know how valuable product feedback becomes when it is synthesized from live, high-stakes customer work."</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div class="grid">
+			<div>
+				<h2>Likely Concern</h2>
+				<p><b>Concern:</b> "Has he owned a formal SaaS sales quota?"</p>
+				<p><b>Answer:</b> Do not dodge it. Say your background is not a conventional AE ladder, but you have owned GTM outcomes, strategic relationships, capital formation, and revenue-linked growth in technically complex markets. Then say you are comfortable adopting rigorous account planning, forecasting, and operating cadence.</p>
+			</div>
+			<div>
+				<h2>Language To Use</h2>
+				<ul>
+					<li>Technical GTM, startup infrastructure, founder trust.</li>
+					<li>Account strategy, consumption growth, product feedback loops.</li>
+					<li>Founder/C-level relationships, technical buyer education.</li>
+					<li>AI-native startups, ecosystem development, model deployment.</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section class="sheet pack">
+		<div class="kicker">Draft</div>
+		<h1>Cover Letter Suggestion</h1>
+		<p class="small">Use this as the base. Keep it direct and sane; the CV already has the fireworks.</p>
+
+		<p>Dear OpenAI Startup GTM team,</p>
+
+		<p>I am applying for Account Director, Startups because the role sits exactly where my career has compounded: helping technical founders turn powerful infrastructure into products, markets, and durable revenue. I have been on the founding team of a high-growth protocol, advised early-stage companies on GTM and fundraising, and now build AI products myself with OpenAI/Codex-style workflows. I would bring OpenAI a founder-native operator who can earn trust with technical teams, understand what they are building, and help them scale their usage thoughtfully.</p>
+
+		<p>At GMX, I was on a three-person founding team responsible for growth and partnerships as the protocol scaled to $450M+ TVL and $40M+ annualised revenue. My work sat at the intersection of technical product education, institutional trust, partner strategy, and community development. I personally sourced $20M+ in cumulative capital deployments, helped close or co-close partnerships with Arbitrum, Avalanche, Chainlink, Frax, and others, and built direct relationships with sophisticated liquidity providers and users who needed to understand both the opportunity and the risk.</p>
+
+		<p>After GMX, I continued working with early-stage technical teams through Portico Ventures, advising and investing across DeFi and fintech. I helped founders sharpen GTM narratives, diagnose distribution problems, raise capital, and reach clearer buyers. That work is very close to what I understand this role to require: knowing which startups matter early, building founder trust before a need is fully formalized, and helping them make the right technical and commercial decisions as they grow.</p>
+
+		<p>More recently, I have become an active AI builder. Pawlymarket, my prediction-market analytics platform, reached $50K ARR within two months of launch. I also built autonomous agent workflows for fashion resale and small-business scheduling. These projects have made me practical rather than abstract about AI: model choice, latency, data quality, failure modes, workflow design, and user education all shape whether a deployment becomes real. That gives me a useful bridge between founders, solutions architects, product teams, and GTM stakeholders.</p>
+
+		<p>I am excited by OpenAI's startup work because many of the most important AI-native companies will not simply buy APIs; they will need a partner who can help them reason through product architecture, market timing, business model, and responsible scale. I would love to help OpenAI become the first call for those founders in London and across the broader European startup ecosystem.</p>
+
+		<p>Best,<br>Paul Diaz Ashot</p>
+
+		<h2>Optional Final Sentence Variants</h2>
+		<ul>
+			<li><b>More strategic:</b> "I would be especially excited to help OpenAI build the operating system for how the best European AI startups discover, adopt, and scale with frontier models."</li>
+			<li><b>More personal:</b> "I have found that the front line of a new technical market is where I do my best work, and I would be proud to do that work at OpenAI."</li>
+			<li><b>More sales-forward:</b> "I would bring urgency, founder empathy, and disciplined commercial ownership to a portfolio of startup accounts."</li>
+		</ul>
+	</section>
+
+	<section class="sheet pack">
+		<div class="kicker">Interview artifact</div>
+		<h1>Memo Example</h1>
+		<p class="small">This is a suggested follow-up artifact, not something to attach blindly unless the application asks for extra material. Use it after a recruiter screen or when a warm referrer asks for a crisp note.</p>
+
+		<h2>How OpenAI Can Win AI-Native Startups In Europe</h2>
+		<p><b>Thesis:</b> the best AI startups do not want a vendor. They want a technical and strategic partner who helps them ship faster, avoid dead ends, and build defensible products on frontier models.</p>
+
+		<div class="three">
+			<div class="callout">
+				<h3>1. Find them before they are obvious</h3>
+				<p>Track founder-quality signals: unusual product velocity, model-native workflows, technical communities, early revenue without a full sales function, and founders already hacking with OpenAI tools.</p>
+			</div>
+			<div class="callout">
+				<h3>2. Segment by build pattern</h3>
+				<p>Do not treat all startups as "AI startups." Segment by pattern: agentic workflow companies, vertical SaaS copilots, infrastructure/devtools, data-rich regulated workflows, creative tools, and consumer-native AI.</p>
+			</div>
+			<div class="callout">
+				<h3>3. Earn technical credibility quickly</h3>
+				<p>Founders trust people who understand latency, evals, prompt/workflow design, cost curves, failure modes, and product-market timing. GTM should sound technical without pretending to be engineering.</p>
+			</div>
+		</div>
+
+		<h2>90-Day View For The Role</h2>
+		<ol>
+			<li><b>Map the ecosystem:</b> build a London/Europe startup account map across seed to Series B, with founders, investors, accelerators, and technical communities ranked by relevance to OpenAI usage.</li>
+			<li><b>Define a founder conversation pattern:</b> ask what they are building, where model constraints shape product, where cost/latency/reliability matter, and what would make OpenAI more useful to their roadmap.</li>
+			<li><b>Create account plans:</b> separate "growth now" accounts from "strategic future" accounts; tie each to usage potential, executive relationships, product blockers, and next technical engagement.</li>
+			<li><b>Build feedback loops:</b> synthesize recurring founder pain into product, support, solutions architecture, and marketing insights.</li>
+			<li><b>Show up in the ecosystem:</b> founder dinners, office hours with VC funds, technical workshops, hack days, and private product briefings for the builders most likely to compound.</li>
+		</ol>
+
+		<h2>Your Personal Edge In The Memo</h2>
+		<p>Close the memo with one sentence tying it back to you:</p>
+		<p class="quote">My edge is that I can sit with a founder as a GTM partner, investor-type pattern matcher, and builder who has actually shipped model-driven products.</p>
+	</section>
+
+	<section class="sheet pack">
+		<div class="kicker">Execution</div>
+		<h1>Weekend Application Checklist</h1>
+
+		<div class="grid">
+			<div>
+				<h2>Before Submitting</h2>
+				<ol>
+					<li>Use the tweaked one-page CV from page 1.</li>
+					<li>Submit through OpenAI/Ashby, not a guessed career-page URL.</li>
+					<li>Keep the cover letter to roughly one page; do not add a giant autobiography.</li>
+					<li>Make sure the London/right-to-work story is visible if the form asks location or work authorization.</li>
+					<li>Prepare the answer to "why OpenAI, why now" in two sentences.</li>
+				</ol>
+			</div>
+			<div>
+				<h2>Warm Intro Targets</h2>
+				<ul>
+					<li>Founders or investors using OpenAI who can vouch for your technical/founder fluency.</li>
+					<li>Arbitrum, Avalanche, Chainlink, Frax, GMX, or DeFi infrastructure contacts who saw you handle partner trust.</li>
+					<li>London startup/VC people with a route to OpenAI GTM, Startups, Solutions, Partnerships, or Product.</li>
+					<li>Anyone who can credibly say: "Paul is unusually good with technical founders."</li>
+				</ul>
+			</div>
+		</div>
+
+		<h2>Referral Note</h2>
+		<p>Hi [Name] - I am applying for OpenAI's Account Director, Startups role in London. It feels unusually aligned with my background: founding team at GMX, where I led growth/partnership work as we scaled to $450M+ TVL and $40M+ annualised revenue; Portico startup advisory/investing, including GTM/fundraising work; and current hands-on AI deployments using OpenAI/Codex-style workflows. If you know anyone on OpenAI GTM, Startups, or Solutions who might be open to a warm intro, I would be grateful. I think my strongest fit is founder trust plus technical product translation.</p>
+
+		<h2>Recruiter Screen Reminders</h2>
+		<ul>
+			<li><b>One-line fit:</b> "I am a founder-operator and technical GTM lead who has helped startups turn infrastructure products into revenue, partnerships, and adoption."</li>
+			<li><b>Do not over-explain crypto:</b> use GMX as proof of technical GTM under pressure, not as the whole identity.</li>
+			<li><b>Handle quota directly:</b> "I have not come through a conventional SaaS AE ladder, but I have owned commercial outcomes and strategic relationships in markets where product trust drove usage and capital."</li>
+			<li><b>Emphasize London:</b> you are already London-connected and legally straightforward to hire.</li>
+			<li><b>Ask smart questions:</b> "How does OpenAI segment startup accounts by current usage versus future strategic importance?" "Where do startup account directors most often need product or solutions support?" "What does excellent product feedback from GTM look like internally?"</li>
+		</ul>
+
+		<h2>What Not To Do</h2>
+		<ul>
+			<li>Do not sound like you are applying because OpenAI is prestigious. Sound like the work is your natural habitat.</li>
+			<li>Do not bury Pawlymarket. It is your proof that you are using the technology seriously today.</li>
+			<li>Do not let "DeFi" become the headline. The headline is technical founders, infrastructure, GTM, and AI deployment.</li>
+		</ul>
+	</section>
+</body>
+</html>
