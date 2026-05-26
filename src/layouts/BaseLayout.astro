@@ -195,20 +195,36 @@ const { title, description = 'Paul Diaz Ashot' } = Astro.props;
 			marker.textContent = getNextMarkerSymbol();
 		}
 
-		marker.addEventListener('pointerenter', () => {
+		function startMarkerCycle() {
 			if (markerInterval) return;
 			marker.classList.add('is-cycling');
 			cycleMarker();
 			markerInterval = window.setInterval(cycleMarker, 250);
-		});
+		}
 
-		marker.addEventListener('pointerleave', () => {
+		function stopMarkerCycle() {
 			if (markerInterval) {
 				clearInterval(markerInterval);
 				markerInterval = undefined;
 			}
 			marker.classList.remove('is-cycling');
 			marker.textContent = '*';
+		}
+
+		function isInternalMouseTransition(event: MouseEvent) {
+			const relatedTarget = event.relatedTarget;
+			return relatedTarget instanceof Node && item.contains(relatedTarget);
+		}
+
+		item.addEventListener('pointerenter', startMarkerCycle);
+		item.addEventListener('pointerleave', stopMarkerCycle);
+		item.addEventListener('mouseenter', startMarkerCycle);
+		item.addEventListener('mouseleave', stopMarkerCycle);
+		item.addEventListener('mouseover', (event) => {
+			if (!isInternalMouseTransition(event)) startMarkerCycle();
+		});
+		item.addEventListener('mouseout', (event) => {
+			if (!isInternalMouseTransition(event)) stopMarkerCycle();
 		});
 	});
 </script>
