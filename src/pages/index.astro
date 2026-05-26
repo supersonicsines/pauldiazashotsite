@@ -425,10 +425,40 @@ import WindowManager from '../components/WindowManager.astro';
 	}
 
 	.cv :global(li::before) {
-		content: "–";
+		content: "*";
 		position: absolute;
 		left: 0;
+		width: 0.7em;
 		color: var(--color-ink);
+		font-weight: 700;
+		text-align: center;
+		opacity: 0.5;
+	}
+
+	.cv :global(li.has-interactive-marker::before) {
+		content: none;
+	}
+
+	.cv :global(.list-marker-symbol) {
+		position: absolute;
+		left: 0;
+		top: 0;
+		display: inline-block;
+		width: 0.7em;
+		color: var(--color-ink);
+		font-family: var(--font-serif);
+		font-size: 1em;
+		font-weight: 700;
+		line-height: inherit;
+		text-align: center;
+		opacity: 0.5;
+		cursor: default;
+		user-select: none;
+		transition: opacity 120ms ease-out;
+	}
+
+	.cv :global(.list-marker-symbol.is-cycling) {
+		opacity: 1;
 	}
 
 	.cv :global(a) {

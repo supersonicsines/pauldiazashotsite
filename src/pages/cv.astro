@@ -161,10 +161,40 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 	}
 
 	li::before {
-		content: "–";
+		content: "*";
 		position: absolute;
 		left: 0;
+		width: 0.7em;
 		color: var(--color-ink);
+		font-weight: 700;
+		text-align: center;
+		opacity: 0.5;
+	}
+
+	li.has-interactive-marker::before {
+		content: none;
+	}
+
+	:global(.list-marker-symbol) {
+		position: absolute;
+		left: 0;
+		top: 0;
+		display: inline-block;
+		width: 0.7em;
+		color: var(--color-ink);
+		font-family: var(--font-serif);
+		font-size: 1em;
+		font-weight: 700;
+		line-height: inherit;
+		text-align: center;
+		opacity: 0.5;
+		cursor: default;
+		user-select: none;
+		transition: opacity 120ms ease-out;
+	}
+
+	:global(.list-marker-symbol.is-cycling) {
+		opacity: 1;
 	}
 
 	.skills {
@@ -281,6 +311,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		li {
 			padding-left: 10px;
 			margin-bottom: 3px;
+		}
+
+		li::before,
+		li.has-interactive-marker::before {
+			content: "–";
+			width: auto;
+			font-weight: 400;
+			opacity: 1;
+		}
+
+		:global(.list-marker-symbol) {
+			display: none;
 		}
 
 		.skills {

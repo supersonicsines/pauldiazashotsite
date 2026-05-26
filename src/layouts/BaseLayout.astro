@@ -170,4 +170,45 @@ const { title, description = 'Paul Diaz Ashot' } = Astro.props;
 		timeout = window.setTimeout(triggerTransition, 3000);
 		overlay.addEventListener('click', triggerTransition);
 	}
+
+	document.querySelectorAll('.cv li, .cv-content li').forEach((item) => {
+		if (item.querySelector(':scope > .list-marker-symbol')) return;
+
+		const marker = document.createElement('span');
+		marker.className = 'list-marker-symbol';
+		marker.textContent = '*';
+		marker.setAttribute('aria-hidden', 'true');
+		item.classList.add('has-interactive-marker');
+		item.prepend(marker);
+
+		let markerQueue: string[] = [];
+		let markerInterval: number | undefined;
+
+		function getNextMarkerSymbol() {
+			if (markerQueue.length === 0) {
+				markerQueue = shuffle(baseSymbols);
+			}
+			return markerQueue.shift()!;
+		}
+
+		function cycleMarker() {
+			marker.textContent = getNextMarkerSymbol();
+		}
+
+		marker.addEventListener('pointerenter', () => {
+			if (markerInterval) return;
+			marker.classList.add('is-cycling');
+			cycleMarker();
+			markerInterval = window.setInterval(cycleMarker, 250);
+		});
+
+		marker.addEventListener('pointerleave', () => {
+			if (markerInterval) {
+				clearInterval(markerInterval);
+				markerInterval = undefined;
+			}
+			marker.classList.remove('is-cycling');
+			marker.textContent = '*';
+		});
+	});
 </script>
