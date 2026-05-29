@@ -1,0 +1,47 @@
+---
+// Wraps every slide. All slides exist in the DOM at once; only the active one
+// is visible. Owns keyboard + nav-click navigation (see PRD "Navigation Logic").
+---
+
+<main class="slides">
+  <slot />
+</main>
+
+<script>
+  const slides = Array.from(document.querySelectorAll<HTMLElement>('.slide'));
+  const navLinks = Array.from(document.querySelectorAll<HTMLElement>('.nav-link'));
+  const progressCur = document.querySelector<HTMLElement>('[data-progress-current]');
+
+  let current = slides.findIndex((s) => s.classList.contains('active'));
+  if (current < 0) current = 0;
+
+  function goTo(index: number) {
+    const next = Math.max(0, Math.min(index, slides.length - 1));
+    if (next === current) return;
+
+    slides[current]?.classList.remove('active');
+    navLinks[current]?.classList.remove('active');
+
+    current = next;
+
+    slides[current]?.classList.add('active');
+    navLinks[current]?.classList.add('active');
+
+    if (progressCur) progressCur.textContent = String(current + 1).padStart(2, '0');
+
+    // Let islands react to becoming visible (e.g. Leaflet needs invalidateSize).
+    window.dispatchEvent(new CustomEvent('aix:slide', { detail: { index: current } }));
+  }
+
+  navLinks.forEach((link, i) => link.addEventListener('click', () => goTo(i)));
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      goTo(current + 1);
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      goTo(current - 1);
+    }
+  });
+</script>

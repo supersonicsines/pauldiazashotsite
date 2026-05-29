@@ -1,0 +1,46 @@
+---
+import PropertiesIsland from '../islands/PropertiesIsland.tsx';
+---
+
+<section class="slide" id="slide-properties" data-section="properties">
+  <div class="slide-inner properties">
+    <div class="prop-head">
+      <p class="label">Selected Properties</p>
+      <h2 class="serif-heading prop-heading">Homes in Aix-en-Provence</h2>
+      <p class="prop-subline">
+        Example houses currently on the market, shown for illustration only.
+      </p>
+      <p class="prop-note">
+        These are all properties found within a 30-minute drive of Marseille Airport and the TGV rail station.
+      </p>
+    </div>
+    <PropertiesIsland client:load />
+  </div>
+</section>
+
+<style>
+  .properties {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .prop-head {
+    margin-bottom: 28px;
+  }
+  .prop-heading {
+    font-size: 36px;
+    margin: 10px 0 8px;
+  }
+  .prop-subline {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--ink-2);
+  }
+  .prop-note {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-3);
+    margin-top: 4px;
+  }
+</style>

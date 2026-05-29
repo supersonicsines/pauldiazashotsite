@@ -1,0 +1,129 @@
+---
+import { pitch } from '../../data/dummy';
+---
+
+<section class="slide" id="slide-pitch" data-section="pitch">
+  <div class="slide-inner pitch">
+    <div class="pitch-head">
+      <p class="label">The Pitch</p>
+      <h2 class="serif-heading pitch-heading">What this means for each of you</h2>
+    </div>
+
+    <div class="pitch-grid">
+      {
+        pitch.map((member) => (
+          <article class="pitch-card">
+            <h3 class="pitch-name">{member.name}</h3>
+            <p class="pitch-copy">{member.copy}</p>
+            <span class="fleur" aria-hidden="true">⚜︎</span>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  /* The whole block stays vertically centred but rides a little higher than
+     dead-centre (heavier bottom padding), lifting the header & label so the
+     cards below have more room to breathe. */
+  .pitch {
+    width: 100%;
+    max-width: 1340px;
+    margin: 0 auto;
+    padding-top: 28px;
+    padding-bottom: 88px;
+  }
+  .pitch-head {
+    margin-bottom: 38px;
+    text-align: center;
+  }
+  .pitch-heading {
+    font-size: 34px;
+    margin-top: 10px;
+  }
+
+  .pitch-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 22px;
+  }
+
+  .pitch-card {
+    position: relative;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* top & bottom padding clear the name and the fleur seated on the borders */
+    padding: 40px 26px 46px;
+    background: #fff;
+    border: 1px solid var(--rule);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transform-style: preserve-3d;
+    transition: box-shadow 220ms ease;
+    will-change: transform;
+  }
+  .pitch-card:hover {
+    box-shadow: 0 20px 42px rgba(0, 0, 0, 0.15);
+  }
+
+  /* The name is seated on the TOP border, dead centre — mirroring the
+     fleur-de-lis on the bottom border. White padding masks the rule behind
+     it, and anchoring to the border gives every card identical alignment. */
+  .pitch-name {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 0 14px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1;
+    color: var(--accent);
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+  .pitch-copy {
+    font-family: var(--serif);
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--ink-2);
+  }
+
+  /* A single fleur-de-lis seated on the bottom border, dead centre. */
+  .fleur {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 50%);
+    background: #fff;
+    padding: 0 10px;
+    font-size: 22px;
+    line-height: 1;
+    color: var(--accent);
+    font-variant-emoji: text;
+  }
+</style>
+
+<script>
+  import VanillaTilt from 'vanilla-tilt';
+
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce) {
+    const cards = document.querySelectorAll<HTMLElement>('#slide-pitch .pitch-card');
+    VanillaTilt.init(cards, {
+      max: 10, // tilt range in degrees
+      speed: 600, // how fast it eases back
+      perspective: 900, // depth — lower = stronger
+      scale: 1.02, // a touch of lift
+      glare: true, // moving sheen sells the "real card" feel
+      'max-glare': 0.18,
+    });
+  }
+</script>

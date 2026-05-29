@@ -1,0 +1,40 @@
+---
+import { cover } from '../../data/dummy';
+---
+
+<section class="slide active" id="slide-cover" data-section="cover">
+  <div class="slide-inner cover">
+    <p class="label reveal reveal-1">{cover.eyebrow}</p>
+    <h1 class="serif-title cover-title reveal reveal-2">
+      {cover.titleLines.map((line) => <span>{line}</span>)}
+    </h1>
+    <hr class="rule-short reveal reveal-3" />
+    <p class="cover-subtitle reveal reveal-4">{cover.subtitle}</p>
+    <p class="label cover-date reveal reveal-5">{cover.date}</p>
+  </div>
+</section>
+
+<style>
+  .cover {
+    align-items: center;
+    text-align: center;
+  }
+  .cover-title {
+    font-size: 60px;
+    margin: 18px 0 0;
+  }
+  .cover-title span {
+    display: block;
+  }
+  .cover .rule-short {
+    margin: 28px 0;
+  }
+  .cover-subtitle {
+    font-family: var(--serif);
+    font-size: 18px;
+    color: var(--ink-2);
+  }
+  .cover-date {
+    margin-top: 14px;
+  }
+</style>
