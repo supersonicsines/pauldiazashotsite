@@ -47,7 +47,18 @@ export function updatePdosState(mutate: (state: PdosState) => PdosState): void {
 // later reload — hence the timestamp with a short freshness window.
 const WARM_BOOT_TTL_MS = 30_000;
 
+declare global {
+	interface Window {
+		__pdosWarm?: boolean;
+	}
+}
+
 export function consumeWarmBoot(): boolean {
+	// BaseLayout's inline head script consumes the flag before first paint
+	// (so the cold-boot glyph can never flash on a warm switch) and leaves
+	// the verdict on window. The storage path below is a fallback for
+	// documents without that script; key and TTL are mirrored there.
+	if (typeof window.__pdosWarm === 'boolean') return window.__pdosWarm;
 	try {
 		const raw = sessionStorage.getItem(PDOS_WARM_KEY);
 		sessionStorage.removeItem(PDOS_WARM_KEY);

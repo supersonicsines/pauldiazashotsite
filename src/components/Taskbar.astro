@@ -253,6 +253,41 @@ const navLabel = NAV_LABELS[lang] ?? NAV_LABELS.en;
 		});
 	});
 
+	// Warm the other languages during idle time (on a cold boot that is the
+	// splash animation): fetch each page and prefetch its render-blocking
+	// stylesheets, whose hashed names differ per language per build. The
+	// first taskbar switch then paints as fast as later ones.
+	function prefetchOtherLanguages() {
+		document.querySelectorAll<HTMLAnchorElement>('a.taskbar-app[data-taskbar-app]').forEach(async (link) => {
+			try {
+				const res = await fetch(link.href, { credentials: 'same-origin' });
+				const doc = new DOMParser().parseFromString(await res.text(), 'text/html');
+				const hrefs = [...doc.querySelectorAll('link[rel="stylesheet"]')]
+					.map((sheet) => sheet.getAttribute('href'))
+					.concat(new URL(link.href).pathname);
+				for (const href of hrefs) {
+					if (!href) continue;
+					const known = document.querySelector(
+						`link[rel="prefetch"][href="${href}"], link[rel="stylesheet"][href="${href}"]`
+					);
+					if (known) continue;
+					const prefetch = document.createElement('link');
+					prefetch.rel = 'prefetch';
+					prefetch.href = href;
+					document.head.appendChild(prefetch);
+				}
+			} catch {
+				// Offline or blocked: the switch still works, just boots colder.
+			}
+		});
+	}
+
+	if ('requestIdleCallback' in window) {
+		requestIdleCallback(() => prefetchOtherLanguages(), { timeout: 4000 });
+	} else {
+		setTimeout(prefetchOtherLanguages, 1500);
+	}
+
 	const clock = document.getElementById('taskbarClock');
 
 	// Clock is pinned to GMT so we never touch user location or timezone.

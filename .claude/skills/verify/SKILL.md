@@ -55,3 +55,11 @@ Gotchas learned 2026-07-05:
 - EN/RU/ES pages must stay structural mirrors (same ids); a quick parity check
   is grepping all three for `data-window-trigger`, `id=` on
   Collapsible/Sidenote.
+- `pdos-warm` is consumed by an inline `<head>` script BEFORE first paint
+  (sets `html.pdos-warm` + `window.__pdosWarm`; boot glyph stays hidden until
+  the module script watermarks) — so the flag is gone from sessionStorage by
+  the time any drive script can read it. Taskbar prefetches the other
+  languages' HTML + page CSS at idle: `link[rel=prefetch]` tags appear in
+  `<head>` ~1-2s after load. To catch paint-race flashes, sample DOM state
+  with `setInterval(fn, 4)` injected via `Page.addScriptToEvaluateOnNewDocument`
+  — rAF-only sampling can skip the bad window (see `verify_flash.mjs` pattern).

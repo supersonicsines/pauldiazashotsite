@@ -16,6 +16,22 @@ const SITE_URL = 'https://pauldiazashot.com';
 <html lang={lang}>
 	<head>
 		<meta charset="utf-8" />
+		<!-- Consume the warm-boot flag before first paint. Deferred scripts run
+		     hundreds of ms after paint on a cold-asset load, so without this a
+		     taskbar language switch briefly paints the cold-boot glyph. Key and
+		     TTL mirror src/scripts/pdosState.ts (inline scripts can't import). -->
+		<script is:inline>
+			(function () {
+				var warm = false;
+				try {
+					var raw = sessionStorage.getItem('pdos-warm');
+					sessionStorage.removeItem('pdos-warm');
+					warm = raw !== null && isFinite(+raw) && Date.now() - +raw < 30000;
+				} catch (e) {}
+				window.__pdosWarm = warm;
+				if (warm) document.documentElement.classList.add('pdos-warm');
+			})();
+		</script>
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="description" content={description} />
@@ -114,6 +130,13 @@ const SITE_URL = 'https://pauldiazashot.com';
 	.loader.instant .loader-glyph {
 		font-size: var(--watermark-size);
 		animation: none;
+	}
+
+	/* Warm boot, before the module script runs: the head script has marked
+	   <html>, so hold plain paper — no cold-boot glyph — until the script
+	   lands directly on the watermark ('instant') and reveals the desktop. */
+	:global(html.pdos-warm) .loader:not(.instant) .loader-glyph {
+		visibility: hidden;
 	}
 
 	@keyframes glyphZoom {
