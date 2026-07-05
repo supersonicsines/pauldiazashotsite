@@ -5,18 +5,24 @@ import Analytics from '@vercel/analytics/astro';
 interface Props {
 	title: string;
 	description?: string;
+	lang?: 'en' | 'ru';
+	alternates?: boolean;
 }
 
-const { title, description = 'Paul Diaz Ashot' } = Astro.props;
+const { title, description = 'Paul Diaz Ashot', lang = 'en', alternates = false } = Astro.props;
+const SITE_URL = 'https://pauldiazashot.com';
 ---
 
-<html lang="en">
+<html lang={lang}>
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="description" content={description} />
 		<title>{title}</title>
+		{alternates && <link rel="alternate" hreflang="en" href={`${SITE_URL}/`} />}
+		{alternates && <link rel="alternate" hreflang="ru" href={`${SITE_URL}/ru/`} />}
+		{alternates && <link rel="alternate" hreflang="x-default" href={`${SITE_URL}/`} />}
 		<Analytics />
 	</head>
 	<body>
@@ -61,7 +67,8 @@ const { title, description = 'Paul Diaz Ashot' } = Astro.props;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		z-index: 100;
+		/* Boot screen covers everything, including the taskbar (z 2000). */
+		z-index: 3000;
 		cursor: pointer;
 		overflow: hidden;
 	}
@@ -101,6 +108,13 @@ const { title, description = 'Paul Diaz Ashot' } = Astro.props;
 		opacity: 0.05;
 	}
 
+	/* Warm boot (taskbar language switch): land directly on the watermark
+	   without replaying the zoom, preserving the one-workstation illusion. */
+	.loader.instant .loader-glyph {
+		font-size: var(--watermark-size);
+		animation: none;
+	}
+
 	@keyframes glyphZoom {
 		0% {
 			font-size: var(--loader-size);
@@ -119,10 +133,13 @@ const { title, description = 'Paul Diaz Ashot' } = Astro.props;
 </style>
 
 <script>
+	import { readPdosState, updatePdosState, consumeWarmBoot } from '../scripts/pdosState';
+
 	const baseSymbols = ['&', '/', '*', '?', '·', '#', '§', '†', '‡', '¶'];
 	const loader = document.getElementById('loader');
 	const glyph = document.getElementById('loader-glyph');
 	const overlay = document.getElementById('overlay');
+	const warmBoot = consumeWarmBoot();
 
 	let queue: string[] = [];
 	let transitioned = false;
@@ -165,11 +182,66 @@ const { title, description = 'Paul Diaz Ashot' } = Astro.props;
 	}
 
 	if (loader && glyph && overlay) {
-		tick();
-		interval = window.setInterval(tick, 250);
-		timeout = window.setTimeout(triggerTransition, 3000);
-		overlay.addEventListener('click', triggerTransition);
+		if (warmBoot) {
+			transitioned = true;
+			loader.classList.add('instant', 'watermarked');
+			overlay.classList.add('watermarked');
+		} else {
+			tick();
+			interval = window.setInterval(tick, 250);
+			timeout = window.setTimeout(triggerTransition, 3000);
+			overlay.addEventListener('click', triggerTransition);
+		}
 	}
+
+	// --- Session persistence: collapsed sections + expanded sidenotes ------
+	// Ids match across language pages, so restoring here is what makes the
+	// taskbar switch feel like one workstation. WindowManager owns windows.
+
+	const persisted = readPdosState();
+
+	for (const [id, open] of Object.entries(persisted.collapsibles ?? {})) {
+		const section = document.getElementById(id);
+		if (!section || !section.classList.contains('collapsible')) continue;
+		section.setAttribute('data-open', String(Boolean(open)));
+		section.querySelector('.toggle-btn')?.setAttribute('aria-expanded', String(Boolean(open)));
+	}
+
+	for (const [id, checked] of Object.entries(persisted.sidenotes ?? {})) {
+		const box = document.getElementById(`sn-${id}`);
+		if (box instanceof HTMLInputElement) box.checked = Boolean(checked);
+	}
+
+	if (warmBoot && typeof persisted.scrollY === 'number') {
+		window.scrollTo(0, persisted.scrollY);
+	}
+
+	function saveDocumentState() {
+		const collapsibles: Record<string, boolean> = {};
+		document.querySelectorAll<HTMLElement>('.collapsible[id]').forEach((section) => {
+			collapsibles[section.id] = section.getAttribute('data-open') === 'true';
+		});
+		const sidenotes: Record<string, boolean> = {};
+		document.querySelectorAll<HTMLInputElement>('input.sidenote-checkbox[id]').forEach((box) => {
+			sidenotes[box.id.replace(/^sn-/, '')] = box.checked;
+		});
+		updatePdosState((state) => ({ ...state, collapsibles, sidenotes }));
+	}
+
+	document.addEventListener('click', (e) => {
+		const target = e.target;
+		if (target instanceof Element && target.closest('.collapsible .toggle-btn')) {
+			// The Collapsible's own handler flips data-open first (it bubbles
+			// before this document listener); the microtask is extra safety.
+			queueMicrotask(saveDocumentState);
+		}
+	});
+
+	document.addEventListener('change', (e) => {
+		if (e.target instanceof Element && e.target.classList.contains('sidenote-checkbox')) {
+			saveDocumentState();
+		}
+	});
 
 	document.querySelectorAll('.cv li, .cv-content li').forEach((item) => {
 		if (item.querySelector(':scope > .list-marker-symbol')) return;

@@ -5,11 +5,14 @@ import Sidenote from '../components/Sidenote.astro';
 import HoverCard from '../components/HoverCard.astro';
 import Window from '../components/Window.astro';
 import WindowManager from '../components/WindowManager.astro';
+import Taskbar from '../components/Taskbar.astro';
 ---
 
 <BaseLayout
 	title="Paul Diaz Ashot"
 	description="Founder-operator. Founding team at GMX. Active AI developer using Claude Code, Codex CLI, and GPT-5.5. London, Barcelona, New York."
+	lang="en"
+	alternates
 >
 	<main class="cv">
 		<header class="cv-header">
@@ -24,9 +27,9 @@ import WindowManager from '../components/WindowManager.astro';
 		</header>
 
 		<div class="cv-body">
-			<Collapsible title="Introduction">
+			<Collapsible title="Introduction" id="intro">
 				<p>
-					I am a founder-operator. I have been selling since I was 12. First it was paintings, now it's ideas. I spent four years on the founding team of <button type="button" class="inline-preview-trigger" data-window-trigger="preview-gmx" aria-haspopup="dialog"><b>GMX</b></button>, where I handled go-to-market and onboarded major partners. I spent four years running a venture consultancy practice alongside and after it, where I helped portfolio companies raise funding and pivot strategies to become profitable. My current obsession is deploying AI agents with the best model for each job, from Claude to GPT-5.5, to automate and scale real businesses such as Pawlymarket and Slashwork. Native English, fluent Russian, fluent Spanish; <Sidenote id="right-to-work" term="right to work in the UK, US, and EU">UK indefinite leave to remain status holder + US/EU dual national.</Sidenote>.
+					I am a founder-operator. I have been selling since I was 12. First it was paintings, now it's ideas. I spent four years on the founding team of <span class="glue"><button type="button" class="inline-preview-trigger" data-window-trigger="preview-gmx" aria-haspopup="dialog"><b>GMX</b></button>,</span> where I handled go-to-market and onboarded major partners. I spent four years running a venture consultancy practice alongside and after it, where I helped portfolio companies raise funding and pivot strategies to become profitable. My current obsession is deploying AI agents with the best model for each job, from Claude to GPT-5.5, to automate and scale real businesses such as Pawlymarket and Slashwork. Native English, fluent Russian, fluent Spanish; <Sidenote id="right-to-work" term="right to work in the UK, US, and EU">UK indefinite leave to remain status holder + US/EU dual national.</Sidenote>.
 				</p>
 				<p>
 					This is a hypertextual page, underlined items can be interacted with for additional context and information. The PDF version is
@@ -34,7 +37,7 @@ import WindowManager from '../components/WindowManager.astro';
 				</p>
 			</Collapsible>
 
-			<Collapsible title="Experience">
+			<Collapsible title="Experience" id="experience">
 				<div class="role">
 					<button class="role-trigger" data-window-trigger="portico" aria-haspopup="dialog">
 						<b>Portico Ventures</b> — <em>Managing Partner</em>
@@ -45,7 +48,7 @@ import WindowManager from '../components/WindowManager.astro';
 					<li>
 						Venture capital fund specialising in advising and investing in early stage DeFi/Fintech.
 						Worked closely on GTM with several portfolio companies including <button type="button" class="inline-preview-trigger" data-window-trigger="preview-gammaswap" aria-haspopup="dialog"><b>Gammaswap</b></button>
-						and <button type="button" class="inline-preview-trigger" data-window-trigger="preview-codex" aria-haspopup="dialog"><b>Codex.io</b></button>.
+						and <span class="glue"><button type="button" class="inline-preview-trigger" data-window-trigger="preview-codex" aria-haspopup="dialog"><b>Codex.io</b></button>.</span>
 						Influenced <b>$4M+ in aggregate fundraising</b> through advisory work and warm introductions.
 					</li>
 				</ul>
@@ -91,7 +94,7 @@ import WindowManager from '../components/WindowManager.astro';
 				</ul>
 			</Collapsible>
 
-			<Collapsible title="Current AI Deployments">
+			<Collapsible title="Current AI Deployments" id="deployments">
 				<ul>
 					<li>
 						<button type="button" class="inline-preview-trigger" data-window-trigger="preview-slashwork" aria-haspopup="dialog"><b>Slashwork.xyz</b></button> — fully live, free AI-deployed job-search engine for the startup and technical community, focused on fresh roles at tracked public-market companies. Built end-to-end with Claude Opus.
@@ -108,13 +111,13 @@ import WindowManager from '../components/WindowManager.astro';
 				</ul>
 			</Collapsible>
 
-			<Collapsible title="Education" open={false}>
+			<Collapsible title="Education" id="education" open={false}>
 				<p>
 					<b>BSc Chemistry</b>, <em>University of Manchester</em>, 2018.
 				</p>
 			</Collapsible>
 
-			<Collapsible title="Skills" open={false}>
+			<Collapsible title="Skills" id="skills" open={false}>
 				<p class="skills">
 					Consultative selling to technical buyers · enterprise negotiation · founder-network leverage · community-led growth · technical product evangelism · venture capital · startup operations · risk management · market intelligence · financial modelling · ATS scraping · SQLite/FTS · Claude API · Claude Code · Codex CLI · GPT-5.5 · prompt engineering · agentic workflows · MCP · Python · JavaScript
 				</p>
@@ -285,13 +288,15 @@ import WindowManager from '../components/WindowManager.astro';
 	</Window>
 
 	<WindowManager />
+	<Taskbar lang="en" />
 </BaseLayout>
 
 <style>
 	.cv {
 		max-width: 680px;
 		margin: 0 auto;
-		padding: 48px 24px;
+		/* Extra bottom padding keeps the footer clear of the fixed taskbar. */
+		padding: 48px 24px 96px 24px;
 		position: relative;
 		z-index: 1;
 		counter-reset: sidenote;
@@ -343,6 +348,12 @@ import WindowManager from '../components/WindowManager.astro';
 		margin: 12px 0 4px 0;
 		flex-wrap: wrap;
 		gap: 4px;
+	}
+
+	/* Buttons are atomic inline boxes, so Blink will happily break a line
+	   between a trigger and its trailing punctuation; .glue pins them. */
+	.glue {
+		white-space: nowrap;
 	}
 
 	.role-trigger {
@@ -571,7 +582,7 @@ import WindowManager from '../components/WindowManager.astro';
 
 	@media (max-width: 768px) {
 		.cv {
-			padding: 32px 20px;
+			padding: 32px 20px 88px 20px;
 		}
 
 		.role {

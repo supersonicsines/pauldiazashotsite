@@ -1,0 +1,612 @@
+---
+// Russian mirror of src/pages/index.astro. KEEP IN SYNC STRUCTURALLY:
+// identical component tree, window/sidenote/collapsible ids, and <style>
+// block, so cross-language session persistence maps 1:1. Copy follows the
+// professionally reviewed CV_RU.pdf terminology and register; web-only prose
+// is translated to the same standard. See
+// docs/superpowers/specs/2026-07-05-bilingual-ru-taskbar-design.md.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Collapsible from '../../components/Collapsible.astro';
+import Sidenote from '../../components/Sidenote.astro';
+import HoverCard from '../../components/HoverCard.astro';
+import Window from '../../components/Window.astro';
+import WindowManager from '../../components/WindowManager.astro';
+import Taskbar from '../../components/Taskbar.astro';
+---
+
+<BaseLayout
+	title="Поль Диаз Ашот"
+	description='Основатель-руководящий исполнитель. Команда основателей "GMX". Действующий разработчик и. и.: "Claude Code", "Codex CLI", "GPT-5.5". Лондон, Барселона, Нью-Йорк.'
+	lang="ru"
+	alternates
+>
+	<main class="cv">
+		<header class="cv-header">
+			<h1>Поль Диаз Ашот</h1>
+			<div class="locations">Лондон, Барселона, Нью-Йорк</div>
+			<div class="contact">
+				<a href="mailto:paul.ashot@icloud.com" target="_blank" rel="noopener">paul.ashot@icloud.com</a> ·
+				(646) 996 5037 ·
+				<a href="https://pauldiazashot.com" target="_blank" rel="noopener noreferrer">pauldiazashot.com</a> ·
+				@supersonicsines
+			</div>
+		</header>
+
+		<div class="cv-body">
+			<Collapsible title="Резюме" id="intro">
+				<p>
+					Я — основатель-руководящий исполнитель. Продаю с двенадцати лет: сначала картины, теперь идеи. Четыре года состоял в команде основателей <span class="glue"><button type="button" class="inline-preview-trigger" data-window-trigger="preview-gmx" aria-haspopup="dialog"><b>"GMX"</b></button>,</span> где отвечал за "GTM" (выход на рынок) и привлек крупнейших партнеров. Параллельно и после этого четыре года вел венчюрную консультационную практику, помогая портфельным компаниям привлекать финансирование и перестраивать стратегии до выхода на прибыльность. Мое нынешнее увлечение — внедрение агентов и. и. с наилучшей моделью под каждую задачу, от "Claude" до "GPT-5.5", для автоматизации и масштабирования действующих предприятий, таких как "Pawlymarket" и "Slashwork". Родной язык английский, свободно владею русским и испанским; <Sidenote id="right-to-work" term="юридический допуск к профессиональной деятельности в Великобритании, США и ЕС">Статус бессрочного вида на жительство (Indefinite Leave to Remain) в Великобритании + двойное гражданство США/ЕС.</Sidenote>.
+				</p>
+				<p>
+					Это гипертекстовая страница: с подчеркнутыми элементами можно взаимодействовать, получая дополнительный контекст и сведения. Версия PDF —
+					<a href="/Paul_Diaz_Ashot_CV_RU.pdf" download target="_blank" rel="noopener">здесь</a>.
+				</p>
+			</Collapsible>
+
+			<Collapsible title="Достижения" id="experience">
+				<div class="role">
+					<button class="role-trigger" data-window-trigger="portico" aria-haspopup="dialog">
+						<b>"Портико Венчюрс"</b> — <em>Партнер, Генеральный исполнительный директор</em>
+					</button>
+					<div class="dates">2021 – 2026</div>
+				</div>
+				<ul>
+					<li>
+						Венчюрный фонд, специализирующийся на консультировании и инвестициях в "DeFi" (децентрализованное финансирование) и Финтех на ранних этапах.
+						Вплотную работал над "GTM" (выходом на рынок) с рядом портфельных компаний, в том числе <button type="button" class="inline-preview-trigger" data-window-trigger="preview-gammaswap" aria-haspopup="dialog"><b>"Gammaswap"</b></button>
+						и <span class="glue"><button type="button" class="inline-preview-trigger" data-window-trigger="preview-codex" aria-haspopup="dialog"><b>"Codex.io"</b></button>.</span>
+						Своими стратегическими советами и личными рекомендациями содействовал приобретению <b>$4+ миллионов долларов США</b> совокупных вкладов и контрибуций.
+					</li>
+				</ul>
+
+				<div class="role">
+					<button class="role-trigger" data-window-trigger="gmx" aria-haspopup="dialog">
+						<b>"GMX"</b> — <em>Команда основателей · Ответственный за рост и стратегические партнерства</em>
+					</button>
+					<div class="dates">2020 – 2023</div>
+				</div>
+				<ul>
+					<li>
+						"GMX" основало трое. За период моей деятельности биржа достигла самого высокого потока доходов во всем "DeFi".
+						Соинициатор и сокуратор институционных партнерств по формированию капитала; лично привлек
+						<b>$20+ миллионов долларов США совокупных капиталовложений</b>.
+					</li>
+					<li>
+						Заключал и принимал прямейшее участие в заключении стратегических партнерств с <Sidenote id="arbitrum" term='"Arbitrum"' italic>"Arbitrum" — сеть второго уровня (L2) для Ethereum, которую "GMX" использовал ради снижения стоимости транзакций. Раннее внедрение позволило выторговать гранты и возвраты комиссий для трейдеров на сумму $10+ миллионов долларов США. <a href="https://gmxio.substack.com/p/how-gmx-will-utilise-the-12-million" target="_blank" rel="noopener noreferrer">Читать публикацию "GMX" о стимулах "Arbitrum"</a>.</Sidenote>, <Sidenote id="avalanche" term='"Avalanche"' italic>Пакет стимулов "Avalanche Rush" был одним из крупнейших в "DeFi" на тот момент: $4 миллиона долларов США торговых вознаграждений привели к восьмизначному росту общей заблокированной стоимости (TVL) за несколько месяцев. <a href="https://medium.com/avalancheavax/gmx-joins-avalanche-rush-with-4m-in-trading-rewards-ce5c66f0e3b3" target="_blank" rel="noopener noreferrer">Читать объявление об "Avalanche Rush"</a>.</Sidenote>, <em>"Chainlink"</em> и <em>"Frax"</em>, а также провел еще две интеграции протоколов. Скоординировал <HoverCard term='ребрендинг "Gambit" → "GMX"'>
+							<span class="hc-p">Ребрендинг не был маркетинговым ходом: это была миграция с блокчейна BSC ("Gambit") на <em>"Arbitrum"</em> и <em>"Avalanche"</em> ("GMX"), с партнерской сетью, выстроенной к самому запуску.</span>
+							<span class="hc-p">"Gambit" поначалу имел успех на BSC: общая заблокированная стоимость (TVL) достигла девяти цифр, был выпущен GUSDT — стейблкоин, обеспеченный совокупным флоутом длинных и коротких позиций и комиссиями за финансирование. Продукт был продуманным, но волатильность рынка сорвала привязку, и миграция потребовала технического переосмысления, а не косметического переименования.</span>
+							<span class="hc-p">Моя роль фактического руководителя сообщества состояла в том, чтобы перевести пользователей в новый продукт на новых блокчейнах, не расколов сообщество после потерь в первой системе. Это удалось: пользователи, державшие позиции сквозь миграцию, получили 500%+ возврата на вложения, а сообщество в Телеграм в основном сохранилось при переходе.</span>
+						</HoverCard> и организовал работу с будущими партнерами.
+					</li>
+					<li>
+						Заложил, отстроил и расширил каналы взаимодействия с институтами и общественностью: <b>5000+ участников Телеграм</b> и прямые отношения с поставщиками ликвидности ("LP") с капиталом на 8 цифр.
+					</li>
+				</ul>
+
+				<div class="role">
+					<div class="role-title">
+						<HoverCard term="Effie Perine LTD.">
+							<span class="hc-p">"Effie Perine" — дилерская и комиссионная фирма моего брата Алексиса Ашота, эксперта мирового уровня по голландской живописи.</span>
+							<span class="hc-p">Работа там продолжила мой детский опыт продажи антиквариата и картин. В тот период я усвоил значение отношений с клиентами, выстраивания и поддержания потока сделок, поиска покупателей и управления рисками в подчеркнуто сезонном деле.</span>
+							<span class="hc-p">Это был краткий переход от учебы к профессиональной жизни, но он заложил основу многих коммерческих привычек, которые я позже применял в криптоотрасли, венчюрном консультировании и внедрениях и. и.</span>
+						</HoverCard> — <em>Оперативное управление и курирование клиентов</em>
+					</div>
+					<div class="dates">2019 – 2020</div>
+				</div>
+				<ul>
+					<li>
+						Ведение финансовых счетов и оперативное административное управление в частной фирме, специализирующейся на произведениях изящного искусства Старых Мастеров; ежегодный объем сделок в диапазоне от 500 тысяч до 2,5+ миллионов фунтов стерлингов.
+					</li>
+				</ul>
+			</Collapsible>
+
+			<Collapsible title="Независимые выпуски и. и." id="deployments">
+				<ul>
+					<li>
+						<button type="button" class="inline-preview-trigger" data-window-trigger="preview-slashwork" aria-haspopup="dialog"><b>Slashwork.xyz</b></button> — действующая, бесплатная поисковая система вакансий на базе и. и. для стартап-сообщества и технических специалистов, сфокусированная на свежих ролях в отслеживаемых публичных компаниях. Создана от начала до конца через "Claude Opus".
+					</li>
+					<li>
+						<button type="button" class="inline-preview-trigger" data-window-trigger="pawlymarket" aria-haspopup="dialog"><b>Pawlymarket</b></button> — полноценный торговый терминал и аггрегатор данных "Polymarket" для построения продвинутых стратегий доходности. <a href="https://pawlymarket.com" target="_blank" rel="noopener noreferrer">pawlymarket.com</a>.
+					</li>
+					<li>
+						<button type="button" class="inline-preview-trigger" data-window-trigger="vinted" aria-haspopup="dialog"><b>Агент по перепродаже "Vinted-to-Depop"</b></button> — автономная система сквозного арбитража моды, работающая между "Vinted" и "Depop".
+					</li>
+					<li>
+						<Sidenote id="booking" term="Разумная система проектирования заказов">Барселонская школа танцев со 100+ индивидуальными записями в неделю перешла на систему управления и аналитики, написанную и. и. — в "Claude Code" и "Codex CLI". Агент отслеживает сезонность вечерних и дневных занятий, направлений сальсы и бачаты и уровней подготовки, а затем предлагает расписания на основе базовой регрессии и эвристик. Оценочный прирост административной эффективности — около 50%.</Sidenote> — агентный распределитель графиков и заказов на базе "Codex CLI" для небольшого местного предприятия; принимает заказы на занятия и составляет график будущих занятий исходя из предсказуемого спроса.
+					</li>
+				</ul>
+			</Collapsible>
+
+			<Collapsible title="Высшее образование" id="education" open={false}>
+				<p>
+					<b>BSc Chemistry</b>, <em>University of Manchester</em>, 2018 — Университет г. Манчестер, факультет химии; бакалавр естественных наук.
+				</p>
+			</Collapsible>
+
+			<Collapsible title="Специализация" id="skills" open={false}>
+				<p class="skills">
+					Продажа технологических предложений знатокам технологий путем консультации · ведение переговоров между корпорациями и институтами · сеть контактов на уровне основателей · рост через сообщество · ознакомление инвесторов и аудиторий с достоинствами технологических предложений · венчюрный капитал · оперативное управление стартапами · управление рисками · выявление и картография сегментов рынка · финансовое моделирование · скрейпинг "ATS" · SQLite/FTS · "Claude API" · "Claude Code" · "Codex CLI" · "GPT-5.5" · промпт-инжиниринг · агентные рабочие процессы · "MCP" · Python · JavaScript
+				</p>
+			</Collapsible>
+		</div>
+
+		<footer class="cv-footer">
+			<a href="mailto:paul.ashot@icloud.com" target="_blank" rel="noopener">paul.ashot@icloud.com</a> ·
+			@supersonicsines ·
+			<a href="/Paul_Diaz_Ashot_CV_RU.pdf" download target="_blank" rel="noopener">Скачать резюме (PDF)</a>
+		</footer>
+	</main>
+
+	<!-- External preview windows -->
+	<Window
+		id="preview-gmx"
+		title="https://gmx.io"
+		initialX={154}
+		initialY={96}
+		initialWidth={640}
+		initialHeight={388}
+		resizable={false}
+		variant="preview"
+	>
+		<div class="external-preview">
+			<img src="/previews/gmx-preview-1280.png" width="1280" height="720" alt="Предпросмотр https://gmx.io" loading="lazy" decoding="async" />
+			<a class="external-preview-arrow" href="https://gmx.io" target="_blank" rel="noopener noreferrer" aria-label="Открыть https://gmx.io">→</a>
+		</div>
+	</Window>
+
+	<Window
+		id="preview-gammaswap"
+		title="https://gammaswap.com"
+		initialX={176}
+		initialY={112}
+		initialWidth={640}
+		initialHeight={388}
+		resizable={false}
+		variant="preview"
+	>
+		<div class="external-preview">
+			<img src="/previews/gammaswap-preview-1280.png" width="1280" height="720" alt="Предпросмотр https://gammaswap.com" loading="lazy" decoding="async" />
+			<a class="external-preview-arrow" href="https://gammaswap.com" target="_blank" rel="noopener noreferrer" aria-label="Открыть https://gammaswap.com">→</a>
+		</div>
+	</Window>
+
+	<Window
+		id="preview-slashwork"
+		title="https://slashwork.xyz"
+		initialX={188}
+		initialY={128}
+		initialWidth={640}
+		initialHeight={388}
+		resizable={false}
+		variant="preview"
+	>
+		<div class="external-preview">
+			<img src="/previews/slashwork-preview-1280.png" width="1280" height="720" alt="Предпросмотр https://slashwork.xyz" loading="lazy" decoding="async" />
+			<a class="external-preview-arrow" href="https://slashwork.xyz" target="_blank" rel="noopener noreferrer" aria-label="Открыть https://slashwork.xyz">→</a>
+		</div>
+	</Window>
+
+	<Window
+		id="preview-codex"
+		title="https://www.codex.io"
+		initialX={220}
+		initialY={144}
+		initialWidth={640}
+		initialHeight={388}
+		resizable={false}
+		variant="preview"
+	>
+		<div class="external-preview">
+			<img src="/previews/codex-preview-1280.png" width="1280" height="720" alt="Предпросмотр https://www.codex.io" loading="lazy" decoding="async" />
+			<a class="external-preview-arrow" href="https://www.codex.io" target="_blank" rel="noopener noreferrer" aria-label="Открыть https://www.codex.io">→</a>
+		</div>
+	</Window>
+
+	<!-- Role windows -->
+	<Window id="portico" title="Портико Венчюрс · Партнер, Генеральный исполнительный директор" initialX={140} initialY={100}>
+		<p><b>"Портико Венчюрс"</b> — <em>Партнер, Генеральный исполнительный директор, 2021 – 2026</em></p>
+		<p>
+			"Портико Венчюрс" — бутиковый фонд, построенный вокруг акселераторской и
+			консультационной работы для компаний "DeFi" и Финтех.
+		</p>
+		<p>
+			В партнерстве было семь управляющих партнеров разного профиля, со
+			специализациями в инженерии, финансах, маркетинге и дистрибуции. Я, как
+			правило, работал с потребительскими продуктами, где дистрибуция и
+			соответствие продукта рынку значили больше всего.
+		</p>
+		<p>
+			Сильнее всего я проявил себя в диагностике спроса, заключении
+			дистрибуционных сделок, оттачивании нарратива основателей и выводе
+			технических продуктов к более четко очерченным категориям покупателей. По всему портфелю
+			"Портико" поддержал 20 компаний, зафиксировал шесть выходов и достиг
+			пикового объема активов под управлением на восемь цифр.
+		</p>
+	</Window>
+
+	<Window id="gmx" title="GMX · Команда основателей · Рост и партнерства" initialX={200} initialY={140} initialWidth={580}>
+		<p><b>"GMX"</b> — <em>Команда основателей · Ответственный за рост и стратегические партнерства, 2020 – 2023</em></p>
+		<p>
+			Работа над "GMX" была любимым делом в беспощадной среде высокого
+			давления, где сбой исполнения или эксплойт мог навсегда подорвать
+			репутацию.
+		</p>
+		<p>
+			Будучи децентрализованной биржей бессрочных контрактов, мы были не просто
+			первопроходцами: мы действовали в условиях регуляторной неопределенности,
+			запустившись в первый год новой администрации США, под пристальным
+			надзором за "DeFi".
+		</p>
+		<p>
+			Эта работа отвечала моим навыкам и интересам как ничто прежде. Там я
+			построил отношения на всю жизнь, а главным личным уроком стало то,
+			какое удовлетворение приносит мне передовая линия
+			технологического пространства: пользователи задают трудные вопросы,
+			партнерам нужна убежденность, поставщики ликвидности взвешивают риски, а
+			доверие к продукту приходится зарабатывать на глазах у всех.
+		</p>
+	</Window>
+
+	<!-- Current deployment windows -->
+	<Window id="pawlymarket" title="Pawlymarket · Предсказательная аналитика" initialX={236} initialY={108} initialWidth={820} initialHeight={650}>
+		<p><b>Pawlymarket</b> — <em>децентрализованное сообщество количественного анализа для "Polymarket"</em></p>
+		<p>
+			Закрытый клуб для участников, надстроенный над "Polymarket". Механизм ведет
+			статистическую регрессию по всей живой книге заявок, и. и. отбирает
+			уцелевшие пары, а участники собирают хеджи против отобранных пар, извлекая
+			доходность из неверно оцененной беты. Ближе к небольшому квант-деску, чем к
+			очередному арбитражному боту.
+		</p>
+		<div class="window-media window-media--sixty-five">
+			<img src="/images/cv/pawlymarket-dashboard-1280-rgb.png" width="1280" height="1025" alt="Обозреватель Pawlymarket: отобранные пары рынков, оценки корреляции и управление графиками" loading="lazy" decoding="async" />
+		</div>
+		<p>
+			Каждые пять минут анализатор обновляет данные "Polymarket" и ранжирует
+			жизнеспособные пары по корреляции, бете, коинтеграции, периоду полураспада
+			и объему. Правила, категоризация средствами и. и. и письменный макротезис
+			сужают эту вселенную примерно до 250 живых пар, сгруппированных по
+			сигналам: мертвый рынок, тета, отрицательная бета, частичная бета, дрейф.
+			Преимущество — в схождении спредов, а не в направленных ставках.
+		</p>
+		<p>
+			Продукт доставляет сигналы через Телеграм, веб-оповещения и обозреватель
+			"Explorer" с графиками, моделями исходов, сохраненными парами, обсуждениями
+			пар от участников и отслеживанием кошельков ведущих счетов "Polymarket" на
+			Polygon CTF.
+		</p>
+		<p>
+			Построен от начала до конца на "Claude Code" и "Codex CLI". "Haiku",
+			"Sonnet", "Opus" и "GPT-5.5" ведут каждый ту часть процесса, где он сильнее
+			всего. Авторизация через криптокошелек, USDC/USDT на Polygon, без KYC.
+			<a href="https://pawlymarket.com" target="_blank" rel="noopener noreferrer">pawlymarket.com</a>
+		</p>
+	</Window>
+
+	<Window id="vinted" title="Vinted → Depop · Агент по перепродаже" initialX={300} initialY={124} initialWidth={640} initialHeight={560}>
+		<p><b>Агент по перепродаже "Vinted-to-Depop"</b> — <em>автономный арбитраж моды</em></p>
+		<p>
+			Сквозной автономный агент арбитража моды, работающий между "Vinted" и
+			"Depop": ведет инвентарь, совершает покупки, публикует объявления и
+			через Телеграм направляет конечному пользователю отправления на
+			финальную проверку.
+		</p>
+		<div class="window-media window-media--seventy-five">
+			<img src="/images/cv/vinted-depop-glitter-1100-rgb.png" width="1100" height="701" alt="Терминальный интерфейс аналитической платформы Glitter для Vinted" loading="lazy" decoding="async" />
+		</div>
+		<p>
+			Агентом управляет многопроходный поток "Haiku", "Opus" и "GPT-5.5" через
+			терминальный интерфейс. Начав с $10 тысяч долларов США, за шесть месяцев
+			агент принес $25 тысяч долларов США — в среднем почти 100% доходности на
+			каждую вещь при доле убытков ниже 10%.
+		</p>
+	</Window>
+
+	<WindowManager />
+	<Taskbar lang="ru" />
+</BaseLayout>
+
+<style>
+	/* Mirror of src/pages/index.astro styles — keep the two blocks in sync. */
+	.cv {
+		max-width: 680px;
+		margin: 0 auto;
+		/* Extra bottom padding keeps the footer clear of the fixed taskbar. */
+		padding: 48px 24px 96px 24px;
+		position: relative;
+		z-index: 1;
+		counter-reset: sidenote;
+	}
+
+	.cv-header,
+	.cv-body,
+	.cv-footer {
+		max-width: 680px;
+	}
+
+	.cv-header {
+		text-align: center;
+		padding-bottom: 14px;
+		border-bottom: 0.5px solid var(--color-rule);
+		margin-bottom: 12px;
+	}
+
+	.cv-header h1 {
+		margin: 0 0 8px 0;
+		font-family: var(--font-serif);
+		font-size: 32px;
+		font-weight: 400;
+		letter-spacing: 1.5px;
+	}
+
+	.locations {
+		font-size: 15px;
+		color: var(--color-ink);
+		margin-bottom: 6px;
+		letter-spacing: 0.5px;
+	}
+
+	.contact {
+		font-family: var(--font-sans);
+		font-size: 12px;
+		color: var(--color-muted);
+		margin-bottom: 4px;
+	}
+
+	.contact a {
+		color: var(--color-ink);
+	}
+
+	.role {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		margin: 12px 0 4px 0;
+		flex-wrap: wrap;
+		gap: 4px;
+	}
+
+	/* Buttons are atomic inline boxes, so Blink will happily break a line
+	   between a trigger and its trailing punctuation; .glue pins them. */
+	.glue {
+		white-space: nowrap;
+	}
+
+	.role-trigger {
+		all: unset;
+		cursor: pointer;
+		font-size: 15px;
+		color: var(--color-ink);
+		text-decoration: underline;
+		text-decoration-color: var(--color-rule);
+		text-underline-offset: 3px;
+		text-decoration-thickness: 1px;
+		transition: text-decoration-thickness 120ms ease-out;
+	}
+
+	.role-trigger:hover,
+	.role-trigger:focus-visible {
+		text-decoration-thickness: 1.5px;
+		text-decoration-color: var(--color-ink);
+	}
+
+	.role-trigger:focus-visible {
+		outline: 1px solid var(--color-rule);
+		outline-offset: 4px;
+	}
+
+	.role-title {
+		font-size: 15px;
+		color: var(--color-ink);
+	}
+
+	.inline-preview-trigger {
+		all: unset;
+		cursor: pointer;
+		color: var(--color-ink);
+		text-decoration: underline;
+		text-decoration-color: var(--color-rule);
+		text-underline-offset: 2px;
+		text-decoration-thickness: 1px;
+		transition:
+			text-decoration-color 120ms ease-out,
+			text-decoration-thickness 120ms ease-out;
+	}
+
+	.inline-preview-trigger:hover,
+	.inline-preview-trigger:focus-visible {
+		text-decoration-color: var(--color-ink);
+		text-decoration-thickness: 1.5px;
+	}
+
+	.inline-preview-trigger:focus-visible {
+		outline: 1px solid var(--color-rule);
+		outline-offset: 3px;
+	}
+
+	.role .dates {
+		font-family: var(--font-sans);
+		font-size: 12px;
+		color: var(--color-muted);
+		font-style: italic;
+		white-space: nowrap;
+	}
+
+	.cv :global(p),
+	.cv :global(li) {
+		font-size: 15px;
+		line-height: 1.5;
+		margin: 0 0 6px 0;
+	}
+
+	.cv :global(ul) {
+		margin: 4px 0 10px 0;
+		padding-left: 16px;
+		list-style: none;
+	}
+
+	.cv :global(li) {
+		position: relative;
+		padding-left: 14px;
+		margin-bottom: 6px;
+	}
+
+	.cv :global(li::before) {
+		content: "*";
+		position: absolute;
+		left: 0;
+		width: 0.7em;
+		color: var(--color-ink);
+		font-size: calc(1em + 1pt);
+		font-weight: 700;
+		text-align: center;
+		opacity: 0.5;
+	}
+
+	.cv :global(li.has-interactive-marker::before) {
+		content: none;
+	}
+
+	.cv :global(.list-marker-symbol) {
+		position: absolute;
+		left: 0;
+		top: 0;
+		display: inline-block;
+		width: 0.7em;
+		color: var(--color-ink);
+		font-family: var(--font-serif);
+		font-size: calc(1em + 1pt);
+		font-weight: 700;
+		line-height: inherit;
+		text-align: center;
+		opacity: 0.5;
+		cursor: default;
+		user-select: none;
+		transition: opacity 120ms ease-out;
+	}
+
+	.cv :global(.list-marker-symbol.is-cycling) {
+		opacity: 1;
+	}
+
+	.cv :global(li.has-interactive-marker:hover > .list-marker-symbol) {
+		opacity: 1;
+	}
+
+	.cv :global(a) {
+		color: var(--color-ink);
+		text-decoration: underline;
+		text-decoration-color: var(--color-rule);
+		text-underline-offset: 2px;
+	}
+
+	.cv :global(em) {
+		font-style: italic;
+	}
+
+	.cv :global(b) {
+		font-weight: 700;
+	}
+
+	.external-preview {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		min-height: 0;
+		overflow: hidden;
+		background:
+			linear-gradient(135deg, rgba(251, 250, 247, 0.08), rgba(61, 43, 31, 0.2)),
+			#17110d;
+	}
+
+	.external-preview img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		filter: saturate(0.88) contrast(0.96);
+	}
+
+	.external-preview::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		border: 1px solid rgba(251, 250, 247, 0.16);
+		pointer-events: none;
+	}
+
+	.external-preview .external-preview-arrow {
+		position: absolute;
+		right: 26px;
+		top: 50%;
+		transform: translateY(-52%);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 132px;
+		height: 132px;
+		color: rgba(251, 250, 247, 0.44);
+		font-family: var(--font-serif);
+		font-size: 122px;
+		font-weight: 400;
+		line-height: 1;
+		text-decoration: none;
+		text-shadow: 0 2px 12px rgba(23, 17, 13, 0.42);
+		transition:
+			color 140ms ease-out,
+			text-shadow 140ms ease-out,
+			transform 140ms ease-out;
+	}
+
+	.external-preview .external-preview-arrow:hover,
+	.external-preview .external-preview-arrow:focus-visible {
+		color: rgba(251, 250, 247, 0.92);
+		text-shadow: 0 2px 18px rgba(23, 17, 13, 0.74);
+		transform: translateY(-52%) translateX(2px);
+		outline: none;
+	}
+
+	:global(.mobile-window-inline-content) .external-preview {
+		height: auto;
+		aspect-ratio: 16 / 9;
+	}
+
+	:global(.mobile-window-inline-content) .external-preview .external-preview-arrow {
+		right: 12px;
+		width: 84px;
+		height: 84px;
+		font-size: 76px;
+	}
+
+	.skills {
+		line-height: 1.55;
+	}
+
+	.cv-footer {
+		margin: 32px auto 0 auto;
+		padding-top: 16px;
+		border-top: 0.5px solid var(--color-rule);
+		text-align: center;
+		font-family: var(--font-sans);
+		font-size: 12px;
+		color: var(--color-muted);
+	}
+
+	.cv-footer a {
+		color: var(--color-ink);
+	}
+
+	@media (max-width: 768px) {
+		.cv {
+			padding: 32px 20px 88px 20px;
+		}
+
+		.role {
+			flex-direction: column;
+			gap: 2px;
+		}
+
+		.role .dates {
+			font-size: 11px;
+		}
+	}
+</style>
