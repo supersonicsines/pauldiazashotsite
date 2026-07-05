@@ -1,285 +1,365 @@
-# PRD — pauldiazashot.com
+# Current-State PRD - pauldiazashot.com
 
-**Owner:** Paul Diaz Ashot
-**Builder:** Claude Code
-**Target ship date:** within 1 week
-**Goal:** A personal site that functions as Paul's CV but rewards close reading. The hiring manager at Anthropic should be able to scan it in 60 seconds; a curious technical reader should be able to spend 20 minutes in it.
-
----
-
-## 1. North star
-
-The site is a **single long-form serif essay-CV** with **Tufte-style sidenotes** and **hover-to-expand annotations** on key terms. The aesthetic reference is gwern.net (substance + sidenotes), Andy Matuschak's notes (hover previews), and the original LessWrong sequences (hypertextuality as substrate).
-
-It is not a portfolio. It is not a terminal. It is not a chatbot. It is a piece of writing with depth-on-demand.
-
-The implicit signal to the right reader (Anthropic hiring manager, anyone LW-adjacent): *I think in connections; I trust you to chase the threads that interest you; I have substance under every link.*
+**Owner:** Paul Diaz Ashot  
+**Current implementation status:** built Astro site, build passing  
+**Last aligned:** 2026-07-01  
+**Primary route:** `/`
 
 ---
 
-## 2. Out of scope (v1)
+## 1. North Star
 
-- No Claude-powered chat agent. Tempting but adds complexity, dilutes the signal, and every other AI applicant in 2026 will have one.
-- No terminal route. Possibly v2; not v1.
-- No blog index, no separate "writing" page. The site itself is the writing.
-- No analytics dashboards or visualisations beyond the prediction-market chart embedded under Pawlymarket (optional, see §6).
-- No login, no comments, no newsletter signup.
-- No dark-mode toggle. Pick one mode (off-white background, near-black text, see §4) and ship.
+The site is Paul's CV, but with depth-on-demand for curious readers.
+
+The current direction is a **hybrid interactive CV**:
+
+- Traditional CV sections so a hiring manager can scan it quickly.
+- LessWrong/Gwern-inspired annotations so a technical reader can inspect the
+  deeper context.
+- Retro desktop windows for role details, external previews, and richer project
+  material.
+
+It is no longer the original pure long-form essay-CV. The built product keeps
+the old text-first, hypertextual taste, but the information architecture is now
+closer to a polished CV with optional interactive layers.
+
+The desired signal: Paul can sell technical products, operate near founders,
+and deploy AI tools into real workflows, while thinking in connections rather
+than flat bullet points.
+
+---
+
+## 2. Product Shape
+
+### Primary Experience
+
+`/` is the main site. It contains:
+
+1. Header: name, locations, contact, site, handle.
+2. Introduction: founder-operator positioning, GMX context, current AI work,
+   language/work-auth note, PDF link.
+3. Experience: Portico Ventures, GMX, Effie Perine.
+4. Current AI Deployments: Slashwork, Pawlymarket, Vinted-to-Depop agent,
+   intelligent booking system.
+5. Education.
+6. Skills.
+7. Footer with contact and PDF download.
+
+Sections are collapsible. Education and Skills currently default closed.
+
+### Language Versions
+
+- `/` is English; `/ru/` is the Russian version of the same experience.
+- A fixed retro taskbar at the bottom of both pages holds one "application"
+  per language (`ENGLISH`, `РУССКИЙ`), each labelled in its own language. The
+  current language's button is depressed; the tray shows an OS-style layout
+  indicator (`EN`/`RU`) and a clock.
+- The two pages are structural mirrors: identical component tree, window /
+  sidenote / collapsible ids, and style blocks. Only human-visible text
+  differs.
+- Russian copy follows the professionally reviewed `CV_RU.pdf` (terminology,
+  register, quoted brand names, `и. и.` for AI). Web-only prose is translated
+  to that standard. The PDF itself is never edited; `/ru/` serves a byte-copy
+  at `/Paul_Diaz_Ashot_CV_RU.pdf` for download.
+- Switching languages preserves the "desktop": open/minimized windows with
+  their geometry and z-order, collapsed sections, expanded sidenotes, and
+  scroll position carry across via sessionStorage (`pdos-state-v1`), and the
+  boot loader is skipped on taskbar navigation (`pdos-warm`), so the switch
+  feels like one workstation.
+- Spanish later = one more mirror page under `src/pages/es/` plus an entry in
+  `Taskbar.astro`'s `APPS` array.
+
+### Secondary Routes
+
+- `/cv` is a plain CV route with simpler markup and fewer interactions
+  (English only for now).
+- `/artifacts` lists React artifacts in `src/artifacts`.
+- `/artifacts/[slug]` renders a named React artifact through
+  `ArtifactWrapper.jsx`.
+
+The artifact routes are scaffolding and are not the main site experience.
 
 ---
 
 ## 3. Stack
 
-| Layer | Choice | Why |
-|---|---|---|
-| Framework | **Astro** | Content-first, zero-JS-by-default, MDX support, easy static export |
-| Styling | **Tailwind CSS** | Fast iteration; pairs well with Claude Code |
-| Content | **MDX** | Markdown for prose + JSX components for sidenotes inline |
-| Typography | **Times New Roman** (system font), used **exclusively** for body, headings, sidenotes, metadata, and code | One typeface throughout. Times is universal, classical, and signals restraint; no web-font load required, no UI/serif split. |
-| Hosting | **Vercel** (Hobby tier, free) | Edge-served, GitHub integration, custom domain |
-| Repo | **GitHub** | Standard |
-| Domain | **pauldiazashot.com** (already owned) | CNAME to Vercel |
-| Build target | Static export (`output: 'static'` in `astro.config.mjs`) | No server needed; max speed, max simplicity |
+| Layer | Current Choice |
+|---|---|
+| Framework | Astro 6 |
+| Rendering | Static build into `dist/` |
+| Styling | Tailwind CSS 4 plus component-scoped Astro styles |
+| React | React 19 for artifact islands |
+| Analytics | `@vercel/analytics` in `BaseLayout.astro` |
+| Typography | Times New Roman only |
+| Hosting target | Vercel-compatible static deployment |
+| Runtime | Node >= 22.12.0 |
+
+Commands:
+
+- `npm run dev`
+- `npm run build`
+- `npm run preview`
+- `npm run previews`
+
+`npm run build` was passing as of 2026-07-01.
 
 ---
 
-## 4. Visual design
+## 4. Visual Design
 
-### Colour palette (locked)
+### Locked Palette
 
-- Background: `#FBFAF7` (off-white, paper-tone)
-- Body text: `#1A1A1A` (near-black, not pure black)
-- Muted text (dates, metadata, captions): `#666666`
-- Hyperlinks: `#1A1A1A`, underlined with 1px `#999` underline that thickens on hover
-- **External and internal links use the same visual treatment.** No distinguishing icon, no different colour. The page should read as one continuous network — making external links visually distinct breaks the gwern aesthetic.
-- Sidenote background: `#F2EFE8` (slightly warmer than body bg)
-- Accent rule lines: `#999999` at 0.5pt
-- No other colours. No blues, no greens, no shadows. Restraint is the design.
+- Background: `#FBFAF7`
+- Body text: `#1A1A1A`
+- Muted text: `#666666`
+- Rule lines: `#999999`
+- Sidenote background: `#F2EFE8`
+- Bistre accent/window chrome: `#3D2B1F`
+
+No broad multicolor palette, no generic gradient hero, no dark-mode toggle in
+v1.
 
 ### Typography
 
-**Times New Roman is the only typeface on the site.** No Inter, no JetBrains Mono, no system-sans fallbacks for metadata or code. Differentiation between body, metadata, captions, and code comes from size, weight, italics, small caps, and colour — never from a different font.
+Times New Roman is the only typeface. The theme intentionally maps serif, sans,
+and mono tokens to the same stack:
 
-- Body: **Times New Roman**, 18px on desktop, 16px on mobile, line-height 1.6
-- H1 (page title — the name): **Times New Roman**, 36px, regular weight (not bold), letter-spacing 1px
-- H2 (section): **Times New Roman**, 22px, **small caps**, letter-spacing 2.5px, regular weight
-- Sidenote text: **Times New Roman**, 14px, line-height 1.5
-- Metadata (dates, contact, etc.): **Times New Roman**, 13px, italic, `#666666`
-- Inline `<code>` (rare — only for things like API names): **Times New Roman**, 0.95em, optionally with a thin background tint to set it off
-- Font stack (single source of truth): `font-family: "Times New Roman", Times, serif;` — applied site-wide. No web font load needed; Times is universal.
+```css
+font-family: "Times New Roman", Times, serif;
+```
+
+Differences between body, metadata, headings, code, and window chrome should be
+handled with size, weight, italics, small caps, and color.
 
 ### Layout
 
-- Single column, max-width 680px on desktop, centered
-- Sidenotes appear in a **right gutter** on screens ≥ 1200px (gutter width ~280px)
-- On screens <1200px, sidenotes collapse to inline expandable footnote-style markers (numbered, click to expand)
-- On mobile, sidenotes become tap-to-reveal popovers
-- Vertical rhythm: 1.5× line-height between paragraphs, 3× between sections
-
-### The "annotation" pattern
-
-Two distinct interaction types — pick the right one for each anchor:
-
-1. **Sidenote (passive, always visible on desktop)**: short paragraph in the right gutter, anchored to a specific phrase in the body. Used for: dates, definitions, quick context. Example: "the Gambit → GMX rebrand" gets a 2-sentence sidenote about what the rebrand involved.
-
-2. **Hover-card (active, requires interaction)**: a richer panel that appears on hover (desktop) or tap (mobile) when the reader engages with a deep anchor. Used for: longer essays, embedded media, links to external resources. Example: hovering on **GMX** opens a card with a 3-paragraph essay, a TVL chart, and a link to the protocol's still-live site.
-
-Visual treatment: anchors for sidenotes get a thin dotted underline; anchors for hover-cards get a solid underline. The reader learns the convention within 5 seconds.
+- Main content width: roughly 680px.
+- Page background: paper tone.
+- Header/footer centered.
+- CV body compact enough to scan.
+- Rich context appears only through interaction.
 
 ---
 
-## 5. Information architecture
+## 5. Interaction Model
 
-The site is a **single page** at `/`. Everything lives on one URL. No navigation menu. No header. The page is the experience.
+### Collapsible Sections
 
-### Page structure (top to bottom)
+Implemented by `src/components/Collapsible.astro`.
 
-1. **Header block** — name, location, contact, right-to-work line. Centered. ~60px tall.
-2. **Lede paragraph** — 2–3 sentences setting the frame. Not a "summary." A piece of prose that introduces who Paul is and what the page is about. Sets tone.
-3. **Section: Now** — what Paul is doing currently. Anchor terms: Pawlymarket, Vinted-Depop agent, current Claude work.
-4. **Section: GMX** — the founding-team story. Anchor terms: GMX (full essay), Chainlink, Avalanche, Frax, the Gambit rebrand, the seven-figure exit.
-5. **Section: Before GMX** — the long arc. Manchester, the trading-bot operation, the Wittgenstein-to-Yudkowsky reading lineage. Brief. The point is the *trajectory*, not the line items.
-6. **Section: Why I want to work at Anthropic** — a shorter version of the Why Anthropic essay. 2–3 paragraphs. This is the only place the site is explicitly about the job hunt; the rest is just *who Paul is*.
-7. **Footer** — single line. Email, Telegram, "Download CV (PDF)" link, GitHub if applicable, last-updated date.
+- Section headers toggle open/closed.
+- Arrow rotates on collapse.
+- Content uses a grid-row transition.
+- `open={false}` is supported for default-collapsed sections.
 
-No section ID anchors in the URL. No deep links. The whole thing is one piece of writing.
+### Sidenotes
 
----
+Implemented by `src/components/Sidenote.astro`.
 
-## 6. The annotated terms (content spec)
+- Dotted underline marks sidenote terms.
+- Dagger marker toggles the note inline through a checkbox.
+- Notes use the paper/warm background and left rule.
+- Current implementation does not use a right-gutter layout.
 
-Below is the full list of anchor terms, with type (sidenote vs hover-card), word target, and the external links / embeds that should live inside each annotation. **Paul will write the prose for each** — Claude Code's job is to scaffold the components and slot the content in.
+### Hover Cards
 
-### Annotations are nodes, not cards
+Implemented by `src/components/HoverCard.astro`.
 
-Every annotation should feel like it could keep going. External links, pull-quotes, embedded screenshots, and "further reading" footers are all welcome and on-brand. The aesthetic rule:
+- Solid underline marks hover-card terms.
+- Opens on hover/focus where hover is supported.
+- Uses a fixed/portal-ready path for viewport positioning support.
+- Supports richer internal markup such as paragraphs, media, quotes, and
+  further-reading blocks.
 
-- **External links enrich, never replace.** The annotation is substantively complete on its own; the link is the door for readers who want more.
-- **Three types of content welcome inside any annotation:**
-  1. *Inline external links* in the prose itself, styled identically to internal anchors
-  2. *Embedded snippets*: pull-quotes, code blocks, small charts, screenshots, tweet embeds
-  3. *"Further reading" footer* on the heavier hover-cards (GMX, Wittgenstein, Pawlymarket): a 2–3 line list of external sources
+### Retro Windows
 
-If an annotation is just "see [link] for more" without a real paragraph above it, the pattern is broken. Write the substance first; link out second.
+Implemented by `src/components/Window.astro` and
+`src/components/WindowManager.astro`.
 
-### Annotation table
+Windows support:
 
-| Term | Where | Type | Words | External links / embeds |
-|---|---|---|---|---|
-| **GMX** | GMX section header | Hover-card | 200–300 | Link to GMX protocol frontend; DeFiLlama TVL chart link; one TVL screenshot embedded; "further reading" footer with 2–3 contemporaneous articles (Bankless, Decrypt, etc.) |
-| **Chainlink** | GMX section | Sidenote | 50 | Link to the Chainlink BUILD / grant programme announcement |
-| **Avalanche** | GMX section | Sidenote | 50 | Link to the relevant Avalanche ecosystem announcement if public |
-| **Frax** | GMX section | Sidenote | 50 | Link to the Frax integration page or relevant tweet |
-| **the Gambit → GMX rebrand** | GMX section | Hover-card | 150–200 | Link to the rebrand announcement; optional embedded before/after logo or screenshot |
-| **seven-figure exit** | GMX section | Sidenote | 30 | No link. The dryness is the point. |
-| **Pawlymarket** | Now section | Hover-card | 150 | Link to pawlymarket.com (live); embedded screenshot of dashboard; optional small chart of one good call vs market price |
-| **Vinted-Depop agent** | Now section | Sidenote | 75 | Optional Telegram bot screenshot |
-| **inventory automation** | Now section | Sidenote | 50 | None required |
-| **email triage** | Now section | Sidenote | 50 | None required |
-| **Wittgenstein** | Before GMX section | Hover-card | 200 | Link to *Philosophical Investigations* (Wikipedia or SEP); link to SEP entry on language games; one Wittgenstein pull-quote embedded (pick something specific, not the famous one); "further reading" footer with 1–2 sources |
-| **Yudkowsky** | Before GMX section | Sidenote | 75 | Link to LessWrong; one specific essay link if there's one that mattered to you |
-| **Manchester** | Before GMX section | Sidenote | 75 | None required |
-| **Constitutional AI / interpretability / MCP** | Anthropic section | Sidenote | 50 each | Link each to the respective Anthropic paper or documentation page |
+- Open from triggers with `data-window-trigger`.
+- Drag by title bar.
+- Resize when `resizable` is enabled.
+- Minimize into a left dock.
+- Restore from dock.
+- Close with window controls.
+- Bring-to-front z-index behavior.
+- Escape closes open non-minimized windows.
+- Mobile/coarse-pointer mode converts windows into inline expanded content and
+  hides desktop windows/dock.
 
-**Total writing burden on Paul: ~1,500–2,000 words across ~14 annotations.** Manageable in a weekend.
+### Taskbar and Cross-Language Persistence
 
----
+Implemented by `src/components/Taskbar.astro` and `src/scripts/pdosState.ts`,
+with hooks in `WindowManager.astro` and `BaseLayout.astro`.
 
-## 7. Functional requirements
+- Fixed bottom bar, z-index 2000 (boot overlay 3000 covers it; windows and
+  dock sit below).
+- App buttons use the dock's two-tone bevel language, one step more 3D
+  (inset highlights + hard drop shadow); the active app is inset/depressed
+  with `aria-current="page"` and a lit LED.
+- Window state (open/minimized/x/y/w/h/z-order), collapsible sections,
+  sidenote checkboxes, and scroll position persist in sessionStorage and are
+  restored on load on either language page.
+- Window and dock control labels localize from `document.documentElement.lang`
+  (Свернуть/Закрыть/Развернуть on `/ru/`).
+- On mobile, persisted open windows restore as inline panels.
 
-### Must-have (v1 ship blockers)
+### Loader and Watermark
 
-1. Single-page site at `/` renders correctly on desktop (Chrome, Safari, Firefox) and mobile (iOS Safari, Android Chrome)
-2. Right-gutter sidenotes on viewports ≥ 1200px; numbered inline footnotes on smaller viewports; tap-popovers on mobile (<768px)
-3. Hover-cards open on `mouseenter` (desktop) with 200ms delay, close on `mouseleave` with 400ms delay (forgiving). On mobile, tap-to-toggle with explicit close button.
-4. All text is selectable and copyable (no JS interception of selection events)
-5. Page is fully readable with JS disabled (sidenotes degrade gracefully to inline footnotes)
-6. Lighthouse scores: Performance 95+, Accessibility 95+, SEO 95+, Best Practices 95+
-7. Total page weight < 200KB on initial load (excluding fonts; fonts loaded with `font-display: swap`)
-8. Custom 404 page in the same aesthetic
-9. `pauldiazashot.com` and `www.pauldiazashot.com` both resolve correctly with proper redirects
-10. Open Graph metadata: title, description, og:image (a clean text-on-paper card), Twitter card metadata
-11. Favicon: a single serif character (e.g. "P" in Times New Roman) on the paper-tone background
-12. **Download CV** link points to a PDF version of the existing CV (place `Paul_Diaz_Ashot_CV.pdf` in `/public`)
+Implemented in `src/layouts/BaseLayout.astro`.
 
-### Nice-to-have (post-v1)
-
-- Subtle scroll-progress indicator (1px line at top of viewport)
-- "Back to top" link at the very bottom
-- A cmd/ctrl-K command palette that lists every anchor term and lets you jump to it. (LessWrong-coded; cute but optional.)
-
-### Explicitly excluded
-
-- No comment system
-- No analytics initially. Add Plausible (privacy-respecting) post-launch if Paul wants traffic data.
-- No service worker or offline mode
-- No internationalization
-- No accessibility WCAG-AAA targets (AA is the bar)
+- Initial full-screen symbol loader.
+- Symbol changes every 250ms.
+- Auto transition after 3 seconds or on click.
+- Zoom animation resolves into a faint watermark.
+- List markers also cycle symbols on hover.
 
 ---
 
-## 8. Component spec
+## 6. Content Inventory
 
-Claude Code should build the following Astro components in `src/components/`:
+### Interactive CV Anchors Currently Present
 
-### `<Sidenote>`
-Props: `id` (string), `children` (the note content)
-Renders: a numbered marker inline at the anchor point + the actual note in the right gutter (desktop) or an expanding inline block (mobile)
+- GMX external preview window.
+- Gammaswap external preview window.
+- Codex.io external preview window.
+- Slashwork external preview window.
+- Portico Ventures role window.
+- GMX role window.
+- Pawlymarket rich window with dashboard media.
+- Vinted-to-Depop rich window with media.
+- Effie Perine hover card.
+- Gambit -> GMX rebrand hover card.
+- Arbitrum sidenote.
+- Avalanche sidenote.
+- Right-to-work sidenote.
+- Intelligent booking system sidenote.
 
-### `<HoverCard>`
-Props: `term` (string, the anchor text shown in body), `children` (the card content)
-Renders: the term inline with a solid underline; on hover/tap, a card panel appears positioned below the term (desktop) or as a centered modal (mobile)
+### Public Media Currently Present
 
-### `<Section>`
-Props: `id` (string), `title` (string)
-Renders: an `<h2>` with the small-caps + letter-spaced styling and the rule below
-
-### `<Footer>`
-No props. Renders the single-line footer with all the metadata.
-
-### `<MetaHead>`
-Renders all `<head>` content — favicon, fonts, OG tags, Twitter tags. One source of truth.
+- `public/Paul_Diaz_Ashot_CV.pdf`
+- `public/favicon.svg`
+- `public/previews/gmx-preview-1280.png`
+- `public/previews/gammaswap-preview-1280.png`
+- `public/previews/codex-preview-1280.png`
+- `public/previews/slashwork-preview-1280.png`
+- `public/images/cv/pawlymarket-dashboard-1280-rgb.png`
+- `public/images/cv/vinted-depop-glitter-1100-rgb.png`
 
 ---
 
-## 9. File structure
+## 7. File Structure
 
-```
-pauldiazashot/
+```text
+pauldiazashotsite/
 ├── astro.config.mjs
 ├── package.json
-├── tailwind.config.mjs
-├── tsconfig.json
+├── package-lock.json
+├── README.md
+├── REVIEW.md
+├── pauldiazashot_PRD.md
 ├── public/
 │   ├── favicon.svg
-│   ├── og-image.png
 │   ├── Paul_Diaz_Ashot_CV.pdf
-│   └── images/
-│       └── (anchor-card images: gmx-tvl-chart.png, etc.)
+│   ├── previews/
+│   └── images/cv/
 ├── src/
+│   ├── artifacts/
+│   │   └── Example.jsx
 │   ├── components/
-│   │   ├── Sidenote.astro
+│   │   ├── ArtifactWrapper.jsx
+│   │   ├── Collapsible.astro
 │   │   ├── HoverCard.astro
 │   │   ├── Section.astro
-│   │   ├── Footer.astro
-│   │   └── MetaHead.astro
-│   ├── content/
-│   │   ├── index.mdx                 (the page itself)
-│   │   └── annotations/
-│   │       ├── gmx.mdx
-│   │       ├── chainlink.mdx
-│   │       ├── pawlymarket.mdx
-│   │       ├── wittgenstein.mdx
-│   │       └── (one per annotation)
+│   │   ├── Sidenote.astro
+│   │   ├── Window.astro
+│   │   └── WindowManager.astro
 │   ├── layouts/
-│   │   └── Base.astro
+│   │   └── BaseLayout.astro
 │   ├── pages/
-│   │   ├── index.astro              (imports content/index.mdx)
-│   │   └── 404.astro
+│   │   ├── index.astro
+│   │   ├── cv.astro
+│   │   └── artifacts/
+│   │       ├── index.astro
+│   │       └── [slug].astro
 │   └── styles/
 │       └── global.css
-└── README.md                         (deploy + edit instructions)
+├── cv_content_workbench/
+└── c_vitae/
 ```
 
 ---
 
-## 10. Deployment
+## 8. Current Requirements
 
-1. Initialise repo on GitHub (`pauldiazashot/site` or similar; private repo OK)
-2. Connect repo to Vercel via the Vercel dashboard
-3. Set framework preset: Astro. Output directory: `dist`.
-4. Set custom domain: `pauldiazashot.com` (and `www`)
-5. DNS: add A record pointing to `76.76.21.21` (Vercel) on the root, and CNAME `www → cname.vercel-dns.com`
-6. Auto-deploy on push to `main`
+### Must Preserve
+
+- Homepage remains a CV-first page, not a marketing landing page.
+- `/` and `/ru/` stay structural mirrors; a content edit on one page is made
+  on both.
+- `CV_RU.pdf` / `CV_RU.pages` are canonical and are never edited by agents.
+- Text remains readable and copyable.
+- Times New Roman remains the sole typeface.
+- The paper/ink palette remains restrained.
+- PDF download remains available from the page and footer.
+- Existing window and annotation triggers continue to work.
+- Build remains static and deployable to Vercel.
+
+### Must Verify Before Shipping Changes
+
+- `npm run build` passes.
+- Homepage renders at desktop and mobile widths.
+- Collapsible sections toggle correctly.
+- Window triggers open the expected windows.
+- Window minimize/restore/close works on desktop.
+- Mobile/coarse-pointer inline window fallback works.
+- Sidenote daggers expand inline.
+- Hover cards remain readable and do not clip off-screen in common viewports.
+- PDF link points to `public/Paul_Diaz_Ashot_CV.pdf` on `/` and
+  `public/Paul_Diaz_Ashot_CV_RU.pdf` on `/ru/`.
+- Taskbar language switch preserves open windows, dock, sections, sidenotes,
+  and scroll in both directions, and skips the boot loader.
 
 ---
 
-## 11. Build sequence (Claude Code task list)
+## 9. Backlog
 
-In this order, with verification checkpoints:
+These are real open items, not built features:
 
-1. **Scaffold**: `npm create astro@latest`, choose minimal template, add Tailwind via `npx astro add tailwind`, add MDX via `npx astro add mdx`. Verify dev server runs.
-2. **Typography setup**: no font installs — Times New Roman is system-resident on every target platform. Configure Tailwind theme with the colour palette and a single `font-serif` family pointing at `"Times New Roman", Times, serif` per §4.
-3. **Layout**: build `Base.astro` layout with the centred 680px column, paper background, and right gutter zone. Test with placeholder Lorem.
-4. **Components**: build `Sidenote`, `HoverCard`, `Section` in that order. For each, verify desktop and mobile behaviour with placeholder content before moving on.
-5. **Content scaffolding**: create `content/index.mdx` with all 6 sections from §5 using the MVP placeholder text. Wire up annotation slots.
-6. **Annotation content**: Paul writes the 14 annotations (per §6 word targets) into separate MDX files in `content/annotations/`. Claude Code wires them into the main page.
-7. **Footer + metadata**: build the Footer component and MetaHead. Generate OG image.
-8. **Polish pass**: hover/tap timings, mobile breakpoints, font loading, 404 page.
-9. **Lighthouse audit**: run, fix any score below 95.
-10. **Deploy**: push to GitHub, connect Vercel, configure DNS, verify live.
-11. **Post-deploy**: test on real iPhone, real Android, share preview link with one trusted person for a sanity check before submitting the application.
+- Add custom `src/pages/404.astro` in the same aesthetic.
+- Add richer Open Graph and Twitter card metadata.
+- Generate and serve an OG image.
+- Consider consolidating metadata into a dedicated component if head logic
+  grows beyond `BaseLayout.astro`.
+- Run Lighthouse and address any score below 95.
+- Decide whether to keep or remove the `/artifacts` scaffold for production.
+- Decide whether the older Wittgenstein/Yudkowsky intellectual-lineage idea
+  belongs in this current CV format.
+- Review whether Chainlink and Frax should become sidenotes, since they are
+  currently plain emphasized text in the GMX bullet.
 
 ---
 
-## 12. Done criteria
+## 10. Out of Scope For This Version
 
-The site ships when:
+- Claude-powered chat agent.
+- Terminal route.
+- Blog index.
+- Login, comments, newsletter, or account system.
+- Dark-mode toggle.
+- Heavy analytics dashboard.
+- Generic portfolio redesign.
 
-- All 14 annotations are written and live
-- Paul has read the whole page on desktop and mobile and is willing to put the URL on his CV
-- Lighthouse scores are 95+ across all four metrics
-- The PDF CV downloads correctly
-- The OG card renders correctly when the URL is pasted into iMessage and Twitter
+---
 
-That is v1. Anything else is v2.
+## 11. Done Criteria For Future Site Edits
+
+A future change is done when:
+
+- It matches the current product direction above.
+- It keeps the homepage scannable as a CV.
+- It preserves or intentionally updates the documented interaction model.
+- It updates this PRD and `REVIEW.md` if behavior, routes, or backlog change.
+- `npm run build` passes.

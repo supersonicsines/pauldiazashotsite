@@ -1,43 +1,101 @@
-# Astro Starter Kit: Minimal
+# pauldiazashotsite
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Personal CV site for Paul Diaz Ashot. The current product is a compact,
+text-first Astro site: traditional CV structure with hypertextual depth added
+through collapsible sections, dotted sidenotes, hover cards, URL preview
+windows, and draggable retro desktop windows.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The live site experience is the homepage at `/`. A Russian version of the same
+experience lives at `/ru/`, switched through a retro OS taskbar at the bottom
+of the page; open windows, sections, sidenotes, and scroll survive the switch
+via sessionStorage. The `/cv` route is a plainer CV version, and `/artifacts`
+is a small React artifact scaffold.
 
-## 🚀 Project Structure
+## Current Stack
 
-Inside of your Astro project, you'll see the following folders and files:
+- Astro 6 with static output
+- React 19 for artifact islands
+- Tailwind CSS 4 through the Vite plugin
+- Vercel Analytics in `BaseLayout.astro`
+- Node >= 22.12.0
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## Commands
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Run commands from the project root.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+| Command | Purpose |
+|---|---|
+| `npm install` | Install dependencies |
+| `npm run dev` | Start the local Astro dev server |
+| `npm run build` | Build the static site into `dist/` |
+| `npm run preview` | Preview the built site locally |
+| `npm run previews` | Regenerate URL preview screenshots |
 
-Any static assets, like images, can be placed in the `public/` directory.
+`npm run build` was passing as of 2026-07-01.
 
-## 🧞 Commands
+## Important Files
 
-All commands are run from the root of the project, from a terminal:
+| File | Purpose |
+|---|---|
+| `src/pages/index.astro` | Main interactive CV page (English) |
+| `src/pages/ru/index.astro` | Russian mirror of the homepage — keep structurally in sync with `index.astro` |
+| `src/pages/cv.astro` | Plain CV route |
+| `src/components/Taskbar.astro` | Bottom retro taskbar: language "applications" + tray |
+| `src/scripts/pdosState.ts` | Shared sessionStorage store for cross-language state persistence |
+| `src/pages/artifacts/index.astro` | Lists React artifacts |
+| `src/pages/artifacts/[slug].astro` | Renders a named artifact |
+| `src/layouts/BaseLayout.astro` | Shared head, Vercel Analytics, loading overlay, watermark, list marker animation |
+| `src/components/Collapsible.astro` | Expand/collapse CV sections |
+| `src/components/Sidenote.astro` | Dotted inline sidenote anchors with click-to-expand notes |
+| `src/components/HoverCard.astro` | Solid-underlined hover/focus preview cards |
+| `src/components/Window.astro` | Retro Linux-style windows |
+| `src/components/WindowManager.astro` | Window drag, resize, minimize, close, dock, mobile inline behavior |
+| `src/styles/global.css` | Site theme: Times New Roman and paper/ink palette |
+| `public/Paul_Diaz_Ashot_CV.pdf` | Downloadable CV (English) |
+| `public/Paul_Diaz_Ashot_CV_RU.pdf` | Downloadable CV (Russian; byte-copy of `CV_RU.pdf`, never edited here) |
+| `CV_RU.pdf` / `CV_RU.pages` | Canonical professionally reviewed Russian CV — source of truth for RU terminology |
+| `public/previews/` | URL preview screenshots used by external preview windows |
+| `public/images/cv/` | Media used inside CV windows |
+| `cv_content_workbench/` | Draft workspace for future annotation/window copy |
+| `pauldiazashot_PRD.md` | Current-state PRD and product decisions |
+| `REVIEW.md` | Manual QA checklist and backlog |
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Design Rules
 
-## 👀 Want to learn more?
+- Times New Roman is the only typeface.
+- Preserve the paper/ink palette: `#FBFAF7`, `#1A1A1A`, `#666666`,
+  `#999999`, `#F2EFE8`, `#3D2B1F`.
+- Keep the page restrained, CV-focused, and text-first.
+- Do not turn the site into a generic landing page or portfolio grid.
+- Keep links, annotations, and windows readable without overwhelming the main
+  CV scan.
+- `/` and `/ru/` are structural mirrors: identical component tree, window and
+  sidenote and collapsible ids, and style blocks. Editing one page means
+  editing both. Russian copy follows `CV_RU.pdf` terminology; a new language
+  is one more `src/pages/<code>/index.astro` mirror plus an entry in
+  `Taskbar.astro`.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Current Routes
+
+- `/` - primary interactive CV (English).
+- `/ru/` - Russian version of the primary CV; same structure and ids as `/`.
+- `/cv` - simpler CV route with the same overall content, fewer interactions.
+- `/artifacts` - index of React artifacts in `src/artifacts`.
+- `/artifacts/Example` - current example artifact route.
+
+There is not currently a custom `404.astro` route.
+
+## Content Workflow
+
+Most production copy now lives directly in `src/pages/index.astro`.
+`cv_content_workbench/` remains tracked as a drafting area for future agent or
+manual edits. If using that workbench, copy approved prose back into
+`src/pages/index.astro`, move any media to `public/images/cv/`, then run
+`npm run build`.
+
+## Handoff Notes
+
+Before this documentation pass, the repo was on `main` with no unrelated local
+changes. For future changes, prefer small scoped edits that preserve the
+current interaction model. Always run `npm run build` before reporting work
+complete.
