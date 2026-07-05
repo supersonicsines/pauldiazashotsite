@@ -15,9 +15,13 @@ npm run build                      # static build into dist/
 npm run preview -- --port 4399 &   # serves dist/ (astro preview)
 ```
 
-Routes: `/` (EN), `/ru/` (RU mirror), `/cv`, `/artifacts`. Language switch =
-taskbar at the bottom; state persists via sessionStorage `pdos-state-v1`
-(windows/sections/sidenotes/scroll) + `pdos-warm` loader-skip flag.
+Routes: `/` (EN), `/ru/` (RU mirror), `/es/` (ES mirror), `/cv`, `/artifacts`.
+Language switch = taskbar at the bottom (tray shows a GMT-pinned clock); state
+persists via sessionStorage `pdos-state-v1` (windows/sections/sidenotes/scroll)
++ `pdos-warm` loader-skip flag. CV downloads per language:
+`/Paul_Diaz_Ashot_CV.pdf`, `_RU.pdf` (byte-copy of canonical `CV_RU.pdf`),
+`_ES.pdf` (printed from `c_vitae/Paul_Diaz_Ashot_CV_ES.html` with
+`"$CHROME" --headless=new --no-pdf-header-footer --print-to-pdf=...`).
 
 ## Drive
 
@@ -48,5 +52,6 @@ Gotchas learned 2026-07-05:
 - A full 36-check drive script covering both languages, persistence
   round-trips, cold/warm boot, mobile, and breakpoint crossing exists in this
   session's scratchpad as `drive.mjs` / `breakpoint.mjs` — copy the pattern.
-- EN/RU pages must stay structural mirrors (same ids); a quick parity check is
-  grepping both for `data-window-trigger`, `id=` on Collapsible/Sidenote.
+- EN/RU/ES pages must stay structural mirrors (same ids); a quick parity check
+  is grepping all three for `data-window-trigger`, `id=` on
+  Collapsible/Sidenote.

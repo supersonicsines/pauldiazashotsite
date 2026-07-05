@@ -5,11 +5,12 @@ text-first Astro site: traditional CV structure with hypertextual depth added
 through collapsible sections, dotted sidenotes, hover cards, URL preview
 windows, and draggable retro desktop windows.
 
-The live site experience is the homepage at `/`. A Russian version of the same
-experience lives at `/ru/`, switched through a retro OS taskbar at the bottom
-of the page; open windows, sections, sidenotes, and scroll survive the switch
-via sessionStorage. The `/cv` route is a plainer CV version, and `/artifacts`
-is a small React artifact scaffold.
+The live site experience is the homepage at `/`. Russian and Spanish versions
+of the same experience live at `/ru/` and `/es/`, switched through a retro OS
+taskbar at the bottom of the page; open windows, sections, sidenotes, and
+scroll survive the switch via sessionStorage, and the tray shows a GMT clock
+(no user-location lookups). The `/cv` route is a plainer CV version, and
+`/artifacts` is a small React artifact scaffold.
 
 ## Current Stack
 
@@ -39,6 +40,7 @@ Run commands from the project root.
 |---|---|
 | `src/pages/index.astro` | Main interactive CV page (English) |
 | `src/pages/ru/index.astro` | Russian mirror of the homepage — keep structurally in sync with `index.astro` |
+| `src/pages/es/index.astro` | Spanish (Argentinian) mirror of the homepage — keep structurally in sync with `index.astro` |
 | `src/pages/cv.astro` | Plain CV route |
 | `src/components/Taskbar.astro` | Bottom retro taskbar: language "applications" + tray |
 | `src/scripts/pdosState.ts` | Shared sessionStorage store for cross-language state persistence |
@@ -53,7 +55,9 @@ Run commands from the project root.
 | `src/styles/global.css` | Site theme: Times New Roman and paper/ink palette |
 | `public/Paul_Diaz_Ashot_CV.pdf` | Downloadable CV (English) |
 | `public/Paul_Diaz_Ashot_CV_RU.pdf` | Downloadable CV (Russian; byte-copy of `CV_RU.pdf`, never edited here) |
+| `public/Paul_Diaz_Ashot_CV_ES.pdf` | Downloadable CV (Spanish; printed from `c_vitae/Paul_Diaz_Ashot_CV_ES.html` via headless Chrome) |
 | `CV_RU.pdf` / `CV_RU.pages` | Canonical professionally reviewed Russian CV — source of truth for RU terminology |
+| `c_vitae/Paul_Diaz_Ashot_CV_ES.html` | Spanish CV source (mirrors `Paul_Diaz_Ashot_CV_May13.html`) |
 | `public/previews/` | URL preview screenshots used by external preview windows |
 | `public/images/cv/` | Media used inside CV windows |
 | `cv_content_workbench/` | Draft workspace for future annotation/window copy |
@@ -69,16 +73,17 @@ Run commands from the project root.
 - Do not turn the site into a generic landing page or portfolio grid.
 - Keep links, annotations, and windows readable without overwhelming the main
   CV scan.
-- `/` and `/ru/` are structural mirrors: identical component tree, window and
-  sidenote and collapsible ids, and style blocks. Editing one page means
-  editing both. Russian copy follows `CV_RU.pdf` terminology; a new language
-  is one more `src/pages/<code>/index.astro` mirror plus an entry in
-  `Taskbar.astro`.
+- `/`, `/ru/`, and `/es/` are structural mirrors: identical component tree,
+  window and sidenote and collapsible ids, and style blocks. Editing one page
+  means editing all three. Russian copy follows `CV_RU.pdf` terminology;
+  Spanish is Argentinian in register; a new language is one more
+  `src/pages/<code>/index.astro` mirror plus an entry in `Taskbar.astro`.
 
 ## Current Routes
 
 - `/` - primary interactive CV (English).
 - `/ru/` - Russian version of the primary CV; same structure and ids as `/`.
+- `/es/` - Spanish (Argentinian) version; same structure and ids as `/`.
 - `/cv` - simpler CV route with the same overall content, fewer interactions.
 - `/artifacts` - index of React artifacts in `src/artifacts`.
 - `/artifacts/Example` - current example artifact route.

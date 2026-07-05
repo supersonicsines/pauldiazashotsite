@@ -24,6 +24,7 @@ Routes currently built:
 
 - `/`
 - `/ru/` (Russian mirror of `/`)
+- `/es/` (Spanish mirror of `/`)
 - `/cv`
 - `/artifacts`
 - `/artifacts/Example`
@@ -91,21 +92,23 @@ There is no custom 404 route yet.
 - [ ] Intelligent booking system sidenote expands inline from the dagger marker.
 - [ ] Sidenote links open correctly.
 
-### Taskbar / Bilingual
+### Taskbar / Multilingual
 
-- [x] Taskbar renders on `/` and `/ru/` with the current app depressed.
-- [x] Clicking РУССКИЙ on `/` lands on `/ru/` without replaying the loader.
+- [x] Taskbar renders on `/`, `/ru/`, and `/es/` with the current app depressed.
+- [x] Switching apps lands on the other language without replaying the loader.
 - [x] Open windows keep position, size, and z-order across the switch.
 - [x] Minimized windows stay in the dock across the switch (labels localize).
 - [x] Collapsed/expanded sections and sidenotes persist across the switch.
 - [x] Scroll position persists across the switch.
 - [x] Mobile inline panels persist across the switch.
-- [x] Direct `/ru/` visit cold-boots with the loader and default state.
-- [x] `/ru/` PDF links (intro + footer) point to `/Paul_Diaz_Ashot_CV_RU.pdf`.
-- [x] Tray shows `EN`/`RU` indicator and a live clock.
+- [x] Direct `/ru/` or `/es/` visits cold-boot with the loader and defaults.
+- [x] `/ru/` PDF links point to `/Paul_Diaz_Ashot_CV_RU.pdf`; `/es/` links to
+  `/Paul_Diaz_Ashot_CV_ES.pdf`.
+- [x] Tray shows `GMT` label and a clock pinned to GMT.
 - [x] Escape-closed windows stay closed after a language switch.
+- [x] Desktop layout survives a mobile-breakpoint round trip.
 
-(Automated pass 2026-07-05 via headless Chrome, 36 checks.)
+(Automated pass 2026-07-05 via headless Chrome, 50 checks.)
 
 ### Loader / Watermark
 

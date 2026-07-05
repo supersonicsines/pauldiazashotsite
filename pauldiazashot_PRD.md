@@ -49,25 +49,32 @@ Sections are collapsible. Education and Skills currently default closed.
 
 ### Language Versions
 
-- `/` is English; `/ru/` is the Russian version of the same experience.
-- A fixed retro taskbar at the bottom of both pages holds one "application"
-  per language (`ENGLISH`, `РУССКИЙ`), each labelled in its own language. The
-  current language's button is depressed; the tray shows an OS-style layout
-  indicator (`EN`/`RU`) and a clock.
-- The two pages are structural mirrors: identical component tree, window /
+- `/` is English; `/ru/` is Russian; `/es/` is Spanish (Argentinian) — the
+  same experience in three languages.
+- A fixed retro taskbar at the bottom of every page holds one "application"
+  per language (`ENGLISH`, `РУССКИЙ`, `ESPAÑOL`), each labelled in its own
+  language. The current language's button is depressed; the tray shows a
+  `GMT` label and a clock pinned to GMT (deliberately — no user-location or
+  timezone lookups).
+- The pages are structural mirrors: identical component tree, window /
   sidenote / collapsible ids, and style blocks. Only human-visible text
   differs.
 - Russian copy follows the professionally reviewed `CV_RU.pdf` (terminology,
-  register, quoted brand names, `и. и.` for AI). Web-only prose is translated
-  to that standard. The PDF itself is never edited; `/ru/` serves a byte-copy
-  at `/Paul_Diaz_Ashot_CV_RU.pdf` for download.
+  register, quoted brand names, `и. и.` for AI). The PDF itself is never
+  edited; `/ru/` serves a byte-copy at `/Paul_Diaz_Ashot_CV_RU.pdf`.
+- Spanish copy is Argentinian in register (voseo link labels, rioplatense
+  lexicon) with the English page's direct first-person voice; there is no
+  external canonical Spanish CV, so `c_vitae/Paul_Diaz_Ashot_CV_ES.html`
+  mirrors the English CV HTML and prints to
+  `/Paul_Diaz_Ashot_CV_ES.pdf` via headless Chrome (see
+  `scripts/generate-previews.sh` for the Chrome invocation pattern).
 - Switching languages preserves the "desktop": open/minimized windows with
   their geometry and z-order, collapsed sections, expanded sidenotes, and
   scroll position carry across via sessionStorage (`pdos-state-v1`), and the
   boot loader is skipped on taskbar navigation (`pdos-warm`), so the switch
   feels like one workstation.
-- Spanish later = one more mirror page under `src/pages/es/` plus an entry in
-  `Taskbar.astro`'s `APPS` array.
+- A fourth language = one more mirror page under `src/pages/<code>/` plus an
+  entry in `Taskbar.astro`'s `APPS` array.
 
 ### Secondary Routes
 
@@ -203,7 +210,8 @@ with hooks in `WindowManager.astro` and `BaseLayout.astro`.
   sidenote checkboxes, and scroll position persist in sessionStorage and are
   restored on load on either language page.
 - Window and dock control labels localize from `document.documentElement.lang`
-  (Свернуть/Закрыть/Развернуть on `/ru/`).
+  (Свернуть/Закрыть/Развернуть on `/ru/`; Minimizar/Cerrar/Restaurar on
+  `/es/`).
 - On mobile, persisted open windows restore as inline panels.
 
 ### Loader and Watermark
@@ -297,8 +305,8 @@ pauldiazashotsite/
 ### Must Preserve
 
 - Homepage remains a CV-first page, not a marketing landing page.
-- `/` and `/ru/` stay structural mirrors; a content edit on one page is made
-  on both.
+- `/`, `/ru/`, and `/es/` stay structural mirrors; a content edit on one page
+  is made on all three.
 - `CV_RU.pdf` / `CV_RU.pages` are canonical and are never edited by agents.
 - Text remains readable and copyable.
 - Times New Roman remains the sole typeface.
@@ -317,8 +325,9 @@ pauldiazashotsite/
 - Mobile/coarse-pointer inline window fallback works.
 - Sidenote daggers expand inline.
 - Hover cards remain readable and do not clip off-screen in common viewports.
-- PDF link points to `public/Paul_Diaz_Ashot_CV.pdf` on `/` and
-  `public/Paul_Diaz_Ashot_CV_RU.pdf` on `/ru/`.
+- PDF link points to `public/Paul_Diaz_Ashot_CV.pdf` on `/`,
+  `public/Paul_Diaz_Ashot_CV_RU.pdf` on `/ru/`, and
+  `public/Paul_Diaz_Ashot_CV_ES.pdf` on `/es/`.
 - Taskbar language switch preserves open windows, dock, sections, sidenotes,
   and scroll in both directions, and skips the boot loader.
 
