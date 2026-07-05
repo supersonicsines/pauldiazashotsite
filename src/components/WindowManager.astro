@@ -236,22 +236,33 @@
 
 	const MOBILE_INLINE_QUERY = '(max-width: 700px), (hover: none) and (pointer: coarse)';
 
-	// Chrome strings follow the page language so the RU page is a RU machine.
-	const UI_LANG = document.documentElement.lang === 'ru' ? 'ru' : 'en';
-	const LABELS =
-		UI_LANG === 'ru'
-			? {
-					minimize: 'Свернуть',
-					close: 'Закрыть',
-					restoreWindow: (title: string) => `Развернуть ${title}`,
-					closeWindow: (title: string) => `Закрыть ${title}`,
-				}
-			: {
-					minimize: 'Minimize',
-					close: 'Close',
-					restoreWindow: (title: string) => `Restore ${title}`,
-					closeWindow: (title: string) => `Close ${title}`,
-				};
+	// Chrome strings follow the page language so each page is its own machine.
+	const CHROME_LABELS: Record<string, {
+		minimize: string;
+		close: string;
+		restoreWindow: (title: string) => string;
+		closeWindow: (title: string) => string;
+	}> = {
+		en: {
+			minimize: 'Minimize',
+			close: 'Close',
+			restoreWindow: (title) => `Restore ${title}`,
+			closeWindow: (title) => `Close ${title}`,
+		},
+		ru: {
+			minimize: 'Свернуть',
+			close: 'Закрыть',
+			restoreWindow: (title) => `Развернуть ${title}`,
+			closeWindow: (title) => `Закрыть ${title}`,
+		},
+		es: {
+			minimize: 'Minimizar',
+			close: 'Cerrar',
+			restoreWindow: (title) => `Restaurar ${title}`,
+			closeWindow: (title) => `Cerrar ${title}`,
+		},
+	};
+	const LABELS = CHROME_LABELS[document.documentElement.lang] ?? CHROME_LABELS.en;
 
 	type WinState = {
 		element: HTMLElement;

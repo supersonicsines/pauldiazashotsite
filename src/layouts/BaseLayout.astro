@@ -5,7 +5,7 @@ import Analytics from '@vercel/analytics/astro';
 interface Props {
 	title: string;
 	description?: string;
-	lang?: 'en' | 'ru';
+	lang?: 'en' | 'ru' | 'es';
 	alternates?: boolean;
 }
 
@@ -22,6 +22,7 @@ const SITE_URL = 'https://pauldiazashot.com';
 		<title>{title}</title>
 		{alternates && <link rel="alternate" hreflang="en" href={`${SITE_URL}/`} />}
 		{alternates && <link rel="alternate" hreflang="ru" href={`${SITE_URL}/ru/`} />}
+		{alternates && <link rel="alternate" hreflang="es" href={`${SITE_URL}/es/`} />}
 		{alternates && <link rel="alternate" hreflang="x-default" href={`${SITE_URL}/`} />}
 		<Analytics />
 	</head>

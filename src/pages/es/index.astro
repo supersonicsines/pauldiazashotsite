@@ -1,0 +1,613 @@
+---
+// Spanish (Argentinian) mirror of src/pages/index.astro. KEEP IN SYNC
+// STRUCTURALLY: identical component tree, window/sidenote/collapsible ids,
+// and <style> block, so cross-language session persistence maps 1:1. Voice:
+// the English page's direct first person in natural rioplatense register —
+// no professionally reviewed Spanish CV exists, so the English site is the
+// content source and the Russian page sets the precedent for tone. See
+// docs/superpowers/specs/2026-07-05-bilingual-ru-taskbar-design.md.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Collapsible from '../../components/Collapsible.astro';
+import Sidenote from '../../components/Sidenote.astro';
+import HoverCard from '../../components/HoverCard.astro';
+import Window from '../../components/Window.astro';
+import WindowManager from '../../components/WindowManager.astro';
+import Taskbar from '../../components/Taskbar.astro';
+---
+
+<BaseLayout
+	title="Paul Diaz Ashot"
+	description="Fundador-operador. Equipo fundador de GMX. Desarrollador activo de IA con Claude Code, Codex CLI y GPT-5.5. Londres, Barcelona, Nueva York."
+	lang="es"
+	alternates
+>
+	<main class="cv">
+		<header class="cv-header">
+			<h1>Paul Diaz Ashot</h1>
+			<div class="locations">Londres, Barcelona, Nueva York</div>
+			<div class="contact">
+				<a href="mailto:paul.ashot@icloud.com" target="_blank" rel="noopener">paul.ashot@icloud.com</a> ·
+				(646) 996 5037 ·
+				<a href="https://pauldiazashot.com" target="_blank" rel="noopener noreferrer">pauldiazashot.com</a> ·
+				@supersonicsines
+			</div>
+		</header>
+
+		<div class="cv-body">
+			<Collapsible title="Introducción" id="intro">
+				<p>
+					Soy fundador-operador. Vendo desde los doce años: primero eran cuadros, ahora son ideas. Pasé cuatro años en el equipo fundador de <span class="glue"><button type="button" class="inline-preview-trigger" data-window-trigger="preview-gmx" aria-haspopup="dialog"><b>GMX</b></button>,</span> donde estuve a cargo del go-to-market y sumé socios de primera línea. En paralelo, y después de esa etapa, pasé otros cuatro años al frente de una consultora de venture capital, ayudando a las empresas del portfolio a levantar capital y a pivotear sus estrategias hasta volverse rentables. Mi obsesión actual es desplegar agentes de IA con el mejor modelo para cada tarea, de Claude a GPT-5.5, para automatizar y escalar negocios reales como Pawlymarket y Slashwork. Inglés nativo, ruso fluido, español fluido; <Sidenote id="right-to-work" term="permiso de trabajo en el Reino Unido, Estados Unidos y la Unión Europea">Residencia permanente en el Reino Unido (Indefinite Leave to Remain) + doble ciudadanía EE. UU./UE.</Sidenote>.
+				</p>
+				<p>
+					Esta es una página hipertextual: los elementos subrayados se pueden explorar para obtener más contexto e información. La versión en PDF está
+					<a href="/Paul_Diaz_Ashot_CV_ES.pdf" download target="_blank" rel="noopener">acá</a>.
+				</p>
+			</Collapsible>
+
+			<Collapsible title="Experiencia" id="experience">
+				<div class="role">
+					<button class="role-trigger" data-window-trigger="portico" aria-haspopup="dialog">
+						<b>Portico Ventures</b> — <em>Managing Partner</em>
+					</button>
+					<div class="dates">2021 – 2026</div>
+				</div>
+				<ul>
+					<li>
+						Fondo de venture capital especializado en asesorar e invertir en DeFi y fintech en etapa temprana.
+						Trabajé codo a codo en el go-to-market con varias empresas del portfolio, entre ellas <button type="button" class="inline-preview-trigger" data-window-trigger="preview-gammaswap" aria-haspopup="dialog"><b>Gammaswap</b></button>
+						y <span class="glue"><button type="button" class="inline-preview-trigger" data-window-trigger="preview-codex" aria-haspopup="dialog"><b>Codex.io</b></button>.</span>
+						Contribuí a levantar <b>más de USD 4 millones de financiamiento acumulado</b> mediante trabajo de asesoría y presentaciones directas.
+					</li>
+				</ul>
+
+				<div class="role">
+					<button class="role-trigger" data-window-trigger="gmx" aria-haspopup="dialog">
+						<b>GMX</b> — <em>Equipo fundador · Crecimiento y alianzas estratégicas</em>
+					</button>
+					<div class="dates">2020 – 2023</div>
+				</div>
+				<ul>
+					<li>
+						Equipo fundador de tres personas. Durante mi etapa, GMX fue el protocolo que más ingresos generaba en todo DeFi.
+						Colideré las alianzas institucionales y la formación de capital; capté personalmente
+						<b>más de USD 20 millones en despliegues de capital acumulados</b>.
+					</li>
+					<li>
+						Cerré —solo o junto al equipo— alianzas estratégicas con <Sidenote id="arbitrum" term="Arbitrum" italic>Arbitrum es una L2 de Ethereum que GMX aprovechó para bajar los costos de transacción. Ser de los primeros en adoptarla implicó negociar grants y reintegros para traders por más de USD 10 millones. <a href="https://gmxio.substack.com/p/how-gmx-will-utilise-the-12-million" target="_blank" rel="noopener noreferrer">Leé el anuncio de incentivos de GMX en Arbitrum</a>.</Sidenote>, <Sidenote id="avalanche" term="Avalanche" italic>El paquete de incentivos de Avalanche Rush fue uno de los más grandes conseguidos en DeFi hasta ese momento. Los USD 4 millones en recompensas de trading llevaron a aumentos de TVL de ocho cifras en cuestión de meses. <a href="https://medium.com/avalancheavax/gmx-joins-avalanche-rush-with-4m-in-trading-rewards-ce5c66f0e3b3" target="_blank" rel="noopener noreferrer">Leé el anuncio de Avalanche Rush</a>.</Sidenote>, <em>Chainlink</em> y <em>Frax</em>, más otras dos integraciones de protocolo. Coordiné el <HoverCard term="rebranding de Gambit → GMX">
+							<span class="hc-p">El rebranding no fue un ejercicio de marketing: fue una migración de cadena, de BSC (Gambit) a <em>Arbitrum</em> y <em>Avalanche</em> (GMX), con la red de socios lista para acompañar el lanzamiento.</span>
+							<span class="hc-p">Gambit arrancó bien en BSC: llegó a un TVL de nueve cifras y emitió GUSDT, una stablecoin respaldada por el float agregado de posiciones largas y cortas y por las comisiones de financiamiento. El producto estaba bien pensado, pero la volatilidad del mercado rompió la paridad, así que la migración exigía repensar la parte técnica, no un simple cambio de nombre.</span>
+							<span class="hc-p">Mi rol como líder de facto de la comunidad fue llevar a los usuarios a un producto nuevo en cadenas nuevas sin fracturar a la comunidad después de las pérdidas del primer sistema. Funcionó: los usuarios que aguantaron la migración vieron retornos de más del 500%, y la comunidad de Telegram se mantuvo prácticamente intacta durante la transición.</span>
+						</HoverCard> y organicé el acercamiento a futuros socios.
+					</li>
+					<li>
+						Construí y lideré los canales institucionales y comunitarios: <b>más de 5.000 miembros en Telegram</b> y relaciones directas con proveedores de liquidez de ocho cifras.
+					</li>
+				</ul>
+
+				<div class="role">
+					<div class="role-title">
+						<HoverCard term="Effie Perine LTD.">
+							<span class="hc-p">Effie Perine es una casa de compraventa y consignación de arte que dirige mi hermano, Alexis Ashot, experto de nivel mundial en pintura holandesa.</span>
+							<span class="hc-p">Mi paso por ahí retomó mi primera experiencia de chico vendiendo antigüedades y cuadros. En esa etapa aprendí la importancia de la relación con los clientes, de construir y mantener un buen flujo de operaciones, de generar contactos comerciales y de manejar el riesgo en negocios marcadamente estacionales.</span>
+							<span class="hc-p">Fue una transición breve entre los estudios y la vida profesional, pero sentó las bases de muchos de los hábitos comerciales que después usé en cripto, en la asesoría de venture capital y en los despliegues de IA.</span>
+						</HoverCard> — <em>Operaciones y relación con clientes</em>
+					</div>
+					<div class="dates">2019 – 2020</div>
+				</div>
+				<ul>
+					<li>
+						Administré las cuentas financieras y la operatoria diaria de una casa privada de arte especializada en obras de Viejos Maestros; volúmenes anuales de transacciones en el rango de £500 mil a £2,5+ millones.
+					</li>
+				</ul>
+			</Collapsible>
+
+			<Collapsible title="Despliegues actuales de IA" id="deployments">
+				<ul>
+					<li>
+						<button type="button" class="inline-preview-trigger" data-window-trigger="preview-slashwork" aria-haspopup="dialog"><b>Slashwork.xyz</b></button> — buscador de empleo con IA, gratuito y en producción, para la comunidad técnica y de startups, enfocado en puestos recién publicados en un universo monitoreado de empresas que cotizan en bolsa. Construido de punta a punta con Claude Opus.
+					</li>
+					<li>
+						<button type="button" class="inline-preview-trigger" data-window-trigger="pawlymarket" aria-haspopup="dialog"><b>Pawlymarket</b></button> — agregador de datos y terminal de trading de Polymarket hecho y derecho, usado para armar estrategias avanzadas de rendimiento. <a href="https://pawlymarket.com" target="_blank" rel="noopener noreferrer">pawlymarket.com</a>.
+					</li>
+					<li>
+						<button type="button" class="inline-preview-trigger" data-window-trigger="vinted" aria-haspopup="dialog"><b>Agente de reventa de Vinted a Depop</b></button> — sistema autónomo de arbitraje de moda que opera entre Vinted y Depop.
+					</li>
+					<li>
+						<Sidenote id="booking" term="Sistema inteligente de reservas">Una escuela de baile de Barcelona con más de 100 reservas individuales por semana pasó a un sistema de gestión y analítica programado con IA, hecho con Claude Code y Codex CLI. El agente sigue la estacionalidad de las clases de tarde y de noche, de salsa y bachata, y por nivel de experiencia, y a partir de regresiones básicas y heurísticas sugiere los horarios. La eficiencia administrativa estimada subió alrededor de un 50%.</Sidenote> — agendador agéntico asistido por Codex CLI para un pequeño negocio local; toma reservas de clases y organiza las clases futuras según la demanda proyectada.
+					</li>
+				</ul>
+			</Collapsible>
+
+			<Collapsible title="Educación" id="education" open={false}>
+				<p>
+					<b>BSc Chemistry</b>, <em>University of Manchester</em>, 2018 — Licenciatura en Química.
+				</p>
+			</Collapsible>
+
+			<Collapsible title="Habilidades" id="skills" open={false}>
+				<p class="skills">
+					Venta consultiva a compradores técnicos · negociación con grandes empresas · aprovechamiento de redes de fundadores · crecimiento impulsado por la comunidad · evangelización de productos técnicos · venture capital · operación de startups · manejo de riesgo · inteligencia de mercado · modelado financiero · scraping de ATS · SQLite/FTS · Claude API · Claude Code · Codex CLI · GPT-5.5 · prompt engineering · flujos de trabajo agénticos · MCP · Python · JavaScript
+				</p>
+			</Collapsible>
+		</div>
+
+		<footer class="cv-footer">
+			<a href="mailto:paul.ashot@icloud.com" target="_blank" rel="noopener">paul.ashot@icloud.com</a> ·
+			@supersonicsines ·
+			<a href="/Paul_Diaz_Ashot_CV_ES.pdf" download target="_blank" rel="noopener">Descargar CV (PDF)</a>
+		</footer>
+	</main>
+
+	<!-- External preview windows -->
+	<Window
+		id="preview-gmx"
+		title="https://gmx.io"
+		initialX={154}
+		initialY={96}
+		initialWidth={640}
+		initialHeight={388}
+		resizable={false}
+		variant="preview"
+	>
+		<div class="external-preview">
+			<img src="/previews/gmx-preview-1280.png" width="1280" height="720" alt="Vista previa de https://gmx.io" loading="lazy" decoding="async" />
+			<a class="external-preview-arrow" href="https://gmx.io" target="_blank" rel="noopener noreferrer" aria-label="Abrir https://gmx.io">→</a>
+		</div>
+	</Window>
+
+	<Window
+		id="preview-gammaswap"
+		title="https://gammaswap.com"
+		initialX={176}
+		initialY={112}
+		initialWidth={640}
+		initialHeight={388}
+		resizable={false}
+		variant="preview"
+	>
+		<div class="external-preview">
+			<img src="/previews/gammaswap-preview-1280.png" width="1280" height="720" alt="Vista previa de https://gammaswap.com" loading="lazy" decoding="async" />
+			<a class="external-preview-arrow" href="https://gammaswap.com" target="_blank" rel="noopener noreferrer" aria-label="Abrir https://gammaswap.com">→</a>
+		</div>
+	</Window>
+
+	<Window
+		id="preview-slashwork"
+		title="https://slashwork.xyz"
+		initialX={188}
+		initialY={128}
+		initialWidth={640}
+		initialHeight={388}
+		resizable={false}
+		variant="preview"
+	>
+		<div class="external-preview">
+			<img src="/previews/slashwork-preview-1280.png" width="1280" height="720" alt="Vista previa de https://slashwork.xyz" loading="lazy" decoding="async" />
+			<a class="external-preview-arrow" href="https://slashwork.xyz" target="_blank" rel="noopener noreferrer" aria-label="Abrir https://slashwork.xyz">→</a>
+		</div>
+	</Window>
+
+	<Window
+		id="preview-codex"
+		title="https://www.codex.io"
+		initialX={220}
+		initialY={144}
+		initialWidth={640}
+		initialHeight={388}
+		resizable={false}
+		variant="preview"
+	>
+		<div class="external-preview">
+			<img src="/previews/codex-preview-1280.png" width="1280" height="720" alt="Vista previa de https://www.codex.io" loading="lazy" decoding="async" />
+			<a class="external-preview-arrow" href="https://www.codex.io" target="_blank" rel="noopener noreferrer" aria-label="Abrir https://www.codex.io">→</a>
+		</div>
+	</Window>
+
+	<!-- Role windows -->
+	<Window id="portico" title="Portico Ventures · Managing Partner" initialX={140} initialY={100}>
+		<p><b>Portico Ventures</b> — <em>Managing Partner, 2021 – 2026</em></p>
+		<p>
+			Portico Ventures fue un fondo boutique armado alrededor del trabajo de
+			aceleradora y consultoría para empresas DeFi y fintech.
+		</p>
+		<p>
+			La sociedad tenía siete managing partners de perfiles distintos, con
+			especializaciones en ingeniería, finanzas, marketing y distribución. Yo
+			solía trabajar con productos de consumo, donde la distribución y el
+			product-market fit pesaban más que nada.
+		</p>
+		<p>
+			Mis mejores aportes pasaron por diagnosticar la demanda, cerrar acuerdos
+			de distribución, afilar la narrativa de los fundadores y ayudar a que
+			productos técnicos llegaran a compradores mejor definidos. En todo el
+			portfolio, Portico respaldó 20 empresas, registró seis exits y alcanzó un
+			pico de activos bajo gestión de ocho cifras.
+		</p>
+	</Window>
+
+	<Window id="gmx" title="GMX · Equipo fundador · Crecimiento y alianzas estratégicas" initialX={200} initialY={140} initialWidth={580}>
+		<p><b>GMX</b> — <em>Equipo fundador · Crecimiento y alianzas estratégicas, 2020 – 2023</em></p>
+		<p>
+			Trabajar en GMX fue un acto de amor en un ambiente despiadado y de alta
+			presión, donde una falla de ejecución o un exploit podían dañarte la
+			reputación para siempre.
+		</p>
+		<p>
+			Como exchange descentralizado de perpetuos, no éramos solamente pioneros:
+			operábamos en plena incertidumbre regulatoria, lanzando en el primer año
+			de una nueva presidencia en Estados Unidos, con DeFi bajo un escrutinio
+			intenso.
+		</p>
+		<p>
+			El trabajo encajaba con mis habilidades y mis intereses como nada de lo
+			que había hecho antes. Ahí construí relaciones para toda la vida, y la
+			gran lección personal fue descubrir lo mucho que me gratifica la primera
+			línea de un espacio tecnológico: usuarios que hacen preguntas difíciles,
+			socios que necesitan convicción, proveedores de liquidez que sopesan el
+			riesgo y un producto cuya credibilidad había que ganarse en público.
+		</p>
+	</Window>
+
+	<!-- Current deployment windows -->
+	<Window id="pawlymarket" title="Pawlymarket · Analítica de mercados de predicción" initialX={236} initialY={108} initialWidth={820} initialHeight={650}>
+		<p><b>Pawlymarket</b> — <em>comunidad descentralizada de análisis cuantitativo para Polymarket</em></p>
+		<p>
+			Un club cerrado montado sobre Polymarket. El motor corre regresiones
+			estadísticas sobre todo el libro de órdenes en vivo, la IA hace la
+			curaduría de los sobrevivientes y los miembros arman coberturas contra los pares curados
+			para extraer rendimiento de la beta mal valuada. Más cerca de una pequeña
+			mesa cuantitativa que de otro bot de arbitraje.
+		</p>
+		<div class="window-media window-media--sixty-five">
+			<img src="/images/cv/pawlymarket-dashboard-1280-rgb.png" width="1280" height="1025" alt="Explorador de Pawlymarket con pares de mercados curados, puntajes de correlación y controles de gráficos" loading="lazy" decoding="async" />
+		</div>
+		<p>
+			Cada cinco minutos, el analizador actualiza los datos de Polymarket y rankea los pares
+			viables por correlación, beta, cointegración, vida media y volumen. Las
+			reglas, la categorización por IA y una tesis macro escrita reducen ese
+			universo a unos 250 pares vivos, agrupados como señales de mercado muerto,
+			theta, beta negativa, beta parcial o drift. La ventaja está en la
+			reconvergencia del spread, no en apostar a la dirección.
+		</p>
+		<p>
+			El producto entrega señales por Telegram, alertas web y un Explorer con
+			gráficos, modelos de resultados, pares guardados, discusiones de pares
+			aportadas por los miembros y seguimiento de billeteras de las principales
+			cuentas de Polymarket en Polygon CTF.
+		</p>
+		<p>
+			Construido de punta a punta con Claude Code y Codex CLI. Haiku, Sonnet,
+			Opus y GPT-5.5 corren cada uno la parte del flujo donde son más fuertes.
+			Autenticación con billetera, USDC/USDT en Polygon, sin KYC.
+			<a href="https://pawlymarket.com" target="_blank" rel="noopener noreferrer">pawlymarket.com</a>
+		</p>
+	</Window>
+
+	<Window id="vinted" title="Vinted → Depop · Agente de reventa" initialX={300} initialY={124} initialWidth={640} initialHeight={560}>
+		<p><b>Agente de reventa de Vinted a Depop</b> — <em>arbitraje autónomo de moda</em></p>
+		<p>
+			Agente autónomo de arbitraje de moda de punta a punta que opera entre
+			Vinted y Depop: maneja el inventario, hace las compras, publica los
+			artículos y le manda al usuario final, por Telegram, cada envío para una
+			última revisión.
+		</p>
+		<div class="window-media window-media--seventy-five">
+			<img src="/images/cv/vinted-depop-glitter-1100-rgb.png" width="1100" height="701" alt="Interfaz de terminal de la plataforma de inteligencia Glitter para Vinted" loading="lazy" decoding="async" />
+		</div>
+		<p>
+			Al agente lo maneja un flujo multipasada de Haiku, Opus y GPT-5.5 a través
+			de una interfaz de terminal. Arrancó con USD 10 mil y generó USD 25 mil en
+			seis meses, con un promedio cercano al 100% de retorno por prenda y una
+			tasa de pérdida menor al 10%.
+		</p>
+	</Window>
+
+	<WindowManager />
+	<Taskbar lang="es" />
+</BaseLayout>
+
+<style>
+	/* Mirror of src/pages/index.astro styles — keep the blocks in sync. */
+	.cv {
+		max-width: 680px;
+		margin: 0 auto;
+		/* Extra bottom padding keeps the footer clear of the fixed taskbar. */
+		padding: 48px 24px 108px 24px;
+		position: relative;
+		z-index: 1;
+		counter-reset: sidenote;
+	}
+
+	.cv-header,
+	.cv-body,
+	.cv-footer {
+		max-width: 680px;
+	}
+
+	.cv-header {
+		text-align: center;
+		padding-bottom: 14px;
+		border-bottom: 0.5px solid var(--color-rule);
+		margin-bottom: 12px;
+	}
+
+	.cv-header h1 {
+		margin: 0 0 8px 0;
+		font-family: var(--font-serif);
+		font-size: 32px;
+		font-weight: 400;
+		letter-spacing: 1.5px;
+	}
+
+	.locations {
+		font-size: 15px;
+		color: var(--color-ink);
+		margin-bottom: 6px;
+		letter-spacing: 0.5px;
+	}
+
+	.contact {
+		font-family: var(--font-sans);
+		font-size: 12px;
+		color: var(--color-muted);
+		margin-bottom: 4px;
+	}
+
+	.contact a {
+		color: var(--color-ink);
+	}
+
+	.role {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		margin: 12px 0 4px 0;
+		flex-wrap: wrap;
+		gap: 4px;
+	}
+
+	/* Buttons are atomic inline boxes, so Blink will happily break a line
+	   between a trigger and its trailing punctuation; .glue pins them. */
+	.glue {
+		white-space: nowrap;
+	}
+
+	.role-trigger {
+		all: unset;
+		cursor: pointer;
+		font-size: 15px;
+		color: var(--color-ink);
+		text-decoration: underline;
+		text-decoration-color: var(--color-rule);
+		text-underline-offset: 3px;
+		text-decoration-thickness: 1px;
+		transition: text-decoration-thickness 120ms ease-out;
+	}
+
+	.role-trigger:hover,
+	.role-trigger:focus-visible {
+		text-decoration-thickness: 1.5px;
+		text-decoration-color: var(--color-ink);
+	}
+
+	.role-trigger:focus-visible {
+		outline: 1px solid var(--color-rule);
+		outline-offset: 4px;
+	}
+
+	.role-title {
+		font-size: 15px;
+		color: var(--color-ink);
+	}
+
+	.inline-preview-trigger {
+		all: unset;
+		cursor: pointer;
+		color: var(--color-ink);
+		text-decoration: underline;
+		text-decoration-color: var(--color-rule);
+		text-underline-offset: 2px;
+		text-decoration-thickness: 1px;
+		transition:
+			text-decoration-color 120ms ease-out,
+			text-decoration-thickness 120ms ease-out;
+	}
+
+	.inline-preview-trigger:hover,
+	.inline-preview-trigger:focus-visible {
+		text-decoration-color: var(--color-ink);
+		text-decoration-thickness: 1.5px;
+	}
+
+	.inline-preview-trigger:focus-visible {
+		outline: 1px solid var(--color-rule);
+		outline-offset: 3px;
+	}
+
+	.role .dates {
+		font-family: var(--font-sans);
+		font-size: 12px;
+		color: var(--color-muted);
+		font-style: italic;
+		white-space: nowrap;
+	}
+
+	.cv :global(p),
+	.cv :global(li) {
+		font-size: 15px;
+		line-height: 1.5;
+		margin: 0 0 6px 0;
+	}
+
+	.cv :global(ul) {
+		margin: 4px 0 10px 0;
+		padding-left: 16px;
+		list-style: none;
+	}
+
+	.cv :global(li) {
+		position: relative;
+		padding-left: 14px;
+		margin-bottom: 6px;
+	}
+
+	.cv :global(li::before) {
+		content: "*";
+		position: absolute;
+		left: 0;
+		width: 0.7em;
+		color: var(--color-ink);
+		font-size: calc(1em + 1pt);
+		font-weight: 700;
+		text-align: center;
+		opacity: 0.5;
+	}
+
+	.cv :global(li.has-interactive-marker::before) {
+		content: none;
+	}
+
+	.cv :global(.list-marker-symbol) {
+		position: absolute;
+		left: 0;
+		top: 0;
+		display: inline-block;
+		width: 0.7em;
+		color: var(--color-ink);
+		font-family: var(--font-serif);
+		font-size: calc(1em + 1pt);
+		font-weight: 700;
+		line-height: inherit;
+		text-align: center;
+		opacity: 0.5;
+		cursor: default;
+		user-select: none;
+		transition: opacity 120ms ease-out;
+	}
+
+	.cv :global(.list-marker-symbol.is-cycling) {
+		opacity: 1;
+	}
+
+	.cv :global(li.has-interactive-marker:hover > .list-marker-symbol) {
+		opacity: 1;
+	}
+
+	.cv :global(a) {
+		color: var(--color-ink);
+		text-decoration: underline;
+		text-decoration-color: var(--color-rule);
+		text-underline-offset: 2px;
+	}
+
+	.cv :global(em) {
+		font-style: italic;
+	}
+
+	.cv :global(b) {
+		font-weight: 700;
+	}
+
+	.external-preview {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		min-height: 0;
+		overflow: hidden;
+		background:
+			linear-gradient(135deg, rgba(251, 250, 247, 0.08), rgba(61, 43, 31, 0.2)),
+			#17110d;
+	}
+
+	.external-preview img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		filter: saturate(0.88) contrast(0.96);
+	}
+
+	.external-preview::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		border: 1px solid rgba(251, 250, 247, 0.16);
+		pointer-events: none;
+	}
+
+	.external-preview .external-preview-arrow {
+		position: absolute;
+		right: 26px;
+		top: 50%;
+		transform: translateY(-52%);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 132px;
+		height: 132px;
+		color: rgba(251, 250, 247, 0.44);
+		font-family: var(--font-serif);
+		font-size: 122px;
+		font-weight: 400;
+		line-height: 1;
+		text-decoration: none;
+		text-shadow: 0 2px 12px rgba(23, 17, 13, 0.42);
+		transition:
+			color 140ms ease-out,
+			text-shadow 140ms ease-out,
+			transform 140ms ease-out;
+	}
+
+	.external-preview .external-preview-arrow:hover,
+	.external-preview .external-preview-arrow:focus-visible {
+		color: rgba(251, 250, 247, 0.92);
+		text-shadow: 0 2px 18px rgba(23, 17, 13, 0.74);
+		transform: translateY(-52%) translateX(2px);
+		outline: none;
+	}
+
+	:global(.mobile-window-inline-content) .external-preview {
+		height: auto;
+		aspect-ratio: 16 / 9;
+	}
+
+	:global(.mobile-window-inline-content) .external-preview .external-preview-arrow {
+		right: 12px;
+		width: 84px;
+		height: 84px;
+		font-size: 76px;
+	}
+
+	.skills {
+		line-height: 1.55;
+	}
+
+	.cv-footer {
+		margin: 32px auto 0 auto;
+		padding-top: 16px;
+		border-top: 0.5px solid var(--color-rule);
+		text-align: center;
+		font-family: var(--font-sans);
+		font-size: 12px;
+		color: var(--color-muted);
+	}
+
+	.cv-footer a {
+		color: var(--color-ink);
+	}
+
+	@media (max-width: 768px) {
+		.cv {
+			padding: 32px 20px 100px 20px;
+		}
+
+		.role {
+			flex-direction: column;
+			gap: 2px;
+		}
+
+		.role .dates {
+			font-size: 11px;
+		}
+	}
+</style>
